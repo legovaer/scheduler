@@ -1,0 +1,3 @@
+services:
+  scheduler.authorizer:
+    class: Drupal\scheduler\Authorizer

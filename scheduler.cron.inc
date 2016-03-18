@@ -56,7 +56,7 @@ function _scheduler_publish() {
     }
 
     // Check that other modules allow the action on this node.
-    if (!_scheduler_allow($node, $action)) {
+    if (!\Drupal::service('scheduler.authorizer')->isAllowed($node, $action)) {
       continue;
     }
 
@@ -164,7 +164,7 @@ function _scheduler_unpublish() {
     }
 
     // Check that other modules allow the action on this node.
-    if (!_scheduler_allow($node, $action)) {
+    if (!\Drupal::service('scheduler.authorizer')->isAllowed($node, $action)) {
       continue;
     }
 
