@@ -25,6 +25,8 @@ class SchedulerMissingDateException extends Exception {}
  */
 function _scheduler_publish() {
   $date_formatter = \Drupal::service('date.formatter');
+  /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher */
+  $dispatcher = \Drupal::service('event_dispatcher');
   $result = FALSE;
 
   // If the time now is greater than the time to publish a node, publish it.
