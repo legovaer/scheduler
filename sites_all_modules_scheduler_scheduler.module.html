@@ -1,0 +1,4758 @@
+<html>
+<head>
+<title>Simpletest Coverage - sites/all/modules/scheduler/scheduler.module</title>
+</head>
+<style type="text/css">
+body {
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, Arial, Helvetica, sans-serif;
+}
+h1 {
+  font-size: medium;
+}
+#code {
+  border-spacing: 0;
+}
+.lineNo {
+  color: #ccc;
+}
+.code, .lineNo {
+  white-space: pre;
+  font-family: monospace;
+}
+.covered {
+  color: #090;
+}
+.missed {
+  color: #f00;
+}
+.dead {
+  color: #00f;
+}
+.comment {
+  color: #333;
+}
+</style>
+<body>
+<h1 id="title">Simpletest Coverage - sites/all/modules/scheduler/scheduler.module</h1>
+<table id="code">
+  <tbody>
+    <tr>
+       <td><span class="lineNo">1</span></td>
+       <td><span class="comment code">&lt;?php
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">2</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">3</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">4</span></td>
+       <td><span class="comment code"> * @file
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">5</span></td>
+       <td><span class="comment code"> * Scheduler publishes and unpublishes nodes on dates specified by the user.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">6</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">7</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">8</span></td>
+       <td><span class="comment code">// The default format to use if no custom format has been configured.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">9</span></td>
+       <td><span class="covered code">define('SCHEDULER_DATE_FORMAT', 'Y-m-d H:i:s');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">10</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">11</span></td>
+       <td><span class="comment code">// The default date and time formats to use when only a date has been entered.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">12</span></td>
+       <td><span class="comment code">// These should match the date and time parts of SCHEDULER_DATE_FORMAT above.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">13</span></td>
+       <td><span class="covered code">define('SCHEDULER_DATE_ONLY_FORMAT', 'Y-m-d');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">14</span></td>
+       <td><span class="covered code">define('SCHEDULER_TIME_ONLY_FORMAT', 'H:i:s');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">15</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">16</span></td>
+       <td><span class="comment code">// The default time that will be used, until Admin sets a different value.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">17</span></td>
+       <td><span class="covered code">define('SCHEDULER_DEFAULT_TIME', '00:00:00');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">18</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">19</span></td>
+       <td><span class="comment code">// The full set of date and time letters allowed in the scheduler date format.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">20</span></td>
+       <td><span class="covered code">define('SCHEDULER_DATE_LETTERS', 'djmnFMyY');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">21</span></td>
+       <td><span class="covered code">define('SCHEDULER_TIME_LETTERS', 'hHgGisaA');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">22</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">23</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">24</span></td>
+       <td><span class="comment code"> * Implements hook_permission().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">25</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">26</span></td>
+       <td><span class="covered code">function scheduler_permission() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">27</span></td>
+       <td><span class="comment code">  return array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">28</span></td>
+       <td><span class="comment code">    'administer scheduler' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">29</span></td>
+       <td><span class="covered code">      'title' =&gt; t('Administer scheduler'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">30</span></td>
+       <td><span class="covered code">      'description' =&gt; t('Configure scheduler date formats, pop-up calendar, default times, lightweight cron'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">31</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">32</span></td>
+       <td><span class="comment code">    'schedule publishing of nodes' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">33</span></td>
+       <td><span class="covered code">      'title' =&gt; t('Schedule content publication'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">34</span></td>
+       <td><span class="covered code">      'description' =&gt; t('Allows users to set a start and end time for content publication'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">35</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">36</span></td>
+       <td><span class="covered code">    'view scheduled content' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">37</span></td>
+       <td><span class="covered code">      'title' =&gt; t('View scheduled content list'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">38</span></td>
+       <td><span class="covered code">      'description' =&gt; t('Allows users to see all content which is scheduled.'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">39</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">40</span></td>
+       <td><span class="covered code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">41</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">42</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">43</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">44</span></td>
+       <td><span class="comment code"> * Implements hook_menu().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">45</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">46</span></td>
+       <td><span class="covered code">function scheduler_menu() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">47</span></td>
+       <td><span class="covered code">  $items = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">48</span></td>
+       <td><span class="covered code">  $items['scheduler/cron'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">49</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Lightweight cron handler',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">50</span></td>
+       <td><span class="covered code">    'description' =&gt; 'Run the lightweight cron process',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">51</span></td>
+       <td><span class="covered code">    'page callback' =&gt; '_scheduler_run_cron',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">52</span></td>
+       <td><span class="covered code">    'access callback' =&gt; '_scheduler_cron_access',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">53</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array(2),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">54</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_CALLBACK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">55</span></td>
+       <td><span class="covered code">    'file' =&gt; 'scheduler.cron.inc',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">56</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">57</span></td>
+       <td><span class="comment code">  // Redirect the legacy URL 'scheduler/timecheck' to the new admin tab
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">58</span></td>
+       <td><span class="comment code">  // 'admin/config/content/scheduler/timecheck'.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">59</span></td>
+       <td><span class="covered code">  $items['scheduler/timecheck'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">60</span></td>
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_goto',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">61</span></td>
+       <td><span class="covered code">    'page arguments' =&gt; array('admin/config/content/scheduler/timecheck'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">62</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">63</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_CALLBACK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">64</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">65</span></td>
+       <td><span class="covered code">  $items['admin/config/content/scheduler'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">66</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Scheduler',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">67</span></td>
+       <td><span class="covered code">    'description' =&gt; &quot;Configure settings for scheduled publishing and unpublishing, run the lightweight cron and check your servers clock time.&quot;,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">68</span></td>
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_get_form',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">69</span></td>
+       <td><span class="covered code">    'page arguments' =&gt; array('scheduler_admin'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">70</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">71</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_NORMAL_ITEM,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">72</span></td>
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">73</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">74</span></td>
+       <td><span class="covered code">  $items['admin/config/content/scheduler/default'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">75</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Settings',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">76</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_DEFAULT_LOCAL_TASK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">77</span></td>
+       <td><span class="covered code">    'weight' =&gt; 5,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">78</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">79</span></td>
+       <td><span class="covered code">  $items['admin/config/content/scheduler/cron'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">80</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Lightweight Cron',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">81</span></td>
+       <td><span class="covered code">    'description' =&gt; 'A lightweight cron handler to allow more frequent runs of Schedulers internal cron system.',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">82</span></td>
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_get_form',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">83</span></td>
+       <td><span class="covered code">    'page arguments' =&gt; array('_scheduler_lightweight_cron'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">84</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">85</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">86</span></td>
+       <td><span class="covered code">    'weight' =&gt; 10,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">87</span></td>
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">88</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">89</span></td>
+       <td><span class="covered code">  $items['admin/config/content/scheduler/timecheck'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">90</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Time Check',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">91</span></td>
+       <td><span class="covered code">    'description' =&gt; 'Allows site admin to check their servers internal clock',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">92</span></td>
+       <td><span class="covered code">    'page callback' =&gt; '_scheduler_timecheck',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">93</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">94</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">95</span></td>
+       <td><span class="covered code">    'weight' =&gt; 15,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">96</span></td>
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">97</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">98</span></td>
+       <td><span class="covered code">  $items['admin/content/scheduler'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">99</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Scheduled',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">100</span></td>
+       <td><span class="covered code">    'page callback' =&gt; 'scheduler_list',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">101</span></td>
+       <td><span class="covered code">    'page arguments' =&gt; array(NULL, NULL),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">102</span></td>
+       <td><span class="covered code">    'access callback' =&gt; 'scheduler_list_access_callback',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">103</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array(NULL),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">104</span></td>
+       <td><span class="covered code">    'description' =&gt; 'Display a list of scheduled nodes',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">105</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">106</span></td>
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">107</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">108</span></td>
+       <td><span class="comment code">  // Reuse the above definition in the scheduler admin page.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">109</span></td>
+       <td><span class="covered code">  $items['admin/config/content/scheduler/list'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">110</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Scheduled Content',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">111</span></td>
+       <td><span class="covered code">    'weight' =&gt; 20,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">112</span></td>
+       <td><span class="covered code">  ) + $items['admin/content/scheduler'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">113</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">114</span></td>
+       <td><span class="comment code">  // Menu callback for confirmation before manually deleting obsolete rows from
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">115</span></td>
+       <td><span class="comment code">  // the Scheduler table. Cannot use normal node delete link because these rows
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">116</span></td>
+       <td><span class="comment code">  // no longer exist in the {node} table.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">117</span></td>
+       <td><span class="covered code">  $items['admin/content/scheduler/delete/%'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">118</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Delete Scheduled Data',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">119</span></td>
+       <td><span class="covered code">    'description' =&gt; 'Delete obsolete rows from Scheduler table',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">120</span></td>
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_get_form',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">121</span></td>
+       <td><span class="covered code">    'page arguments' =&gt; array('_scheduler_delete_row_confirm', 4),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">122</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">123</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_CALLBACK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">124</span></td>
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">125</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">126</span></td>
+       <td><span class="covered code">  $items['user/%/scheduler'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">127</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Scheduled',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">128</span></td>
+       <td><span class="covered code">    'page callback' =&gt; 'scheduler_list',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">129</span></td>
+       <td><span class="comment code">    // This will pass the uid of the user account being viewed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">130</span></td>
+       <td><span class="covered code">    'page arguments' =&gt; array('user_only', 1),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">131</span></td>
+       <td><span class="covered code">    'access callback' =&gt; 'scheduler_list_access_callback',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">132</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array(1),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">133</span></td>
+       <td><span class="covered code">    'description' =&gt; 'Display a list of scheduled nodes',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">134</span></td>
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">135</span></td>
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">136</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">137</span></td>
+       <td><span class="covered code">  return $items;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">138</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">139</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">140</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">141</span></td>
+       <td><span class="comment code"> * Return the users access to the scheduler list page.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">142</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">143</span></td>
+       <td><span class="comment code"> * Separate function required because of the two access values to be checked.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">144</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">145</span></td>
+       <td><span class="comment code"> * @param int $uid
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">146</span></td>
+       <td><span class="comment code"> *   The user ID of the user of which the scheduled nodes will be listed. Omit
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">147</span></td>
+       <td><span class="comment code"> *   this when listing the nodes of all users.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">148</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">149</span></td>
+       <td><span class="covered code">function scheduler_list_access_callback($uid = NULL) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">150</span></td>
+       <td><span class="missed code">  global $user;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">151</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">152</span></td>
+       <td><span class="comment code">  // All Scheduler users can see their own scheduled content via their user
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">153</span></td>
+       <td><span class="comment code">  // page. In addition, if they have 'view scheduled content' permission they
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">154</span></td>
+       <td><span class="comment code">  // will be able to see all scheduled content by all authors.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">155</span></td>
+       <td><span class="missed code">  return user_access('view scheduled content') || ($uid == $user-&gt;uid &amp;&amp; user_access('schedule publishing of nodes'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">156</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">157</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">158</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">159</span></td>
+       <td><span class="comment code"> * Implements hook_help().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">160</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">161</span></td>
+       <td><span class="covered code">function scheduler_help($section) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">162</span></td>
+       <td><span class="missed code">  $output = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">163</span></td>
+       <td><span class="comment code">  switch ($section) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">164</span></td>
+       <td><span class="missed code">    case 'admin/config/content/scheduler':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">165</span></td>
+       <td><span class="missed code">      $output = '&lt;p&gt;' . t('Some Scheduler options are set for each different content type, and are accessed via the &lt;a href=&quot;@link&quot;&gt;admin content type&lt;/a&gt; list.', array('@link' =&gt; url('admin/structure/types'))) . '&lt;/br&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">166</span></td>
+       <td><span class="missed code">      $output .= t('The options and settings below are common to all content types.') . '&lt;/p&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">167</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">168</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">169</span></td>
+       <td><span class="missed code">    case 'admin/config/content/scheduler/cron':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">170</span></td>
+       <td><span class="missed code">      $base_url = $GLOBALS['base_url'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">171</span></td>
+       <td><span class="missed code">      $access_key = variable_get('scheduler_lightweight_access_key', '');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">172</span></td>
+       <td><span class="missed code">      $cron_url = $base_url . '/scheduler/cron' . ($access_key ? '/' . $access_key : '');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">173</span></td>
+       <td><span class="missed code">      $output = '&lt;p&gt;' . t(&quot;When you have set up Drupal's standard crontab job cron.php then Scheduler will be executed during each cron run. However, if you would like finer granularity to scheduler, but don't want to run Drupal's cron more often then you can use the lightweight cron handler provided by Scheduler. This is an independent cron job which only runs the scheduler process and does not execute any cron tasks defined by Drupal core or any other modules.&quot;) . '&lt;/p&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">174</span></td>
+       <td><span class="missed code">      $output .= '&lt;p&gt;' . t(&quot;Scheduler's cron is at /scheduler/cron and a sample crontab entry to run scheduler every minute might look like:&quot;) . '&lt;/p&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">175</span></td>
+       <td><span class="missed code">      $output .= '&lt;code&gt;* * * * * wget -q -O /dev/null &quot;' . $cron_url . '&quot;&lt;/code&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">176</span></td>
+       <td><span class="missed code">      $output .= '&lt;p&gt;' . t('or') . '&lt;/p&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">177</span></td>
+       <td><span class="missed code">      $output .= '&lt;code&gt;* * * * * curl -s -o /dev/null &quot;' . $cron_url . '&quot;&lt;/code&gt;&lt;br/&gt;&lt;br/&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">178</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">179</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">180</span></td>
+       <td><span class="missed code">    case 'admin/help#scheduler':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">181</span></td>
+       <td><span class="comment code">      // This is shown at the top of admin/help/scheduler.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">182</span></td>
+       <td><span class="missed code">      $output = '&lt;h3&gt;' . t('About') . '&lt;/h3&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">183</span></td>
+       <td><span class="missed code">      $output .= '&lt;p&gt;' . t('The Scheduler module provides the functionality for automatic publishing and unpublishing of nodes at specified future dates.') . '&lt;/p&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">184</span></td>
+       <td><span class="missed code">      $output .= '&lt;p&gt;' . t('You can read more in the &lt;a href=&quot;@readme&quot;&gt;readme.txt&lt;/a&gt; file.', array('@readme' =&gt; $GLOBALS['base_url'] . '/' . drupal_get_path('module', 'scheduler') . '/README.txt')) . '&lt;/p&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">185</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">186</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">187</span></td>
+       <td><span class="missed code">    default:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">188</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">189</span></td>
+       <td><span class="missed code">  return $output;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">190</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">191</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">192</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">193</span></td>
+       <td><span class="comment code"> * Returns whether we use the date_popup for date/time selection.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">194</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">195</span></td>
+       <td><span class="comment code"> * @return bool
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">196</span></td>
+       <td><span class="comment code"> *   TRUE if we are using date_popup. FALSE otherwise.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">197</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">198</span></td>
+       <td><span class="covered code">function _scheduler_use_date_popup() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">199</span></td>
+       <td><span class="missed code">  return module_exists('date_popup') &amp;&amp; variable_get('scheduler_field_type', 'date_popup') == 'date_popup';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">200</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">201</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">202</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">203</span></td>
+       <td><span class="comment code"> * Implements hook_form_node_type_form_alter().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">204</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">205</span></td>
+       <td><span class="covered code">function scheduler_form_node_type_form_alter(&amp;$form, $form_state) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">206</span></td>
+       <td><span class="comment code">  // Load the real code only when needed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">207</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'scheduler', 'scheduler.admin');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">208</span></td>
+       <td><span class="missed code">  _scheduler_form_node_type_form_alter($form, $form_state);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">209</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">210</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">211</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">212</span></td>
+       <td><span class="comment code"> * Implements hook_form_alter().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">213</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">214</span></td>
+       <td><span class="covered code">function scheduler_form_alter(&amp;$form, $form_state) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">215</span></td>
+       <td><span class="comment code">  // Load the real code only when needed. First check if this a node form and
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">216</span></td>
+       <td><span class="comment code">  // that the user has permission to use Scheduler.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">217</span></td>
+       <td><span class="missed code">  if (!empty($form['#node_edit_form']) &amp;&amp; user_access('schedule publishing of nodes')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">218</span></td>
+       <td><span class="comment code">    // Check if scheduling has been enabled for this node type.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">219</span></td>
+       <td><span class="missed code">    $publishing_enabled = variable_get('scheduler_publish_enable_' . $form['type']['#value'], 0) == 1;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">220</span></td>
+       <td><span class="missed code">    $unpublishing_enabled = variable_get('scheduler_unpublish_enable_' . $form['type']['#value'], 0) == 1;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">221</span></td>
+       <td><span class="missed code">    if ($publishing_enabled || $unpublishing_enabled) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">222</span></td>
+       <td><span class="missed code">      module_load_include('inc', 'scheduler', 'scheduler.edit');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">223</span></td>
+       <td><span class="missed code">      _scheduler_form_alter($form, $form_state);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">224</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">225</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">226</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">227</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">228</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">229</span></td>
+       <td><span class="comment code"> * Checks whether a scheduled action on a node is allowed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">230</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">231</span></td>
+       <td><span class="comment code"> * This provides a way for other modules to prevent scheduled publishing or
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">232</span></td>
+       <td><span class="comment code"> * unpublishing, by implementing hook_scheduler_allow_publishing() or
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">233</span></td>
+       <td><span class="comment code"> * hook_scheduler_allow_unpublishing().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">234</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">235</span></td>
+       <td><span class="comment code"> * @see hook_scheduler_allow_publishing()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">236</span></td>
+       <td><span class="comment code"> * @see hook_scheduler_allow_unpublishing()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">237</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">238</span></td>
+       <td><span class="comment code"> * @param stdClass $node
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">239</span></td>
+       <td><span class="comment code"> *   The node object on which the action is to be performed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">240</span></td>
+       <td><span class="comment code"> * @param string $action
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">241</span></td>
+       <td><span class="comment code"> *   The action that needs to be checked. Can be 'publish' or 'unpublish'.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">242</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">243</span></td>
+       <td><span class="comment code"> * @return bool
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">244</span></td>
+       <td><span class="comment code"> *   TRUE if the action is allowed, FALSE if not.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">245</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">246</span></td>
+       <td><span class="covered code">function _scheduler_allow($node, $action) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">247</span></td>
+       <td><span class="comment code">  // Default to TRUE.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">248</span></td>
+       <td><span class="covered code">  $result = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">249</span></td>
+       <td><span class="comment code">  // Check that other modules allow the action.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">250</span></td>
+       <td><span class="covered code">  $hook = 'scheduler_allow_' . $action . 'ing';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">251</span></td>
+       <td><span class="covered code">  foreach (module_implements($hook) as $module) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">252</span></td>
+       <td><span class="covered code">    $function = $module . '_' . $hook;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">253</span></td>
+       <td><span class="covered code">    $result &amp;= $function($node);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">254</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">255</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">256</span></td>
+       <td><span class="covered code">  return $result;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">257</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">258</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">259</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">260</span></td>
+       <td><span class="comment code"> * Converts a time string from the user's timezone into a Unix timestamp.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">261</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">262</span></td>
+       <td><span class="comment code"> * This expects the time string to be in the date format configured by the user.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">263</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">264</span></td>
+       <td><span class="comment code"> * @param string $str
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">265</span></td>
+       <td><span class="comment code"> *   A string containing a time in the user configured date format.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">266</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">267</span></td>
+       <td><span class="comment code"> * @return int
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">268</span></td>
+       <td><span class="comment code"> *   The time in Unix timestamp representation (UTC). NULL if the given time
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">269</span></td>
+       <td><span class="comment code"> *   string is empty (NULL, FALSE, an empty string or only containing
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">270</span></td>
+       <td><span class="comment code"> *   whitespace). FALSE if the given time string is malformed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">271</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">272</span></td>
+       <td><span class="covered code">function _scheduler_strtotime($str) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">273</span></td>
+       <td><span class="missed code">  if ($str &amp;&amp; trim($str) != &quot;&quot;) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">274</span></td>
+       <td><span class="missed code">    $date_format = variable_get('scheduler_date_format', SCHEDULER_DATE_FORMAT);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">275</span></td>
+       <td><span class="missed code">    $date_only_format = variable_get('scheduler_date_only_format', SCHEDULER_DATE_ONLY_FORMAT);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">276</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">277</span></td>
+       <td><span class="missed code">    if (_scheduler_use_date_popup()) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">278</span></td>
+       <td><span class="comment code">      // Date Popup currently returns the value into the $node using its default
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">279</span></td>
+       <td><span class="comment code">      // format DATE_FORMAT_DATETIME but reduced to the same granularity as the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">280</span></td>
+       <td><span class="comment code">      // requested format. Until date issue http://drupal.org/node/1855810 is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">281</span></td>
+       <td><span class="comment code">      // resolved we can use the date_popup functions date_format_order() and
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">282</span></td>
+       <td><span class="comment code">      // date_limit_format() to derive the format of the returned string value.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">283</span></td>
+       <td><span class="missed code">      $granularity = date_format_order($date_format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">284</span></td>
+       <td><span class="missed code">      $date_format = date_limit_format(DATE_FORMAT_DATETIME, $granularity);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">285</span></td>
+       <td><span class="missed code">      $date_only_format = date_limit_format(DATE_FORMAT_DATETIME, array('day', 'month', 'year'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">286</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">287</span></td>
+       <td><span class="missed code">    $str = trim(preg_replace('/\s+/', ' ', $str));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">288</span></td>
+       <td><span class="missed code">    $time = _scheduler_strptime($str, $date_format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">289</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">290</span></td>
+       <td><span class="comment code">    // If the time failed using the full $date_format or no time entry is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">291</span></td>
+       <td><span class="comment code">    // allowed, but date-only with a default time is enabled, check if the input
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">292</span></td>
+       <td><span class="comment code">    // matches the &quot;date only&quot; date format.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">293</span></td>
+       <td><span class="missed code">    $time_only_format = variable_get('scheduler_time_only_format', SCHEDULER_TIME_ONLY_FORMAT);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">294</span></td>
+       <td><span class="missed code">    if ((!$time || $time_only_format == '') &amp;&amp; variable_get('scheduler_allow_date_only', FALSE)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">295</span></td>
+       <td><span class="missed code">      if ($time = _scheduler_strptime($str, $date_only_format)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">296</span></td>
+       <td><span class="comment code">        // A time has been calculated, but also check that there was only a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">297</span></td>
+       <td><span class="comment code">        // date entered and no extra mal-formed time elements.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">298</span></td>
+       <td><span class="missed code">        if ($str == date($date_only_format, $time)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">299</span></td>
+       <td><span class="comment code">          // Parse the default time string into elements, then add the total
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">300</span></td>
+       <td><span class="comment code">          // offset in seconds to the timestamp.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">301</span></td>
+       <td><span class="missed code">          $default_time = date_parse(variable_get('scheduler_default_time', SCHEDULER_DEFAULT_TIME));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">302</span></td>
+       <td><span class="missed code">          $time_offset = ($default_time['hour'] * 3600) + ($default_time['minute'] * 60) + $default_time['second'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">303</span></td>
+       <td><span class="missed code">          $time += $time_offset;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">304</span></td>
+       <td><span class="missed code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">305</span></td>
+       <td><span class="comment code">        else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">306</span></td>
+       <td><span class="comment code">          // The date was not the only text entered, so reject it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">307</span></td>
+       <td><span class="missed code">          $time = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">308</span></td>
+       <td><span class="comment code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">309</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">310</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">311</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">312</span></td>
+       <td><span class="comment code">  else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">313</span></td>
+       <td><span class="comment code">    // $str is empty.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">314</span></td>
+       <td><span class="missed code">    $time = NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">315</span></td>
+       <td><span class="comment code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">316</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">317</span></td>
+       <td><span class="missed code">  return $time;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">318</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">319</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">320</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">321</span></td>
+       <td><span class="comment code"> * Parse a time/date as UTC time.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">322</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">323</span></td>
+       <td><span class="comment code"> * The php function strptime() has a limited life, due to it returning varying
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">324</span></td>
+       <td><span class="comment code"> * results on different operating systems. It is not supported on Windows
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">325</span></td>
+       <td><span class="comment code"> * platforms at all. The replacement function date_parse_from_format() is not
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">326</span></td>
+       <td><span class="comment code"> * as flexible as strptime(), for example it forces two-digit minutes and
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">327</span></td>
+       <td><span class="comment code"> * seconds. _scheduler_strptime() gives us more control over the entities that
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">328</span></td>
+       <td><span class="comment code"> * are parsed and how the matching is achieved.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">329</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">330</span></td>
+       <td><span class="comment code"> * @param string $date
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">331</span></td>
+       <td><span class="comment code"> *   The string to parse.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">332</span></td>
+       <td><span class="comment code"> * @param string $format
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">333</span></td>
+       <td><span class="comment code"> *   The date format used in $date. For details on the date format options, see
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">334</span></td>
+       <td><span class="comment code"> *   the PHP date() function.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">335</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">336</span></td>
+       <td><span class="comment code"> * @return int
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">337</span></td>
+       <td><span class="comment code"> *   The parsed time converted to a UTC timestamp using mktime().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">338</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">339</span></td>
+       <td><span class="covered code">function _scheduler_strptime($date, $format) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">340</span></td>
+       <td><span class="comment code">  // Build a regex pattern for each element allowed in the date and time format.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">341</span></td>
+       <td><span class="comment code">  $date_entities_and_replacements = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">342</span></td>
+       <td><span class="comment code">    // Date elements, one for each character in SCHEDULER_DATE_LETTERS.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">343</span></td>
+       <td><span class="missed code">    'd' =&gt; '(\d{2})',      // Day of the month with leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">344</span></td>
+       <td><span class="missed code">    'j' =&gt; '(\d{1,2})',    // Day of the month without leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">345</span></td>
+       <td><span class="missed code">    'm' =&gt; '(\d{2})',      // Month number with leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">346</span></td>
+       <td><span class="missed code">    'n' =&gt; '(\d{1,2})',    // Month number without leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">347</span></td>
+       <td><span class="missed code">    'M' =&gt; '(\w{3})',      // Three-letter month abbreviation.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">348</span></td>
+       <td><span class="missed code">    'F' =&gt; '(\w{3,9})',    // Full month name, from 3 to 9 letters.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">349</span></td>
+       <td><span class="missed code">    'y' =&gt; '(\d{2})',      // Two-digit year.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">350</span></td>
+       <td><span class="missed code">    'Y' =&gt; '(\d{4})',      // Four-digit year.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">351</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">352</span></td>
+       <td><span class="comment code">    // Time elements, one for each character in SCHEDULER_TIME_LETTERS.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">353</span></td>
+       <td><span class="missed code">    'h' =&gt; '(\d{2})',      // Hours in 12-hour format with leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">354</span></td>
+       <td><span class="missed code">    'H' =&gt; '(\d{2})',      // Hours in 24-hour format with leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">355</span></td>
+       <td><span class="missed code">    'g' =&gt; '(\d{1,2})',    // Hours in 12-hour format without leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">356</span></td>
+       <td><span class="missed code">    'G' =&gt; '(\d{1,2})',    // Hours in 24-hour format without leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">357</span></td>
+       <td><span class="missed code">    'i' =&gt; '(\d{2})',      // Minutes with leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">358</span></td>
+       <td><span class="missed code">    's' =&gt; '(\d{2})',      // Seconds with leading zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">359</span></td>
+       <td><span class="missed code">    'a' =&gt; '([ap]m)',      // Lower case meridian.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">360</span></td>
+       <td><span class="missed code">    'A' =&gt; '([AP]M)',      // Upper case meridian.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">361</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">362</span></td>
+       <td><span class="missed code">  $date_entities = array_keys($date_entities_and_replacements);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">363</span></td>
+       <td><span class="missed code">  $date_regex_replacements = array_values($date_entities_and_replacements);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">364</span></td>
+       <td><span class="missed code">  $custom_pattern = str_replace($date_entities, $date_regex_replacements, $format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">365</span></td>
+       <td><span class="missed code">  if (!preg_match(&quot;#$custom_pattern#&quot;, $date, $value_matches)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">366</span></td>
+       <td><span class="missed code">    return FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">367</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">368</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">369</span></td>
+       <td><span class="missed code">  if (!preg_match_all('/(\w)/', $format, $entity_matches)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">370</span></td>
+       <td><span class="missed code">    return FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">371</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">372</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">373</span></td>
+       <td><span class="missed code">  $results = array('day' =&gt; 0, 'month' =&gt; 0, 'year' =&gt; 0, 'hour' =&gt; 0, 'minute' =&gt; 0, 'second' =&gt; 0, 'meridiem' =&gt; NULL);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">374</span></td>
+       <td><span class="missed code">  $index = 1;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">375</span></td>
+       <td><span class="missed code">  foreach ($entity_matches[1] as $entity) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">376</span></td>
+       <td><span class="missed code">    $value = intval($value_matches[$index]);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">377</span></td>
+       <td><span class="comment code">    switch ($entity) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">378</span></td>
+       <td><span class="missed code">      case 'd':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">379</span></td>
+       <td><span class="missed code">      case 'j':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">380</span></td>
+       <td><span class="missed code">        $results['day'] = $value;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">381</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">382</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">383</span></td>
+       <td><span class="missed code">      case 'm':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">384</span></td>
+       <td><span class="missed code">      case 'n':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">385</span></td>
+       <td><span class="missed code">        $results['month'] = $value;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">386</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">387</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">388</span></td>
+       <td><span class="missed code">      case 'M':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">389</span></td>
+       <td><span class="missed code">      case 'F':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">390</span></td>
+       <td><span class="comment code">        // Derive a time value from the matched month name text.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">391</span></td>
+       <td><span class="missed code">        $temp_time = strtotime($value_matches[$index]);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">392</span></td>
+       <td><span class="missed code">        if (empty($temp_time)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">393</span></td>
+       <td><span class="comment code">          // If the text is not a valid month name or abbreviation then fail.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">394</span></td>
+       <td><span class="missed code">          return FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">395</span></td>
+       <td><span class="dead code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">396</span></td>
+       <td><span class="comment code">        // Derive the month number from the month name.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">397</span></td>
+       <td><span class="missed code">        $results['month'] = date('n', $temp_time);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">398</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">399</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">400</span></td>
+       <td><span class="missed code">      case 'y':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">401</span></td>
+       <td><span class="missed code">      case 'Y':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">402</span></td>
+       <td><span class="missed code">        $results['year'] = $value;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">403</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">404</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">405</span></td>
+       <td><span class="missed code">      case 'H':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">406</span></td>
+       <td><span class="missed code">      case 'h':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">407</span></td>
+       <td><span class="missed code">      case 'g':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">408</span></td>
+       <td><span class="missed code">      case 'G':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">409</span></td>
+       <td><span class="missed code">        $results['hour'] = $value;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">410</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">411</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">412</span></td>
+       <td><span class="missed code">      case 'i':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">413</span></td>
+       <td><span class="missed code">        $results['minute'] = $value;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">414</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">415</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">416</span></td>
+       <td><span class="missed code">      case 's':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">417</span></td>
+       <td><span class="missed code">        $results['second'] = $value;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">418</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">419</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">420</span></td>
+       <td><span class="missed code">      case 'a':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">421</span></td>
+       <td><span class="missed code">      case 'A':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">422</span></td>
+       <td><span class="missed code">        $results['meridiem'] = $value_matches[$index];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">423</span></td>
+       <td><span class="missed code">        break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">424</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">425</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">426</span></td>
+       <td><span class="missed code">    $index++;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">427</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">428</span></td>
+       <td><span class="missed code">  if ((strncasecmp($results['meridiem'], &quot;pm&quot;, 2) == 0) &amp;&amp; ($results['hour'] &lt; 12)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">429</span></td>
+       <td><span class="missed code">    $results['hour'] += 12;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">430</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">431</span></td>
+       <td><span class="missed code">  if ((strncasecmp($results['meridiem'], &quot;am&quot;, 2) == 0) &amp;&amp; ($results['hour'] == 12)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">432</span></td>
+       <td><span class="missed code">    $results['hour'] -= 12;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">433</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">434</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">435</span></td>
+       <td><span class="missed code">  $time = mktime($results['hour'], $results['minute'], $results['second'], $results['month'], $results['day'], $results['year']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">436</span></td>
+       <td><span class="missed code">  return $time;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">437</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">438</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">439</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">440</span></td>
+       <td><span class="comment code"> * Implements hook_node_load().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">441</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">442</span></td>
+       <td><span class="covered code">function scheduler_node_load($nodes, $types) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">443</span></td>
+       <td><span class="covered code">  $nids = array_keys($nodes);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">444</span></td>
+       <td><span class="covered code">  $result = db_query('SELECT * FROM {scheduler} WHERE nid IN (:nids)', array(':nids' =&gt; $nids));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">445</span></td>
+       <td><span class="covered code">  foreach ($result as $record) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">446</span></td>
+       <td><span class="covered code">    $nid = $record-&gt;nid;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">447</span></td>
+       <td><span class="covered code">    $nodes[$nid]-&gt;publish_on = $record-&gt;publish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">448</span></td>
+       <td><span class="covered code">    $nodes[$nid]-&gt;unpublish_on = $record-&gt;unpublish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">449</span></td>
+       <td><span class="covered code">    $row = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">450</span></td>
+       <td><span class="comment code">    // @todo This seems unneeded and is confusing. It is not certain that this
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">451</span></td>
+       <td><span class="comment code">    //   node is either published or unpublished, probably it isn't or the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">452</span></td>
+       <td><span class="comment code">    //   'publish_on' property wouldn't be set in the first place. Remove this
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">453</span></td>
+       <td><span class="comment code">    //   for the D8 version.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">454</span></td>
+       <td><span class="covered code">    $row['published'] = $record-&gt;publish_on ? date(variable_get('date_format_long', 'l, F j, Y - H:i'), $record-&gt;publish_on) : NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">455</span></td>
+       <td><span class="covered code">    $row['unpublished'] = $record-&gt;unpublish_on ? date(variable_get('date_format_long', 'l, F j, Y - H:i'), $record-&gt;unpublish_on) : NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">456</span></td>
+       <td><span class="comment code">    // Add duplicates of the scheduling properties on $node-&gt;scheduler for
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">457</span></td>
+       <td><span class="comment code">    // backwards compatibility with the D5 and D6 versions of Scheduler. Please
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">458</span></td>
+       <td><span class="comment code">    // do not rely on these properties in new code, access them directly on
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">459</span></td>
+       <td><span class="comment code">    // $node-&gt;publish_on and $node-&gt;unpublish_on instead.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">460</span></td>
+       <td><span class="comment code">    // @todo Remove this for the D8 version.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">461</span></td>
+       <td><span class="covered code">    $row['publish_on'] = $record-&gt;publish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">462</span></td>
+       <td><span class="covered code">    $row['unpublish_on'] = $record-&gt;unpublish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">463</span></td>
+       <td><span class="covered code">    $nodes[$nid]-&gt;scheduler = $row;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">464</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">465</span></td>
+       <td><span class="covered code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">466</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">467</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">468</span></td>
+       <td><span class="comment code"> * Implements hook_node_view().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">469</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">470</span></td>
+       <td><span class="covered code">function scheduler_node_view($node, $view_mode = 'full', $langcode) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">471</span></td>
+       <td><span class="comment code">  // If the node is going to be unpublished, then add this information to the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">472</span></td>
+       <td><span class="comment code">  // header for search engines. Only do this when the current page is the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">473</span></td>
+       <td><span class="comment code">  // full-page view of the node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">474</span></td>
+       <td><span class="comment code">  // @see https://googleblog.blogspot.be/2007/07/robots-exclusion-protocol-now-with-even.html
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">475</span></td>
+       <td><span class="missed code">  if ($view_mode == 'full' &amp;&amp; !empty($node-&gt;unpublish_on) &amp;&amp; node_is_page($node) &amp;&amp; arg(2) != 'edit') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">476</span></td>
+       <td><span class="missed code">    drupal_add_http_header('X-Robots-Tag', 'unavailable_after: ' . date(DATE_RFC850, $node-&gt;unpublish_on));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">477</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">478</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">479</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">480</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">481</span></td>
+       <td><span class="comment code"> * Implements hook_node_validate().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">482</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">483</span></td>
+       <td><span class="covered code">function scheduler_node_validate($node, $form, &amp;$form_state) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">484</span></td>
+       <td><span class="missed code">  if ($form_state['clicked_button']['#value'] == t('Delete')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">485</span></td>
+       <td><span class="comment code">    // Skip all validation when deleting the node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">486</span></td>
+       <td><span class="missed code">    if ($errors = form_get_errors()) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">487</span></td>
+       <td><span class="comment code">      // If there are already errors (from date_popup) remove them to allow
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">488</span></td>
+       <td><span class="comment code">      // deletion to proceed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">489</span></td>
+       <td><span class="missed code">      form_clear_error();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">490</span></td>
+       <td><span class="missed code">      unset($_SESSION['messages']['error']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">491</span></td>
+       <td><span class="missed code">    };
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">492</span></td>
+       <td><span class="missed code">    return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">493</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">494</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">495</span></td>
+       <td><span class="comment code">  // Adjust the entered times for timezone consideration. Note, we must check
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">496</span></td>
+       <td><span class="comment code">  // to see if the value is numeric. If it is, assume we have already done the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">497</span></td>
+       <td><span class="comment code">  // strtotime conversion. This prevents us running strtotime on a value we have
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">498</span></td>
+       <td><span class="comment code">  // already converted. This is needed because Drupal 6 removed 'submit' and
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">499</span></td>
+       <td><span class="comment code">  // added 'presave' and all this happens at different times. If the value is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">500</span></td>
+       <td><span class="comment code">  // passed as an array this means we are using the Date Popup module and a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">501</span></td>
+       <td><span class="comment code">  // validation error has occurred. In this case we should skip validation as
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">502</span></td>
+       <td><span class="comment code">  // it is being handled by Date Popup.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">503</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">504</span></td>
+       <td><span class="missed code">  $date_format = variable_get('scheduler_date_format', SCHEDULER_DATE_FORMAT);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">505</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">506</span></td>
+       <td><span class="missed code">  if (!empty($node-&gt;publish_on) &amp;&amp; !is_numeric($node-&gt;publish_on) &amp;&amp; !is_array($node-&gt;publish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">507</span></td>
+       <td><span class="missed code">    $publishtime = _scheduler_strtotime($node-&gt;publish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">508</span></td>
+       <td><span class="missed code">    if ($publishtime === FALSE) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">509</span></td>
+       <td><span class="missed code">      form_set_error('publish_on', t(&quot;The 'publish on' value does not match the expected format of %time&quot;, array('%time' =&gt; format_date(REQUEST_TIME, 'custom', $date_format))));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">510</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">511</span></td>
+       <td><span class="missed code">    elseif ($publishtime &amp;&amp; variable_get('scheduler_publish_past_date_' . $node-&gt;type, 'error') == 'error' &amp;&amp; $publishtime &lt; REQUEST_TIME) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">512</span></td>
+       <td><span class="missed code">      form_set_error('publish_on', t(&quot;The 'publish on' date must be in the future&quot;));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">513</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">514</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">515</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">516</span></td>
+       <td><span class="missed code">  if (!empty($node-&gt;unpublish_on) &amp;&amp; !is_numeric($node-&gt;unpublish_on) &amp;&amp; !is_array($node-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">517</span></td>
+       <td><span class="missed code">    $unpublishtime = _scheduler_strtotime($node-&gt;unpublish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">518</span></td>
+       <td><span class="missed code">    if ($unpublishtime === FALSE) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">519</span></td>
+       <td><span class="missed code">      form_set_error('unpublish_on', t(&quot;The 'unpublish on' value does not match the expected format of %time&quot;, array('%time' =&gt; format_date(REQUEST_TIME, 'custom', $date_format))));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">520</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">521</span></td>
+       <td><span class="missed code">    elseif ($unpublishtime &amp;&amp; $unpublishtime &lt; REQUEST_TIME) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">522</span></td>
+       <td><span class="missed code">      form_set_error('unpublish_on', t(&quot;The 'unpublish on' date must be in the future&quot;));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">523</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">524</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">525</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">526</span></td>
+       <td><span class="missed code">  if (isset($publishtime) &amp;&amp; isset($unpublishtime) &amp;&amp; $unpublishtime &lt; $publishtime) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">527</span></td>
+       <td><span class="missed code">    form_set_error('unpublish_on', t(&quot;The 'unpublish on' date must be later than the 'publish on' date.&quot;));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">528</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">529</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">530</span></td>
+       <td><span class="comment code">  // The unpublish-on 'required' form attribute may not be set, but in some
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">531</span></td>
+       <td><span class="comment code">  // cases a value must still be entered.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">532</span></td>
+       <td><span class="missed code">  if (variable_get('scheduler_unpublish_required_' . $node-&gt;type) &amp;&amp; empty($node-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">533</span></td>
+       <td><span class="comment code">    // ... when also setting a publish-on date.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">534</span></td>
+       <td><span class="missed code">    if (!empty($node-&gt;publish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">535</span></td>
+       <td><span class="missed code">      form_set_error('unpublish_on', t(&quot;If you set a 'publish-on' date then you must also set an 'unpublish-on' date.&quot;));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">536</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">537</span></td>
+       <td><span class="comment code">    // ... or when publishing by directly ticking the published checkbox.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">538</span></td>
+       <td><span class="missed code">    if ($form_state['values']['status']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">539</span></td>
+       <td><span class="missed code">      form_set_error('unpublish_on', t(&quot;To publish this node you must also set an 'unpublish-on' date.&quot;));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">540</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">541</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">542</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">543</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">544</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">545</span></td>
+       <td><span class="comment code"> * Implements hook_node_presave().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">546</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">547</span></td>
+       <td><span class="covered code">function scheduler_node_presave($node) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">548</span></td>
+       <td><span class="covered code">  foreach (array('publish_on', 'unpublish_on') as $key) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">549</span></td>
+       <td><span class="covered code">    if (empty($node-&gt;$key) || is_array($node-&gt;$key)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">550</span></td>
+       <td><span class="comment code">      // Make sure publish_on and unpublish_on are not empty strings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">551</span></td>
+       <td><span class="covered code">      $node-&gt;$key = 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">552</span></td>
+       <td><span class="covered code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">553</span></td>
+       <td><span class="covered code">    elseif (!is_numeric($node-&gt;$key)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">554</span></td>
+       <td><span class="comment code">      // Convert to unix timestamp, but ensure any failure is converted to zero.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">555</span></td>
+       <td><span class="missed code">      $node-&gt;$key = _scheduler_strtotime($node-&gt;$key) + 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">556</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">557</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">558</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">559</span></td>
+       <td><span class="covered code">  if ($node-&gt;publish_on &gt; 0) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">560</span></td>
+       <td><span class="comment code">    // Check that other modules allow the action on this node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">561</span></td>
+       <td><span class="covered code">    $publication_allowed = _scheduler_allow($node, 'publish');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">562</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">563</span></td>
+       <td><span class="comment code">    // Publish the node immediately if the publication date is in the past.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">564</span></td>
+       <td><span class="covered code">    $publish_immediately = variable_get('scheduler_publish_past_date_' . $node-&gt;type, 'error') == 'publish';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">565</span></td>
+       <td><span class="covered code">    if ($publication_allowed &amp;&amp; $publish_immediately &amp;&amp; $node-&gt;publish_on &lt;= REQUEST_TIME) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">566</span></td>
+       <td><span class="comment code">      // If required, set the created date to match published date.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">567</span></td>
+       <td><span class="covered code">      if (variable_get('scheduler_publish_touch_' . $node-&gt;type, 0) == 1) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">568</span></td>
+       <td><span class="missed code">        $node-&gt;created = $node-&gt;publish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">569</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">570</span></td>
+       <td><span class="covered code">      $node-&gt;publish_on = 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">571</span></td>
+       <td><span class="covered code">      $node-&gt;status = 1;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">572</span></td>
+       <td><span class="comment code">      // Allow modules to react to immediate publishing.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">573</span></td>
+       <td><span class="covered code">      _scheduler_scheduler_api($node, 'publish_immediately');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">574</span></td>
+       <td><span class="covered code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">575</span></td>
+       <td><span class="comment code">    else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">576</span></td>
+       <td><span class="comment code">      // Ensure the node is unpublished as it will be published by cron later.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">577</span></td>
+       <td><span class="covered code">      $node-&gt;status = 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">578</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">579</span></td>
+       <td><span class="comment code">      // Only inform the user that the node is scheduled if publication has not
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">580</span></td>
+       <td><span class="comment code">      // been prevented by other modules. Those modules have to display a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">581</span></td>
+       <td><span class="comment code">      // message themselves explaining why publication is denied.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">582</span></td>
+       <td><span class="covered code">      if ($publication_allowed) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">583</span></td>
+       <td><span class="covered code">        $date_format = variable_get('scheduler_date_format', SCHEDULER_DATE_FORMAT);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">584</span></td>
+       <td><span class="covered code">        drupal_set_message(t('This post is unpublished and will be published @publish_time.', array('@publish_time' =&gt; format_date($node-&gt;publish_on, 'custom', $date_format))), 'status', FALSE);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">585</span></td>
+       <td><span class="covered code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">586</span></td>
+       <td><span class="comment code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">587</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">588</span></td>
+       <td><span class="covered code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">589</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">590</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">591</span></td>
+       <td><span class="comment code"> * Implements hook_node_insert().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">592</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">593</span></td>
+       <td><span class="covered code">function scheduler_node_insert($node) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">594</span></td>
+       <td><span class="comment code">  // Only insert into database if we need to (un)publish this node at some date.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">595</span></td>
+       <td><span class="covered code">  if (!empty($node-&gt;publish_on) || !empty($node-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">596</span></td>
+       <td><span class="covered code">    db_insert('scheduler')-&gt;fields(array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">597</span></td>
+       <td><span class="covered code">      'nid' =&gt; $node-&gt;nid,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">598</span></td>
+       <td><span class="covered code">      'publish_on' =&gt; $node-&gt;publish_on,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">599</span></td>
+       <td><span class="covered code">      'unpublish_on' =&gt; $node-&gt;unpublish_on,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">600</span></td>
+       <td><span class="covered code">    ))-&gt;execute();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">601</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">602</span></td>
+       <td><span class="comment code">    // Invoke the events to indicate that a new node has been scheduled.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">603</span></td>
+       <td><span class="covered code">    if (module_exists('rules')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">604</span></td>
+       <td><span class="missed code">      if (!empty($node-&gt;publish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">605</span></td>
+       <td><span class="missed code">        rules_invoke_event('scheduler_new_node_is_scheduled_for_publishing_event', $node, $node-&gt;publish_on, $node-&gt;unpublish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">606</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">607</span></td>
+       <td><span class="missed code">      if (!empty($node-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">608</span></td>
+       <td><span class="missed code">        rules_invoke_event('scheduler_new_node_is_scheduled_for_unpublishing_event', $node, $node-&gt;publish_on, $node-&gt;unpublish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">609</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">610</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">611</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">612</span></td>
+       <td><span class="covered code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">613</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">614</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">615</span></td>
+       <td><span class="comment code"> * Implements hook_node_update().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">616</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">617</span></td>
+       <td><span class="covered code">function scheduler_node_update($node) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">618</span></td>
+       <td><span class="comment code">  // Only update database if we need to (un)publish this node at some date,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">619</span></td>
+       <td><span class="comment code">  // otherwise the user probably cleared out the (un)publish dates so we should
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">620</span></td>
+       <td><span class="comment code">  // remove the record.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">621</span></td>
+       <td><span class="covered code">  if (!empty($node-&gt;publish_on) || !empty($node-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">622</span></td>
+       <td><span class="covered code">    db_merge('scheduler')-&gt;key(array('nid' =&gt; $node-&gt;nid))-&gt;fields(array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">623</span></td>
+       <td><span class="covered code">      'publish_on' =&gt; $node-&gt;publish_on,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">624</span></td>
+       <td><span class="covered code">      'unpublish_on' =&gt; $node-&gt;unpublish_on,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">625</span></td>
+       <td><span class="covered code">    ))-&gt;execute();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">626</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">627</span></td>
+       <td><span class="comment code">    // Invoke the events to indicate that an existing node has been scheduled.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">628</span></td>
+       <td><span class="covered code">    if (module_exists('rules')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">629</span></td>
+       <td><span class="missed code">      if (!empty($node-&gt;publish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">630</span></td>
+       <td><span class="missed code">        rules_invoke_event('scheduler_existing_node_is_scheduled_for_publishing_event', $node, $node-&gt;publish_on, $node-&gt;unpublish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">631</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">632</span></td>
+       <td><span class="missed code">      if (!empty($node-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">633</span></td>
+       <td><span class="missed code">        rules_invoke_event('scheduler_existing_node_is_scheduled_for_unpublishing_event', $node, $node-&gt;publish_on, $node-&gt;unpublish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">634</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">635</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">636</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">637</span></td>
+       <td><span class="comment code">  else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">638</span></td>
+       <td><span class="covered code">    scheduler_node_delete($node);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">639</span></td>
+       <td><span class="comment code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">640</span></td>
+       <td><span class="covered code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">641</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">642</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">643</span></td>
+       <td><span class="comment code"> * Implements hook_node_delete().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">644</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">645</span></td>
+       <td><span class="covered code">function scheduler_node_delete($node) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">646</span></td>
+       <td><span class="covered code">  db_delete('scheduler')-&gt;condition('nid', $node-&gt;nid)-&gt;execute();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">647</span></td>
+       <td><span class="covered code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">648</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">649</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">650</span></td>
+       <td><span class="comment code"> * Implements hook_node_type_delete().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">651</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">652</span></td>
+       <td><span class="covered code">function scheduler_node_type_delete($info) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">653</span></td>
+       <td><span class="missed code">  $variables = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">654</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">655</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_publish_enable_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">656</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_publish_touch_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">657</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_publish_required_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">658</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_publish_revision_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">659</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_publish_past_date_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">660</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_unpublish_enable_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">661</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_unpublish_required_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">662</span></td>
+       <td><span class="missed code">  $variables[] = &quot;scheduler_unpublish_revision_&quot; . $info-&gt;type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">663</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">664</span></td>
+       <td><span class="missed code">  foreach ($variables as $variable) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">665</span></td>
+       <td><span class="missed code">    variable_del($variable);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">666</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">667</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">668</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">669</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">670</span></td>
+       <td><span class="comment code"> * Implements hook_cron().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">671</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">672</span></td>
+       <td><span class="covered code">function scheduler_cron() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">673</span></td>
+       <td><span class="comment code">  // Load the cron functions file.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">674</span></td>
+       <td><span class="covered code">  module_load_include('inc', 'scheduler', 'scheduler.cron');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">675</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">676</span></td>
+       <td><span class="comment code">  // During cron runs we do not want i18n_sync to make any changes to the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">677</span></td>
+       <td><span class="comment code">  // translation nodes, as this affects processing later in the same cron job.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">678</span></td>
+       <td><span class="comment code">  // Hence we save the i18n_sync state here, turn it off for the duration of
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">679</span></td>
+       <td><span class="comment code">  // Scheduler cron processing, then restore the setting afterwards.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">680</span></td>
+       <td><span class="comment code">  // @todo Replace this workaround with a hook implementation when issue
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">681</span></td>
+       <td><span class="comment code">  //   #2136557 lands.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">682</span></td>
+       <td><span class="comment code">  // @see https://drupal.org/node/1182450
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">683</span></td>
+       <td><span class="comment code">  // @see https://drupal.org/node/2136557
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">684</span></td>
+       <td><span class="covered code">  if (module_exists('i18n_sync')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">685</span></td>
+       <td><span class="missed code">    $i18n_sync_saved_state = i18n_sync();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">686</span></td>
+       <td><span class="missed code">    i18n_sync(FALSE);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">687</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">688</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">689</span></td>
+       <td><span class="comment code">  // Use drupal_static so that any function can find out if we are running
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">690</span></td>
+       <td><span class="comment code">  // Scheduler cron. Set the default value to FALSE, then turn on the flag.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">691</span></td>
+       <td><span class="comment code">  // @see scheduler_cron_is_running()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">692</span></td>
+       <td><span class="covered code">  $scheduler_cron = &amp;drupal_static(__FUNCTION__, FALSE);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">693</span></td>
+       <td><span class="covered code">  $scheduler_cron = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">694</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">695</span></td>
+       <td><span class="comment code">  // If the option is enabled clear caches if a node was published or
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">696</span></td>
+       <td><span class="comment code">  // unpublished, just like it would have been done if system_cron ran or the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">697</span></td>
+       <td><span class="comment code">  // nodes were edited through the node edit form.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">698</span></td>
+       <td><span class="covered code">  $nodes_published = _scheduler_publish();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">699</span></td>
+       <td><span class="covered code">  $nodes_unpublished = _scheduler_unpublish();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">700</span></td>
+       <td><span class="covered code">  if (variable_get('scheduler_cache_clear_all', 0) &amp;&amp; ($nodes_published || $nodes_unpublished)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">701</span></td>
+       <td><span class="comment code">    // Clear the page and block caches.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">702</span></td>
+       <td><span class="covered code">    cache_clear_all();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">703</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">704</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">705</span></td>
+       <td><span class="comment code">  // Reset the static scheduler_cron flag.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">706</span></td>
+       <td><span class="covered code">  drupal_static_reset(__FUNCTION__);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">707</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">708</span></td>
+       <td><span class="comment code">  // Restore the i18n_sync state.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">709</span></td>
+       <td><span class="covered code">  module_exists('i18n_sync') ? i18n_sync($i18n_sync_saved_state) : NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">710</span></td>
+       <td><span class="covered code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">711</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">712</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">713</span></td>
+       <td><span class="comment code"> * Return whether Scheduler cron is running.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">714</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">715</span></td>
+       <td><span class="comment code"> * This function can be called from any Scheduler function, from any contrib
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">716</span></td>
+       <td><span class="comment code"> * module or from custom PHP in a view or rule.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">717</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">718</span></td>
+       <td><span class="comment code"> * @return bool
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">719</span></td>
+       <td><span class="comment code"> *   TRUE if scheduler_cron is currently running. FALSE if not.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">720</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">721</span></td>
+       <td><span class="covered code">function scheduler_cron_is_running() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">722</span></td>
+       <td><span class="missed code">  return drupal_static('scheduler_cron');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">723</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">724</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">725</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">726</span></td>
+       <td><span class="comment code"> * Access callback for the lightweight cron url /scheduler/cron/key.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">727</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">728</span></td>
+       <td><span class="comment code"> * @param string $cron_key
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">729</span></td>
+       <td><span class="comment code"> *   The cron key that was passed as a URL argument.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">730</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">731</span></td>
+       <td><span class="comment code"> * @return bool
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">732</span></td>
+       <td><span class="comment code"> *   TRUE if the cron url key is correct. FALSE otherwise.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">733</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">734</span></td>
+       <td><span class="covered code">function _scheduler_cron_access($cron_key) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">735</span></td>
+       <td><span class="missed code">  $valid_cron_key = variable_get('scheduler_lightweight_access_key', '');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">736</span></td>
+       <td><span class="missed code">  return $valid_cron_key == $cron_key;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">737</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">738</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">739</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">740</span></td>
+       <td><span class="comment code"> * Scheduler API to perform actions when nodes are (un)published.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">741</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">742</span></td>
+       <td><span class="comment code"> * This allows other modules to implement hook_scheduler_api($node, $action).
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">743</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">744</span></td>
+       <td><span class="comment code"> * @param object $node
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">745</span></td>
+       <td><span class="comment code"> *   The node object.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">746</span></td>
+       <td><span class="comment code"> * @param string $action
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">747</span></td>
+       <td><span class="comment code"> *   The action being performed, either 'pre_publish', 'publish',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">748</span></td>
+       <td><span class="comment code"> *   'publish_immediately', 'pre_unpublish' or 'unpublish'.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">749</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">750</span></td>
+       <td><span class="covered code">function _scheduler_scheduler_api($node, $action) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">751</span></td>
+       <td><span class="covered code">  foreach (module_implements('scheduler_api') as $module) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">752</span></td>
+       <td><span class="missed code">    $function = $module . '_scheduler_api';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">753</span></td>
+       <td><span class="missed code">    $function($node, $action);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">754</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">755</span></td>
+       <td><span class="covered code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">756</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">757</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">758</span></td>
+       <td><span class="comment code"> * Implements hook_theme().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">759</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">760</span></td>
+       <td><span class="covered code">function scheduler_theme() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">761</span></td>
+       <td><span class="comment code">  return array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">762</span></td>
+       <td><span class="comment code">    'scheduler_timecheck' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">763</span></td>
+       <td><span class="covered code">      'arguments' =&gt; array('now' =&gt; NULL),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">764</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">765</span></td>
+       <td><span class="covered code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">766</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">767</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">768</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">769</span></td>
+       <td><span class="comment code"> * Implements hook_views_api().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">770</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">771</span></td>
+       <td><span class="covered code">function scheduler_views_api() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">772</span></td>
+       <td><span class="missed code">  $info['api'] = 2;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">773</span></td>
+       <td><span class="missed code">  return $info;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">774</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">775</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">776</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">777</span></td>
+       <td><span class="comment code"> * Implements hook_field_extra_fields().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">778</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">779</span></td>
+       <td><span class="covered code">function scheduler_field_extra_fields() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">780</span></td>
+       <td><span class="covered code">  $fields = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">781</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">782</span></td>
+       <td><span class="covered code">  foreach (node_type_get_types() as $type) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">783</span></td>
+       <td><span class="covered code">    $publishing_enabled = variable_get('scheduler_publish_enable_' . $type-&gt;type, 0);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">784</span></td>
+       <td><span class="covered code">    $unpublishing_enabled = variable_get('scheduler_unpublish_enable_' . $type-&gt;type, 0);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">785</span></td>
+       <td><span class="covered code">    $use_vertical_tabs = variable_get('scheduler_use_vertical_tabs_' . $type-&gt;type, 1);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">786</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">787</span></td>
+       <td><span class="covered code">    if (($publishing_enabled || $unpublishing_enabled) &amp;&amp; !$use_vertical_tabs) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">788</span></td>
+       <td><span class="missed code">      $fields['node'][$type-&gt;type]['form']['scheduler_settings'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">789</span></td>
+       <td><span class="missed code">        'label' =&gt; t('Scheduler'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">790</span></td>
+       <td><span class="missed code">        'description' =&gt; t('Fieldset containing scheduling settings'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">791</span></td>
+       <td><span class="missed code">        'weight' =&gt; 0,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">792</span></td>
+       <td><span class="comment code">      );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">793</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">794</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">795</span></td>
+       <td><span class="covered code">  return $fields;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">796</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">797</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">798</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">799</span></td>
+       <td><span class="comment code"> * Prepares variables for node templates.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">800</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">801</span></td>
+       <td><span class="comment code"> * Makes the publish_on and unpublish_on data available as theme variables.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">802</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">803</span></td>
+       <td><span class="comment code"> * @see template_preprocess_node()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">804</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">805</span></td>
+       <td><span class="covered code">function scheduler_preprocess_node(&amp;$variables) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">806</span></td>
+       <td><span class="missed code">  $node = $variables['node'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">807</span></td>
+       <td><span class="missed code">  $date_format = variable_get('scheduler_date_format', SCHEDULER_DATE_FORMAT);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">808</span></td>
+       <td><span class="missed code">  if (!empty($node-&gt;publish_on) &amp;&amp; $node-&gt;publish_on &amp;&amp; is_numeric($node-&gt;publish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">809</span></td>
+       <td><span class="missed code">    $variables['publish_on'] = format_date($node-&gt;publish_on, 'custom', $date_format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">810</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">811</span></td>
+       <td><span class="missed code">  if (!empty($node-&gt;unpublish_on) &amp;&amp; $node-&gt;unpublish_on &amp;&amp; is_numeric($node-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">812</span></td>
+       <td><span class="missed code">    $variables['unpublish_on'] = format_date($node-&gt;unpublish_on, 'custom', $date_format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">813</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">814</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">815</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">816</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">817</span></td>
+       <td><span class="comment code"> * Implements hook_feeds_processor_targets_alter().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">818</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">819</span></td>
+       <td><span class="comment code"> * This function exposes publish_on and unpublish_on as mappable targets to the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">820</span></td>
+       <td><span class="comment code"> * Feeds module.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">821</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">822</span></td>
+       <td><span class="covered code">function scheduler_feeds_processor_targets_alter(&amp;$targets, $entity_type, $bundle_name) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">823</span></td>
+       <td><span class="comment code">  // Scheduler module only works on nodes.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">824</span></td>
+       <td><span class="missed code">  if ($entity_type == 'node') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">825</span></td>
+       <td><span class="missed code">    $publishing_enabled = variable_get('scheduler_publish_enable_' . $bundle_name, 0);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">826</span></td>
+       <td><span class="missed code">    $unpublishing_enabled = variable_get('scheduler_unpublish_enable_' . $bundle_name, 0);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">827</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">828</span></td>
+       <td><span class="missed code">    if ($publishing_enabled) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">829</span></td>
+       <td><span class="missed code">      $targets['publish_on'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">830</span></td>
+       <td><span class="missed code">        'name' =&gt; t('Scheduler: publish on'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">831</span></td>
+       <td><span class="missed code">        'description' =&gt; t('The date when the Scheduler module will publish the node.'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">832</span></td>
+       <td><span class="missed code">        'callback' =&gt; 'scheduler_feeds_set_target',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">833</span></td>
+       <td><span class="comment code">      );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">834</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">835</span></td>
+       <td><span class="missed code">    if ($unpublishing_enabled) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">836</span></td>
+       <td><span class="missed code">      $targets['unpublish_on'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">837</span></td>
+       <td><span class="missed code">        'name' =&gt; t('Scheduler: unpublish on'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">838</span></td>
+       <td><span class="missed code">        'description' =&gt; t('The date when the Scheduler module will unpublish the node.'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">839</span></td>
+       <td><span class="missed code">        'callback' =&gt; 'scheduler_feeds_set_target',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">840</span></td>
+       <td><span class="comment code">      );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">841</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">842</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">843</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">844</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">845</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">846</span></td>
+       <td><span class="comment code"> * Mapping callback for the Feeds module.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">847</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">848</span></td>
+       <td><span class="covered code">function scheduler_feeds_set_target($source, $entity, $target, $value, $mapping) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">849</span></td>
+       <td><span class="comment code">  // We expect a string or integer, but can accomodate an array, by taking the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">850</span></td>
+       <td><span class="comment code">  // first item. Use trim() so that a string of blanks is reduced to empty.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">851</span></td>
+       <td><span class="missed code">  $value = is_array($value) ? trim(reset($value)) : trim($value);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">852</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">853</span></td>
+       <td><span class="comment code">  // Convert input from parser to timestamp form. If $value is empty or blank
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">854</span></td>
+       <td><span class="comment code">  // then strtotime() must not be used, otherwise it returns the current time.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">855</span></td>
+       <td><span class="missed code">  if (!empty($value) &amp;&amp; !is_numeric($value)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">856</span></td>
+       <td><span class="missed code">    if (!$timestamp = strtotime($value)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">857</span></td>
+       <td><span class="missed code">      throw new FeedsValidationException(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">858</span></td>
+       <td><span class="covered code">        // Throw an exception if the date format was not recognized.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">859</span></td>
+       <td><span class="missed code">        t('Value %value for @source could not be converted to a valid %target date.', array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">860</span></td>
+       <td><span class="missed code">          '@source' =&gt; $mapping['source'],
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">861</span></td>
+       <td><span class="missed code">          '%value' =&gt; $value,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">862</span></td>
+       <td><span class="missed code">          '%target' =&gt; $target,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">863</span></td>
+       <td><span class="comment code">        )
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">864</span></td>
+       <td><span class="missed code">      ));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">865</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">866</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">867</span></td>
+       <td><span class="comment code">  else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">868</span></td>
+       <td><span class="missed code">    $timestamp = $value;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">869</span></td>
+       <td><span class="comment code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">870</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">871</span></td>
+       <td><span class="comment code">  // If the timestamp is valid then use it to set the target field in the node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">872</span></td>
+       <td><span class="missed code">  if (is_numeric($timestamp) &amp;&amp; $timestamp &gt; 0) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">873</span></td>
+       <td><span class="missed code">    $entity-&gt;$target = $timestamp;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">874</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">875</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">876</span></td>
+       <td><span class="covered code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">877</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">878</span></td>
+       <td><span class="comment code"> * Implements hook_ctools_plugin_directory().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">879</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">880</span></td>
+       <td><span class="covered code">function scheduler_ctools_plugin_directory($owner, $plugin_type) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">881</span></td>
+       <td><span class="comment code"> // Declare a form pane (panels content type) for use in ctools and page
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">882</span></td>
+       <td><span class="comment code"> // manager. This allows the Scheduler fieldset to be placed in a panel.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">883</span></td>
+       <td><span class="missed code">  if ($owner == 'ctools' &amp;&amp; $plugin_type == 'content_types') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">884</span></td>
+       <td><span class="missed code">    return 'plugins/content_types';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">885</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">886</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">887</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">888</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">889</span></td>
+       <td><span class="comment code"> * Implements hook_i18n_sync_options().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">890</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">891</span></td>
+       <td><span class="covered code">function scheduler_i18n_sync_options($entity_type, $bundle_name) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">892</span></td>
+       <td><span class="comment code">  // Keep the scheduler dates synchronised between separate nodes which have
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">893</span></td>
+       <td><span class="comment code">  // been defined as translations of each other.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">894</span></td>
+       <td><span class="missed code">  if ($entity_type == 'node') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">895</span></td>
+       <td><span class="missed code">    $options = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">896</span></td>
+       <td><span class="comment code">    // $bundle_name holds the content_type.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">897</span></td>
+       <td><span class="missed code">    if (variable_get('scheduler_publish_enable_' . $bundle_name, 0)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">898</span></td>
+       <td><span class="missed code">      $options['publish_on'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">899</span></td>
+       <td><span class="missed code">        'title' =&gt; t('Publish on'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">900</span></td>
+       <td><span class="missed code">        'description' =&gt; t('Scheduler Publish date and time'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">901</span></td>
+       <td><span class="comment code">      );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">902</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">903</span></td>
+       <td><span class="missed code">    if (variable_get('scheduler_unpublish_enable_' . $bundle_name, 0)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">904</span></td>
+       <td><span class="missed code">      $options['unpublish_on'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">905</span></td>
+       <td><span class="missed code">        'title' =&gt; t('Unpublish on'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">906</span></td>
+       <td><span class="missed code">        'description' =&gt; t('Scheduler Unpublish date and time'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">907</span></td>
+       <td><span class="comment code">      );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">908</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">909</span></td>
+       <td><span class="missed code">    return $options;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">910</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">911</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">912</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">913</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">914</span></td>
+       <td><span class="comment code"> * Implements hook_field_attach_prepare_translation_alter().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">915</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">916</span></td>
+       <td><span class="covered code">function scheduler_field_attach_prepare_translation_alter($entity, $context) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">917</span></td>
+       <td><span class="comment code">  // Prefill the node translation form with values from the translation source
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">918</span></td>
+       <td><span class="comment code">  // node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">919</span></td>
+       <td><span class="missed code">  $source_entity = $context['source_entity'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">920</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">921</span></td>
+       <td><span class="missed code">  if (isset($source_entity-&gt;publish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">922</span></td>
+       <td><span class="missed code">    $entity-&gt;publish_on = $source_entity-&gt;publish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">923</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">924</span></td>
+       <td><span class="missed code">  if (isset($source_entity-&gt;unpublish_on)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">925</span></td>
+       <td><span class="missed code">    $entity-&gt;unpublish_on = $source_entity-&gt;unpublish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">926</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">927</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">928</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">929</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">930</span></td>
+       <td><span class="comment code"> * Implements hook_date_popup_pre_validate_alter().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">931</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">932</span></td>
+       <td><span class="covered code">function scheduler_date_popup_pre_validate_alter($element, $form_state, &amp;$input) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">933</span></td>
+       <td><span class="comment code">  // Provide a default time if this is enabled and the time field is empty.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">934</span></td>
+       <td><span class="missed code">  if (variable_get('scheduler_allow_date_only', FALSE) &amp;&amp; $element['#array_parents'][0] == 'scheduler_settings' &amp;&amp; !empty($input['date']) &amp;&amp; empty($input['time'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">935</span></td>
+       <td><span class="comment code">    // Get the default time as a timestamp number.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">936</span></td>
+       <td><span class="missed code">    $default_time = strtotime(variable_get('scheduler_default_time', SCHEDULER_DEFAULT_TIME));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">937</span></td>
+       <td><span class="comment code">    // Set the time in the required format just as if the user had typed it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">938</span></td>
+       <td><span class="missed code">    $input['time'] = format_date($default_time, 'custom', variable_get('scheduler_time_only_format', SCHEDULER_TIME_ONLY_FORMAT));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">939</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">940</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">941</span></td>
+       <td><span class="covered code"></span></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Legend</h2>
+<dl>
+  <dt><span class="missed">Missed</span></dt>
+  <dd>lines code that <strong>were not</strong> excersized during program execution.</dd>
+  <dt><span class="covered">Covered</span></dt>
+  <dd>lines code <strong>were</strong> excersized during program execution.</dd>
+  <dt><span class="comment">Comment/non executable</span></dt>
+  <dd>Comment or non-executable line of code.</dd>
+  <dt><span class="dead">Dead</span></dt>
+  <dd>lines of code that according to xdebug could not be executed.  This is counted as coverage code because 
+  in almost all cases it is code that runnable.</dd>
+</dl>
+</body>
+</html>

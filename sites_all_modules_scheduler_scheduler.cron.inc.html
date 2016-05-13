@@ -1,0 +1,1338 @@
+<html>
+<head>
+<title>Simpletest Coverage - sites/all/modules/scheduler/scheduler.cron.inc</title>
+</head>
+<style type="text/css">
+body {
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, Arial, Helvetica, sans-serif;
+}
+h1 {
+  font-size: medium;
+}
+#code {
+  border-spacing: 0;
+}
+.lineNo {
+  color: #ccc;
+}
+.code, .lineNo {
+  white-space: pre;
+  font-family: monospace;
+}
+.covered {
+  color: #090;
+}
+.missed {
+  color: #f00;
+}
+.dead {
+  color: #00f;
+}
+.comment {
+  color: #333;
+}
+</style>
+<body>
+<h1 id="title">Simpletest Coverage - sites/all/modules/scheduler/scheduler.cron.inc</h1>
+<table id="code">
+  <tbody>
+    <tr>
+       <td><span class="lineNo">1</span></td>
+       <td><span class="comment code">&lt;?php
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">2</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">3</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">4</span></td>
+       <td><span class="comment code"> * @file
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">5</span></td>
+       <td><span class="comment code"> * Scheduler cron functions.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">6</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">7</span></td>
+       <td><span class="comment code"> * This file is included only when running a crontab job or executing the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">8</span></td>
+       <td><span class="comment code"> * lightweight cron via the admin interface.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">9</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">10</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">11</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">12</span></td>
+       <td><span class="comment code"> * Publish scheduled nodes.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">13</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">14</span></td>
+       <td><span class="comment code"> * @return bool
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">15</span></td>
+       <td><span class="comment code"> *   TRUE if any node has been published, FALSE otherwise.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">16</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">17</span></td>
+       <td><span class="covered code">function _scheduler_publish() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">18</span></td>
+       <td><span class="covered code">  $result = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">19</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">20</span></td>
+       <td><span class="comment code">  // If the time now is greater than the time to publish a node, publish it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">21</span></td>
+       <td><span class="comment code">  // The INNER join on 'node' and 'users' is just to ensure the nodes are valid.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">22</span></td>
+       <td><span class="covered code">  $query = db_select('scheduler', 's');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">23</span></td>
+       <td><span class="covered code">  $query-&gt;addField('s', 'nid');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">24</span></td>
+       <td><span class="covered code">  $query-&gt;addJoin('INNER', 'node', 'n', 's.nid = n.nid');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">25</span></td>
+       <td><span class="covered code">  $query-&gt;addJoin('INNER', 'users', 'u', 'u.uid = n.uid');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">26</span></td>
+       <td><span class="covered code">  $query-&gt;condition('s.publish_on', 0, '&gt;');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">27</span></td>
+       <td><span class="covered code">  $query-&gt;condition('s.publish_on', REQUEST_TIME, '&lt;=');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">28</span></td>
+       <td><span class="covered code">  $query_result = $query-&gt;execute();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">29</span></td>
+       <td><span class="covered code">  $nids = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">30</span></td>
+       <td><span class="covered code">  while ($node = $query_result-&gt;fetchObject()) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">31</span></td>
+       <td><span class="covered code">    $nids[] = $node-&gt;nid;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">32</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">33</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">34</span></td>
+       <td><span class="covered code">  $action = 'publish';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">35</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">36</span></td>
+       <td><span class="comment code">  // Allow other modules to add to the list of nodes to be published.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">37</span></td>
+       <td><span class="covered code">  $nids = array_unique(array_merge($nids, _scheduler_scheduler_nid_list($action)));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">38</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">39</span></td>
+       <td><span class="comment code">  // Allow other modules to alter the list of nodes to be published.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">40</span></td>
+       <td><span class="covered code">  drupal_alter('scheduler_nid_list', $nids, $action);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">41</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">42</span></td>
+       <td><span class="covered code">  foreach ($nids as $nid) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">43</span></td>
+       <td><span class="covered code">    $n = node_load($nid);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">44</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">45</span></td>
+       <td><span class="comment code">    // Check that other modules allow the action on this node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">46</span></td>
+       <td><span class="covered code">    if (!_scheduler_allow($n, $action)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">47</span></td>
+       <td><span class="covered code">      continue;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">48</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">49</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">50</span></td>
+       <td><span class="comment code">    // Invoke Scheduler API for modules to react before the node is published.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">51</span></td>
+       <td><span class="comment code">    // @todo For D8 move the 'pre' call to here.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">52</span></td>
+       <td><span class="comment code">    // See https://www.drupal.org/node/2311273
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">53</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">54</span></td>
+       <td><span class="comment code">    // Update timestamps.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">55</span></td>
+       <td><span class="covered code">    $n-&gt;changed = $n-&gt;publish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">56</span></td>
+       <td><span class="covered code">    $old_creation_date = $n-&gt;created;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">57</span></td>
+       <td><span class="covered code">    if (variable_get('scheduler_publish_touch_' . $n-&gt;type, 0) == 1) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">58</span></td>
+       <td><span class="missed code">      $n-&gt;created = $n-&gt;publish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">59</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">60</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">61</span></td>
+       <td><span class="covered code">    $create_publishing_revision = variable_get('scheduler_publish_revision_' . $n-&gt;type, 0) == 1;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">62</span></td>
+       <td><span class="covered code">    if ($create_publishing_revision) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">63</span></td>
+       <td><span class="covered code">      $n-&gt;revision = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">64</span></td>
+       <td><span class="comment code">      // Use a core date format to guarantee a time is included.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">65</span></td>
+       <td><span class="covered code">      $n-&gt;log = t('Node published by Scheduler on @now. Previous creation date was @date.', array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">66</span></td>
+       <td><span class="covered code">        '@now' =&gt; format_date(REQUEST_TIME, 'short'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">67</span></td>
+       <td><span class="covered code">        '@date' =&gt; format_date($old_creation_date, 'short'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">68</span></td>
+       <td><span class="covered code">      ));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">69</span></td>
+       <td><span class="covered code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">70</span></td>
+       <td><span class="comment code">    // Unset publish_on so the node will not get rescheduled by subsequent calls
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">71</span></td>
+       <td><span class="comment code">    // to node_save(). Save the value for use when calling Rules.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">72</span></td>
+       <td><span class="covered code">    $publish_on = $n-&gt;publish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">73</span></td>
+       <td><span class="covered code">    $n-&gt;publish_on = NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">74</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">75</span></td>
+       <td><span class="comment code">    // Invoke scheduler API to allow modules to alter the node before it is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">76</span></td>
+       <td><span class="comment code">    // saved.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">77</span></td>
+       <td><span class="comment code">    // @todo For D8, remove this from here.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">78</span></td>
+       <td><span class="covered code">    _scheduler_scheduler_api($n, 'pre_' . $action);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">79</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">80</span></td>
+       <td><span class="comment code">    // Use the actions system to publish the node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">81</span></td>
+       <td><span class="covered code">    watchdog('scheduler', '@type: scheduled publishing of %title.', array('@type' =&gt; $n-&gt;type, '%title' =&gt; $n-&gt;title), WATCHDOG_NOTICE, l(t('view'), 'node/' . $n-&gt;nid, array('alias' =&gt; TRUE)));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">82</span></td>
+       <td><span class="covered code">    $actions = array('node_publish_action', 'node_save_action');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">83</span></td>
+       <td><span class="covered code">    $context['node'] = $n;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">84</span></td>
+       <td><span class="covered code">    actions_do($actions, $n, $context, NULL, NULL);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">85</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">86</span></td>
+       <td><span class="comment code">    // Invoke the event to tell Rules that Scheduler has published this node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">87</span></td>
+       <td><span class="covered code">    if (module_exists('rules')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">88</span></td>
+       <td><span class="missed code">      rules_invoke_event('scheduler_node_has_been_published_event', $n, $publish_on, $n-&gt;unpublish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">89</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">90</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">91</span></td>
+       <td><span class="comment code">    // Invoke scheduler API for modules to react after the node is published.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">92</span></td>
+       <td><span class="covered code">    _scheduler_scheduler_api($n, $action);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">93</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">94</span></td>
+       <td><span class="covered code">    $result = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">95</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">96</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">97</span></td>
+       <td><span class="covered code">  return $result;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">98</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">99</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">100</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">101</span></td>
+       <td><span class="comment code"> * Unpublish scheduled nodes.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">102</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">103</span></td>
+       <td><span class="comment code"> * @return bool
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">104</span></td>
+       <td><span class="comment code"> *   TRUE is any node has been unpublished, FALSE otherwise.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">105</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">106</span></td>
+       <td><span class="covered code">function _scheduler_unpublish() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">107</span></td>
+       <td><span class="covered code">  $result = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">108</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">109</span></td>
+       <td><span class="comment code">  // If the time is greater than the time to unpublish a node, unpublish it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">110</span></td>
+       <td><span class="comment code">  // The INNER join on 'node' and 'users' is just to ensure the nodes are valid.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">111</span></td>
+       <td><span class="covered code">  $query = db_select('scheduler', 's');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">112</span></td>
+       <td><span class="covered code">  $query-&gt;addField('s', 'nid');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">113</span></td>
+       <td><span class="covered code">  $query-&gt;addJoin('INNER', 'node', 'n', 's.nid = n.nid');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">114</span></td>
+       <td><span class="covered code">  $query-&gt;addJoin('INNER', 'users', 'u', 'u.uid = n.uid');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">115</span></td>
+       <td><span class="covered code">  $query-&gt;condition('s.unpublish_on', 0, '&gt;');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">116</span></td>
+       <td><span class="covered code">  $query-&gt;condition('s.unpublish_on', REQUEST_TIME, '&lt;=');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">117</span></td>
+       <td><span class="covered code">  $query_result = $query-&gt;execute();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">118</span></td>
+       <td><span class="covered code">  $nids = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">119</span></td>
+       <td><span class="covered code">  while ($node = $query_result-&gt;fetchObject()) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">120</span></td>
+       <td><span class="covered code">    $nids[] = $node-&gt;nid;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">121</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">122</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">123</span></td>
+       <td><span class="covered code">  $action = 'unpublish';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">124</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">125</span></td>
+       <td><span class="comment code">  // Allow other modules to add to the list of nodes to be unpublished.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">126</span></td>
+       <td><span class="covered code">  $nids = array_unique(array_merge($nids, _scheduler_scheduler_nid_list($action)));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">127</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">128</span></td>
+       <td><span class="comment code">  // Allow other modules to alter the list of nodes to be unpublished.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">129</span></td>
+       <td><span class="covered code">  drupal_alter('scheduler_nid_list', $nids, $action);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">130</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">131</span></td>
+       <td><span class="covered code">  foreach ($nids as $nid) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">132</span></td>
+       <td><span class="covered code">    $n = node_load($nid);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">133</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">134</span></td>
+       <td><span class="comment code">    // Check that other modules allow the action on this node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">135</span></td>
+       <td><span class="covered code">    if (!_scheduler_allow($n, $action)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">136</span></td>
+       <td><span class="missed code">      continue;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">137</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">138</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">139</span></td>
+       <td><span class="comment code">    // Do not process the node if it has a publish_on time which is in the past,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">140</span></td>
+       <td><span class="comment code">    // as this implies that scheduled publishing has been blocked by one of the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">141</span></td>
+       <td><span class="comment code">    // API functions we provide. Hence unpublishing should be halted too.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">142</span></td>
+       <td><span class="covered code">    if (!empty($n-&gt;publish_on) &amp;&amp; $n-&gt;publish_on &lt;= REQUEST_TIME) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">143</span></td>
+       <td><span class="missed code">      continue;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">144</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">145</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">146</span></td>
+       <td><span class="comment code">    // Invoke scheduler API for modules to react before the node is unpublished.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">147</span></td>
+       <td><span class="comment code">    // @todo For D8, move the 'pre' call to here.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">148</span></td>
+       <td><span class="comment code">    // See https://www.drupal.org/node/2311273
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">149</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">150</span></td>
+       <td><span class="comment code">    // Update timestamps.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">151</span></td>
+       <td><span class="covered code">    $old_change_date = $n-&gt;changed;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">152</span></td>
+       <td><span class="covered code">    $n-&gt;changed = $n-&gt;unpublish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">153</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">154</span></td>
+       <td><span class="covered code">    $create_unpublishing_revision = variable_get('scheduler_unpublish_revision_' . $n-&gt;type, 0) == 1;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">155</span></td>
+       <td><span class="covered code">    if ($create_unpublishing_revision) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">156</span></td>
+       <td><span class="covered code">      $n-&gt;revision = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">157</span></td>
+       <td><span class="comment code">      // Use a core date format to guarantee a time is included.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">158</span></td>
+       <td><span class="covered code">      $n-&gt;log = t('Node unpublished by Scheduler on @now. Previous change date was @date.', array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">159</span></td>
+       <td><span class="covered code">        '@now' =&gt; format_date(REQUEST_TIME, 'short'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">160</span></td>
+       <td><span class="covered code">        '@date' =&gt; format_date($old_change_date, 'short'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">161</span></td>
+       <td><span class="covered code">      ));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">162</span></td>
+       <td><span class="covered code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">163</span></td>
+       <td><span class="comment code">    // Unset unpublish_on so the node will not get rescheduled by subsequent
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">164</span></td>
+       <td><span class="comment code">    // calls to node_save(). Save the value for use when calling Rules.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">165</span></td>
+       <td><span class="covered code">    $unpublish_on = $n-&gt;unpublish_on;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">166</span></td>
+       <td><span class="covered code">    $n-&gt;unpublish_on = NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">167</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">168</span></td>
+       <td><span class="comment code">    // Invoke scheduler API to allow modules to alter the node before it is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">169</span></td>
+       <td><span class="comment code">    // saved.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">170</span></td>
+       <td><span class="comment code">    // @todo For D8, remove this from here.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">171</span></td>
+       <td><span class="covered code">    _scheduler_scheduler_api($n, 'pre_' . $action);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">172</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">173</span></td>
+       <td><span class="comment code">    // Use the actions system to unpublish the node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">174</span></td>
+       <td><span class="covered code">    watchdog('scheduler', '@type: scheduled unpublishing of %title.', array('@type' =&gt; $n-&gt;type, '%title' =&gt; $n-&gt;title), WATCHDOG_NOTICE, l(t('view'), 'node/' . $n-&gt;nid, array('alias' =&gt; TRUE)));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">175</span></td>
+       <td><span class="covered code">    $actions = array('node_unpublish_action', 'node_save_action');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">176</span></td>
+       <td><span class="covered code">    $context['node'] = $n;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">177</span></td>
+       <td><span class="covered code">    actions_do($actions, $n, $context, NULL, NULL);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">178</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">179</span></td>
+       <td><span class="comment code">    // Invoke event to tell Rules that Scheduler has unpublished this node.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">180</span></td>
+       <td><span class="covered code">    if (module_exists('rules')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">181</span></td>
+       <td><span class="missed code">      rules_invoke_event('scheduler_node_has_been_unpublished_event', $n, $n-&gt;publish_on, $unpublish_on);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">182</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">183</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">184</span></td>
+       <td><span class="comment code">    // Invoke scheduler API for modules to react after the node is unpublished.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">185</span></td>
+       <td><span class="covered code">    _scheduler_scheduler_api($n, 'unpublish');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">186</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">187</span></td>
+       <td><span class="covered code">    $result = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">188</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">189</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">190</span></td>
+       <td><span class="covered code">  return $result;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">191</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">192</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">193</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">194</span></td>
+       <td><span class="comment code"> * Gather node IDs for all nodes that need to be $action'ed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">195</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">196</span></td>
+       <td><span class="comment code"> * @param string $action
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">197</span></td>
+       <td><span class="comment code"> *   The action being performed, either &quot;publish&quot; or &quot;unpublish&quot;.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">198</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">199</span></td>
+       <td><span class="comment code"> * @return array
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">200</span></td>
+       <td><span class="comment code"> *   An array of node ids.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">201</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">202</span></td>
+       <td><span class="covered code">function _scheduler_scheduler_nid_list($action) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">203</span></td>
+       <td><span class="covered code">  $nids = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">204</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">205</span></td>
+       <td><span class="covered code">  foreach (module_implements('scheduler_nid_list') as $module) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">206</span></td>
+       <td><span class="missed code">    $function = $module . '_scheduler_nid_list';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">207</span></td>
+       <td><span class="missed code">    $nids = array_merge($nids, $function($action));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">208</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">209</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">210</span></td>
+       <td><span class="covered code">  return $nids;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">211</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">212</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">213</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">214</span></td>
+       <td><span class="comment code"> * Run the lightweight cron.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">215</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">216</span></td>
+       <td><span class="comment code"> * The Scheduler part of the processing performed here is the same as in the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">217</span></td>
+       <td><span class="comment code"> * normal Drupal cron run. The difference is that only scheduler_cron() is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">218</span></td>
+       <td><span class="comment code"> * executed, no other modules hook_cron() functions are called.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">219</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">220</span></td>
+       <td><span class="comment code"> * This function is called from the external crontab job via url /scheduler/cron
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">221</span></td>
+       <td><span class="comment code"> * or it can be run interactively from the Scheduler configuration page at
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">222</span></td>
+       <td><span class="comment code"> * /admin/config/content/scheduler/cron.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">223</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">224</span></td>
+       <td><span class="covered code">function _scheduler_run_cron() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">225</span></td>
+       <td><span class="missed code">  $log = variable_get('scheduler_lightweight_log', 1);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">226</span></td>
+       <td><span class="missed code">  if ($log) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">227</span></td>
+       <td><span class="missed code">    watchdog('scheduler', 'Lightweight cron run activated', array(), WATCHDOG_NOTICE);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">228</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">229</span></td>
+       <td><span class="missed code">  scheduler_cron();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">230</span></td>
+       <td><span class="missed code">  if (ob_get_level() &gt; 0) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">231</span></td>
+       <td><span class="missed code">    $handlers = ob_list_handlers();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">232</span></td>
+       <td><span class="missed code">    if (isset($handlers[0]) &amp;&amp; $handlers[0] == 'default output handler') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">233</span></td>
+       <td><span class="missed code">      ob_clean();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">234</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">235</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">236</span></td>
+       <td><span class="missed code">  if ($log) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">237</span></td>
+       <td><span class="missed code">    watchdog('scheduler', 'Lightweight cron run completed', array(), WATCHDOG_NOTICE, l(t('settings'), 'admin/config/content/scheduler/cron'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">238</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">239</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">240</span></td>
+       <td><span class="missed code">  $menu_item = menu_get_item();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">241</span></td>
+       <td><span class="missed code">  if ($menu_item['path'] == 'admin/config/content/scheduler/cron') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">242</span></td>
+       <td><span class="comment code">    // This cron run has been initiated manually from the configuration form.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">243</span></td>
+       <td><span class="comment code">    // Give a message and return something so that an output page is created.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">244</span></td>
+       <td><span class="comment code">    // No output should be returned if running from a crontab job.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">245</span></td>
+       <td><span class="missed code">    if (module_exists('dblog')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">246</span></td>
+       <td><span class="missed code">      drupal_set_message(t('Lightweight cron run completed - see &lt;a href=&quot;@url&quot;&gt;log&lt;/a&gt; for details.', array('@url' =&gt; url('admin/reports/dblog'))));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">247</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">248</span></td>
+       <td><span class="comment code">    else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">249</span></td>
+       <td><span class="missed code">      drupal_set_message(t('Lightweight cron run completed.'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">250</span></td>
+       <td><span class="comment code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">251</span></td>
+       <td><span class="missed code">    return ' ';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">252</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">253</span></td>
+       <td><span class="comment code">  // drupal_exit() is the proper controlled way to terminate the request, as
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">254</span></td>
+       <td><span class="comment code">  // this will invoke all implementations of hook_exit().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">255</span></td>
+       <td><span class="missed code">  drupal_exit();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">256</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">257</span></td>
+       <td><span class="covered code"></span></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Legend</h2>
+<dl>
+  <dt><span class="missed">Missed</span></dt>
+  <dd>lines code that <strong>were not</strong> excersized during program execution.</dd>
+  <dt><span class="covered">Covered</span></dt>
+  <dd>lines code <strong>were</strong> excersized during program execution.</dd>
+  <dt><span class="comment">Comment/non executable</span></dt>
+  <dd>Comment or non-executable line of code.</dd>
+  <dt><span class="dead">Dead</span></dt>
+  <dd>lines of code that according to xdebug could not be executed.  This is counted as coverage code because 
+  in almost all cases it is code that runnable.</dd>
+</dl>
+</body>
+</html>
