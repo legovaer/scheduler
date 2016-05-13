@@ -1,7 +1,6 @@
 
 [![Coverage](https://rawgit.com/legovaer/scheduler/7.x-1.x-reports/badge.svg)]
 (https://rawgit.com/legovaer/scheduler/7.x-1.x-reports/index.html)
-
 [![Build Status]
 (https://travis-ci.org/legovaer/scheduler.svg?branch=7x%2Fadd-automated-stuff)]
 (https://travis-ci.org/legovaer/scheduler)
