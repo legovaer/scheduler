@@ -39,7 +39,14 @@ mysql:
   username: root
   encoding: utf8
 before_install:
-- drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_install.sh
+- wget --help
+- cp -R /home/travis/build/legovaer/scheduler /home/travis/scheduler
+- sudo apt-get install php5-xdebug
+- sudo git clone https://github.com/simpletest/simpletest.git /usr/local/simpletest
+- composer self-update
+- cd ./tests
+- composer global require "lionsad/drupal_ti:dev-master"
+
 - wget  http://ftp.gnu.org/gnu/wget/wget-1.16.tar.gz
 - tar -xzf wget-1.16.tar.gz
 - cd wget-1.16
