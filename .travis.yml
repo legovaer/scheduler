@@ -11,11 +11,11 @@ language: php
 sudo: true
 
 php:
-  - 5.3
+#  - 5.3
   - 5.4
-  - 5.5
-  - 5.6
-  - 7
+#  - 5.5
+#  - 5.6
+#  - 7
   - hhvm
 
 matrix:
@@ -103,7 +103,7 @@ mysql:
 
 before_install:
   - sudo apt-get install php5-xdebug
-  - sudo git clone git@github.com:simpletest/simpletest.git /usr/local/simpletest
+  - yes yes | sudo git clone git@github.com:simpletest/simpletest.git /usr/local/simpletest
   - composer self-update
   - cd ./tests
   - composer global require "lionsad/drupal_ti:dev-master"
