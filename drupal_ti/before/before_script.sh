@@ -32,4 +32,6 @@ php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--inclu
 #php -i | grep /home/travis/.phpenv/versions/5.4.45/etc/php.ini
 #sed '1 a ini_set("auto_prepend_file", "autocoverage.php");' /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
 #sudo sed '1 a require "/usr/local/simpletest/extensions/coverage/autocoverage.php";' /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
-sudo sed '1 a require "autocoverage.php";' /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
+sed '1 a set_include_path(get_include_path() . PATH_SEPARATOR . $path);' /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
+sed '1 a $path = "/usr/local/simpletest/extensions/coverage";' /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
+sed '1 a require "autocoverage.php";' /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
