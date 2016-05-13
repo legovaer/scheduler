@@ -39,6 +39,8 @@ mysql:
   username: root
   encoding: utf8
 before_install:
+- ls
+- pwd
 - sudo apt-get install php5-xdebug
 - sudo git clone https://github.com/simpletest/simpletest.git /usr/local/simpletest
 - composer self-update
