@@ -19,6 +19,7 @@ cd "$DRUPAL_TI_DRUPAL_DIR/$DRUPAL_TI_MODULES_PATH"
 
 # Manually clone the dependencies
 drush en date -y
+ls -ls /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules
 
 cd "$DRUPAL_TI_DRUPAL_DIR"
 touch "code-coverage-settings.dat"

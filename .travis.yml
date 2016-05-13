@@ -61,7 +61,7 @@ script:
 after_script:
 - cd "/home/travis/build/legovaer/drupal-7/drupal"
 - git clone --branch 7.x-1.x-reports https://github.com/legovaer/scheduler.git coverage-report
-- rm -rf coverage-report/*
+- git rm -rf coverage-report/*
 - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-close.php
 - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-report.php
 - cd coverage-report/
