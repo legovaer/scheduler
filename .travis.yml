@@ -123,7 +123,7 @@ script:
   - drupal-ti script
 
 after_script:
-  - cd "$DRUPAL_TI_DRUPAL_DIR"
+  - cd "/home/travis/build/legovaer/drupal-7/drupal"
   - ls -ls
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-close.php
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-report.php
