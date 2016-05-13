@@ -29,5 +29,6 @@ git apply -v 2189345-39.patch
 
 
 php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=sites/all/modules/.*\.php$' '--include=sites/all/modules/.*\.inc$' '--include=sites/all/modules/.*\.module$' '--exclude=sites/all/modules/*/tests/.*'
+sudo sed '1 a require "autocoverage.php";' /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
 sudo sed '1 a require "autocoverage.php";' /home/travis/build/legovaer/drupal-7/drupal/sites/default/settings.php
 cat /home/travis/build/legovaer/drupal-7/drupal/sites/default/settings.php
