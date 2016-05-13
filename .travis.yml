@@ -28,7 +28,10 @@ env:
   - DRUPAL_TI_PHPUNIT_ARGS=""
   - DRUPAL_TI_COVERAGE="satooshi/php-coveralls:0.6.*"
   - DRUPAL_TI_COVERAGE_FILE="build/logs/clover.xml"
-  - secure: {"jvsD+gsl5uftq7DGw0uCk8YKKSW0F6yweLU8cTz81MMVnpnO8q/+YBE1tBzE8j5gfqV/R67SGGn1CDckbylsah8RdTbzdDqNc+Dnr1LTUIx94OuiqJOzEj85n8Ui0y9cIn1oxML9h1PKZRvDF6Pls49UcMIpT5qkTyCcp8T2xsLyoV2YcjVVddzpjumZAB2v4boH3FKKRauodHdqYOmprYNXZ/yiHuTaS/NpJadowrkP5COu303Z0zWgCdaWzzP+S+BZJcnRBc9A82B3sp7p9qmSFdz1+Ue3We4tLjH20dtiNW3B73EK5lDky1IzltBQmN4srZ77yAvGMYqesg+x36dnmfuGmleCrVLMuWITtFd6Q/QuZ3fhiEKsGGioJRki3kKM9XK5UR7Lo1kQ8w2yILgPsFlXxz9O0vut4QzUcjFbqUie/2ClT+NbCo3vRmEQMrwqVkJDKToF6YpfKnx9UgVbUvHBrx6XlRfcsQnM2ve2A2qDViFMc48/jy0Dk3NYmgiz5qhbTmRrop/YXZPLpOlq2soA9EgWfUey5kez5VpPaqVczkh2IMeRm/zyBkygzShZ+Z9hsqUnGa9rwyMrY4KDGfzjcwpaK5H75RRCF6tp2dBUCCgIt78BoYyuJ9lAu8pqhr1jCZleU0eR1jFJstrOo5AsgxcZ7Y7wYTk2MzI="}
+  - secure: rQNcmmjsGd1pBhRwZ5nleo3/v4IhHSHcPPHIJfElLrRtSz2STowBwVbcNWVJyOD/8KIzItr+DhvDa2zZp5eBQK16xfDtShkEo9zaup4qdl8179FQPczEd3T7wRqdFqA4U1WwBcCoAqxHaG6BzPhVhI5tFaWqf3whjsTK+WH78XKEIMNvVaIccxgJRpbB/WZRlJ8QQlAw7NaZWjYacVS1kIwMITGh8734X3kCpgX+YdZiR8zmtGCDAU3RePNt7+KiVEHLrtSRfxpyt63BNGNwF1zLiCH+tzRB7ODDmff4c1LE4G1XgZm0JZih/zg8qxLTOUl/fNcLwb9rb8z/fZiNClU19CvxdW8wsTS1TVcODzDVeh3/yBGrnyXWZiDIL01bgXaj2bXPHVgMbT5RJ7CDTG2ZzvIJbp56ik4Kg9xkOW13uaEkehPYKqh8BGz+XTM5oI5ttsxpLukEj41ljss3o5AY0K52zIPxBQ8jtM868OourxMzLti8YCnLZ3+IuwEdd7ZSci7gHJayXqtuaVuaaXbpWnLVH5hDiPpskbJSBQvE2bLMJHNo175c5WUa45VlJ4wA42xL6KZ/WxHkWWnlfb1tX7jCoRTxOcbEMIQXsMzUTlIR1PTJA46msZOIrN/g3Dd3XH1RG+0NbXcF3WaYhYiQhBNLbIJyUZ+NhfGV+Yk=
+  - secure: aZN/e666mRR9uDpOyJgDl7nSRFwnaltzMQYZ2y7WXVVxIEqsuyHF1ijqU3ShKNAFMQqHz28e/0QBhNbPD5Sj0fjO15GkZDUv22Ua7LpfEMtJHOj3e4MINB5oQd8sj1kYlUSIgksvO/no8V/0kvlqsmix1okF73xhh9Uc6v/94v3MTaRsfaufHjT6DYZMRdmPcsLPGqQnqaR0cgQ+lECYwSqbX5T7zZXP9g02SEmo8ClcMDn2HwT+biQtJI4OHWQHUb24+nt8JH/7vcij2oHOBpbsXIFpu4Qw7tsPYxqaylYi81Vz/wSKqiwMgxLyQRUTede92iQxZX/7kpzKB0SqPRfTa1ftM5AU+RMviiZP+aZr5zqzx5eRFSbryz+9+0ja/hLS9PvZZuioGWWjvLZ//mKpV/uW8H5TjOe1zA/KX3QEU33RC6ajfMfR7mfxQa4OcHOD82/gcdgpFqxNMuHDjWkgVWfgvFdkqPMuSRn7SEN9pY6aI+BbngBEi3zklC486L1FKdoNef+NFMBWfMkfNrzd43wyRIlZvS3a7no51nYetE+rK0L4uA1VSutSzrRjusDCfPoIndM28gNk7+VERsWbH/VyymjEA2hC1Bfyn6+UGBKkd9Z0Yg3yAhbT81ZuJyzFxerB4WJNsHgACUPiPufeZ8BisLc119gaUMXVZHU=
+  - secure: AUBulwJksfEDbS/yCaiSbM9H8i/U6BwtbKYyVZiW2TfUxeZekEgWdpi8BD6x2A6Wj6Poo4xE/S0+zJK5yNzuLnKxKebREMTEoU3bLUt9/Ckg71gfTBWQfVeqxgcf30vwSBTSRixoZvmrExKa10Y64Sx7iZKNH0v2OXY+OFJ1UGKZabE+kOX+5QJNiIGe/PROR6WW8ug7FKxg+VcFQPLn03MKEiLseWevmLIX2YecSucJUIFphAyHPr+Pg20vu3FjzhueOpWDYfpkdd3370lMgydcev2Yfgt68amTPhlGjxeMza5oyZTsSWe0hDpR0q3I9dXooz6MGMctjfFFEPct8axc9nk4lpiOx8JFY+6vWfasRP1CMn/TU5bsfSLJehzFdrtLAcFjJaxh1+JqCuKszEyZumLryWRpaodsHzCMURZkpYUegCRLAXPS0ArLlVSX8UEDXq/Me0qn4DjHRjqJVT7pUjUHEo7Mqb9diHzPf5kdz1b/LXKM2IhZNvKNLODS2kohWmb3NZIycvlwqN6OD61ilNPq2xJ0RHru/j8YhIc4cmY2BGjgxOfILUhmUFO/meWsoDbU4Hvr4RQSbJxfumxTcM1+7IoMnjUQjmQCX51pM5EdSI9Qsalxyw/Tb1DJJ1/EwrQa/Ycgib3TLZJxbgAhXgr/BFYQW/fOCUAuf6M=
+  - secure: h5Z5EF7nuj/6YmMm7mGCgZWLjURdjhxjdLU3nQcbkqRavhQKyFlqL0nrsETVYs0BZ8PHsaJpQTMu6v8RuGecqck7y8R5Y1iF8GaWeyf/tevDU1dOPf0sIgzkeH8jSfilWfJeWlXpfF8vyhsSbB97Pir5A3lucA7ByyGtnr5JD1odf0SYGyV5lZwGsF6pAUSNk/4Rhm30nMwzzdTO+k89EGmPboFHO2funxsf/VnaWHKh/zEo7R3WuTPcFWqvDoXutmZAP5z1MTmKPXAub5uyRuj1D057wZQ2CjPFCr3V2EN8T8RkFxogGnZq7zakks+XekK2zw/Lc4jg6hBmhAjQhTLPcxXDo3MQWClB5WNFjn6Ruiluvd2QfBF+A5rESK9fTlDxSs1wr+9kQfc+YH25ekvW32gUC/rs7IrDzSl7bOTXiyrdDrpycdv2pl/DPgPNjsDG67wjhcx6BNqOrcD5ZBW3Tmd8eLqLP/K45QV4Gf4vXSdTvrvoyH7qB6WuvQ/o40Oor8DrfGrgSmiSIaiHck6JUPp4XdzzYWhJgnUJ9naIxx8WB+kpMVHpF00kKgBuXm3wXEFwlT+vZ/WwkxVtRYEMEPHBYfDC09cVKOQS4bzfS/V/pn2yP0zhHJgd1iKb37nnNSsSJBIP3u5w/NaptAawQcm9/qzYWmZXCgyRnjc=
   matrix:
   - DRUPAL_TI_RUNNERS="simpletest"
 mysql:
@@ -45,8 +48,9 @@ before_install:
 install:
 - drupal-ti install
 before_script:
-- git config --global user.email "levi.govaerts@capgemini.com"
-- git config --global user.name "Travis-CI"
+- cd /home/travis
+- git config --global user.email "${GH_EMAIL}"
+- git config --global user.name "${GH_NAME}"
 - git config --global push.default simple
 - cd "$DRUPAL_TI_DRUPAL_DIR"
 - wget https://www.drupal.org/files/issues/2189345-39.patch
@@ -56,14 +60,14 @@ script:
 - drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_script.sh"
 - drupal-ti script
 after_script:
-- git config credential.helper "store --file=.git/credentials"
-- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 - cd "/home/travis/build/legovaer/drupal-7/drupal"
 - git clone --branch 7.x-1.x-reports https://github.com/legovaer/scheduler.git coverage-report
 - rm -rf coverage-report/*
 - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-close.php
 - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-report.php
 - cd coverage-report/
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:x-oauth-basic@github.com" > .git/credentials
 - git add *
 - git commit -m "Added report for $TRAVIS_BUILD_NUMBER"
 - git push
