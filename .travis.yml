@@ -124,6 +124,7 @@ script:
 
 after_script:
   - cd "$DRUPAL_TI_DRUPAL_DIR"
+  - ls -ls
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-close.php
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-report.php
   - ls -ls "coverage-report/"
