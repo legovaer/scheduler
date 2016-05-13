@@ -52,12 +52,12 @@ before_script:
 - git config --global user.email "${GH_EMAIL}"
 - git config --global user.name "${GH_NAME}"
 - git config --global push.default simple
+- drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_script.sh"
 - cd "$DRUPAL_TI_DRUPAL_DIR"
 - wget https://www.drupal.org/files/issues/2189345-39.patch
 - git apply -v 2189345-39.patch
 - drupal-ti before_script
 script:
-- drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_script.sh"
 - drupal-ti script
 after_script:
 - cd "/home/travis/build/legovaer/drupal-7/drupal"
