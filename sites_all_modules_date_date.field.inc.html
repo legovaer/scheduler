@@ -1,0 +1,2838 @@
+<html>
+<head>
+<title>Simpletest Coverage - sites/all/modules/date/date.field.inc</title>
+</head>
+<style type="text/css">
+body {
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, Arial, Helvetica, sans-serif;
+}
+h1 {
+  font-size: medium;
+}
+#code {
+  border-spacing: 0;
+}
+.lineNo {
+  color: #ccc;
+}
+.code, .lineNo {
+  white-space: pre;
+  font-family: monospace;
+}
+.covered {
+  color: #090;
+}
+.missed {
+  color: #f00;
+}
+.dead {
+  color: #00f;
+}
+.comment {
+  color: #333;
+}
+</style>
+<body>
+<h1 id="title">Simpletest Coverage - sites/all/modules/date/date.field.inc</h1>
+<table id="code">
+  <tbody>
+    <tr>
+       <td><span class="lineNo">1</span></td>
+       <td><span class="comment code">&lt;?php
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">2</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">3</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">4</span></td>
+       <td><span class="comment code"> * @file
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">5</span></td>
+       <td><span class="comment code"> * Field hooks to implement a date field.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">6</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">7</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">8</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">9</span></td>
+       <td><span class="comment code"> * Implements hook_field_formatter_info().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">10</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">11</span></td>
+       <td><span class="covered code">function date_field_formatter_info() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">12</span></td>
+       <td><span class="comment code">  $formatters = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">13</span></td>
+       <td><span class="comment code">    'date_default' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">14</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Date and time'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">15</span></td>
+       <td><span class="covered code">      'field types' =&gt; array('date', 'datestamp', 'datetime'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">16</span></td>
+       <td><span class="comment code">      'settings' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">17</span></td>
+       <td><span class="covered code">        'format_type' =&gt; 'long',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">18</span></td>
+       <td><span class="covered code">        'multiple_number' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">19</span></td>
+       <td><span class="covered code">        'multiple_from' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">20</span></td>
+       <td><span class="covered code">        'multiple_to' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">21</span></td>
+       <td><span class="covered code">        'fromto' =&gt; 'both',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">22</span></td>
+       <td><span class="covered code">        'show_remaining_days' =&gt; FALSE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">23</span></td>
+       <td><span class="covered code">      ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">24</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">25</span></td>
+       <td><span class="comment code">    'format_interval' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">26</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Time ago'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">27</span></td>
+       <td><span class="covered code">      'field types' =&gt; array('date', 'datestamp', 'datetime'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">28</span></td>
+       <td><span class="comment code">      'settings' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">29</span></td>
+       <td><span class="covered code">        'interval' =&gt; 2,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">30</span></td>
+       <td><span class="covered code">        'interval_display' =&gt; 'time ago',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">31</span></td>
+       <td><span class="covered code">      ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">32</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">33</span></td>
+       <td><span class="comment code">    'date_plain' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">34</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Plain'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">35</span></td>
+       <td><span class="covered code">      'field types' =&gt; array('date', 'datestamp', 'datetime'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">36</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">37</span></td>
+       <td><span class="covered code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">38</span></td>
+       <td><span class="covered code">  return $formatters;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">39</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">40</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">41</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">42</span></td>
+       <td><span class="comment code"> * Implements hook_field_formatter_settings_form().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">43</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">44</span></td>
+       <td><span class="covered code">function date_field_formatter_settings_form($field, $instance, $view_mode, $form, &amp;$form_state) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">45</span></td>
+       <td><span class="missed code">  $display = $instance['display'][$view_mode];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">46</span></td>
+       <td><span class="missed code">  $formatter = $display['type'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">47</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'date', 'date_admin');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">48</span></td>
+       <td><span class="comment code">  switch ($formatter) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">49</span></td>
+       <td><span class="missed code">    case 'format_interval':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">50</span></td>
+       <td><span class="missed code">      $form = date_interval_formatter_settings_form($field, $instance, $view_mode, $form, $form_state);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">51</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">52</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">53</span></td>
+       <td><span class="missed code">    default:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">54</span></td>
+       <td><span class="missed code">      $form = date_default_formatter_settings_form($field, $instance, $view_mode, $form, $form_state);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">55</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">56</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">57</span></td>
+       <td><span class="comment code">  $context = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">58</span></td>
+       <td><span class="missed code">    'field' =&gt; $field,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">59</span></td>
+       <td><span class="missed code">    'instance' =&gt; $instance,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">60</span></td>
+       <td><span class="missed code">    'view_mode' =&gt; $view_mode,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">61</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">62</span></td>
+       <td><span class="missed code">  drupal_alter('date_field_formatter_settings_form', $form, $form_state, $context);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">63</span></td>
+       <td><span class="missed code">  return $form;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">64</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">65</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">66</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">67</span></td>
+       <td><span class="comment code"> * Implements hook_field_formatter_settings_summary().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">68</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">69</span></td>
+       <td><span class="covered code">function date_field_formatter_settings_summary($field, $instance, $view_mode) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">70</span></td>
+       <td><span class="missed code">  $display = $instance['display'][$view_mode];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">71</span></td>
+       <td><span class="missed code">  $formatter = $display['type'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">72</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'date', 'date_admin');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">73</span></td>
+       <td><span class="comment code">  switch ($formatter) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">74</span></td>
+       <td><span class="missed code">    case 'format_interval':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">75</span></td>
+       <td><span class="missed code">      $summary = date_interval_formatter_settings_summary($field, $instance, $view_mode);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">76</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">77</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">78</span></td>
+       <td><span class="missed code">    default:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">79</span></td>
+       <td><span class="missed code">      $summary = date_default_formatter_settings_summary($field, $instance, $view_mode);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">80</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">81</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">82</span></td>
+       <td><span class="comment code">  $context = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">83</span></td>
+       <td><span class="missed code">    'field' =&gt; $field,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">84</span></td>
+       <td><span class="missed code">    'instance' =&gt; $instance,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">85</span></td>
+       <td><span class="missed code">    'view_mode' =&gt; $view_mode,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">86</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">87</span></td>
+       <td><span class="missed code">  drupal_alter('date_field_formatter_settings_summary', $summary, $context);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">88</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">89</span></td>
+       <td><span class="missed code">  return implode('&lt;br /&gt;', $summary);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">90</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">91</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">92</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">93</span></td>
+       <td><span class="comment code"> * Implements hook_field_formatter_view().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">94</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">95</span></td>
+       <td><span class="comment code"> * Useful values:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">96</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">97</span></td>
+       <td><span class="comment code"> *   $entity-&gt;date_id
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">98</span></td>
+       <td><span class="comment code"> *     If set, this will show only an individual date on a field with
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">99</span></td>
+       <td><span class="comment code"> *     multiple dates. The value should be a string that contains
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">100</span></td>
+       <td><span class="comment code"> *     the following values, separated with periods:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">101</span></td>
+       <td><span class="comment code"> *     - module name of the module adding the item
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">102</span></td>
+       <td><span class="comment code"> *     - node nid
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">103</span></td>
+       <td><span class="comment code"> *     - field name
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">104</span></td>
+       <td><span class="comment code"> *     - delta value of the field to be displayed
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">105</span></td>
+       <td><span class="comment code"> *     - other information the module's custom theme might need
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">106</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">107</span></td>
+       <td><span class="comment code"> *     Used by the calendar module and available for other uses.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">108</span></td>
+       <td><span class="comment code"> *     example: 'date:217:field_date:3:test'
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">109</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">110</span></td>
+       <td><span class="comment code"> *   $entity-&gt;date_repeat_show
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">111</span></td>
+       <td><span class="comment code"> *     If true, tells the theme to show all the computed values
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">112</span></td>
+       <td><span class="comment code"> *     of a repeating date. If not true or not set, only the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">113</span></td>
+       <td><span class="comment code"> *     start date and the repeat rule will be displayed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">114</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">115</span></td>
+       <td><span class="covered code">function date_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">116</span></td>
+       <td><span class="missed code">  $element = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">117</span></td>
+       <td><span class="missed code">  $settings = $display['settings'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">118</span></td>
+       <td><span class="missed code">  $formatter = $display['type'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">119</span></td>
+       <td><span class="comment code">  $variables = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">120</span></td>
+       <td><span class="missed code">    'entity' =&gt; $entity,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">121</span></td>
+       <td><span class="missed code">    'entity_type' =&gt; $entity_type,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">122</span></td>
+       <td><span class="missed code">    'field' =&gt; $field,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">123</span></td>
+       <td><span class="missed code">    'instance' =&gt; $instance,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">124</span></td>
+       <td><span class="missed code">    'langcode' =&gt; $langcode,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">125</span></td>
+       <td><span class="missed code">    'items' =&gt; $items,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">126</span></td>
+       <td><span class="missed code">    'display' =&gt; $display,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">127</span></td>
+       <td><span class="missed code">    'dates' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">128</span></td>
+       <td><span class="missed code">    'attributes' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">129</span></td>
+       <td><span class="missed code">    'rdf_mapping' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">130</span></td>
+       <td><span class="missed code">    'add_rdf' =&gt; module_exists('rdf'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">131</span></td>
+       <td><span class="missed code">    'microdata' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">132</span></td>
+       <td><span class="missed code">    'add_microdata' =&gt; module_exists('microdata'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">133</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">134</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">135</span></td>
+       <td><span class="comment code">  // If the microdata module is enabled, the microdata mapping will have been
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">136</span></td>
+       <td><span class="comment code">  // passed in via the entity.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">137</span></td>
+       <td><span class="missed code">  if ($variables['add_microdata'] &amp;&amp; isset($entity-&gt;microdata[$field['field_name']])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">138</span></td>
+       <td><span class="missed code">    $variables['microdata'] = $entity-&gt;microdata[$field['field_name']];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">139</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">140</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">141</span></td>
+       <td><span class="comment code">  // If there is an RDf mapping for this date field, pass it down to the theme.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">142</span></td>
+       <td><span class="missed code">  $rdf_mapping = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">143</span></td>
+       <td><span class="missed code">  if (!empty($entity-&gt;rdf_mapping) &amp;&amp; function_exists('rdf_rdfa_attributes')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">144</span></td>
+       <td><span class="missed code">    if (!empty($entity-&gt;rdf_mapping[$field['field_name']])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">145</span></td>
+       <td><span class="missed code">      $variables['rdf_mapping'] = $rdf_mapping = $entity-&gt;rdf_mapping[$field['field_name']];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">146</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">147</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">148</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">149</span></td>
+       <td><span class="comment code">  // Give other modules a chance to prepare the entity before formatting it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">150</span></td>
+       <td><span class="missed code">  drupal_alter('date_formatter_pre_view', $entity, $variables);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">151</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">152</span></td>
+       <td><span class="comment code">  // See if we are only supposed to display a selected
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">153</span></td>
+       <td><span class="comment code">  // item from multiple value date fields.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">154</span></td>
+       <td><span class="missed code">  $selected_deltas = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">155</span></td>
+       <td><span class="missed code">  if (!empty($entity-&gt;date_id)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">156</span></td>
+       <td><span class="missed code">    foreach ((array) $entity-&gt;date_id as $key =&gt; $id) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">157</span></td>
+       <td><span class="missed code">      list($module, $nid, $field_name, $selected_delta, $other) = explode('.', $id . '.');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">158</span></td>
+       <td><span class="missed code">      if ($field_name == $field['field_name']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">159</span></td>
+       <td><span class="missed code">        $selected_deltas[] = $selected_delta;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">160</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">161</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">162</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">163</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">164</span></td>
+       <td><span class="missed code">  switch ($display['type']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">165</span></td>
+       <td><span class="missed code">    case 'date_plain':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">166</span></td>
+       <td><span class="missed code">      foreach ($items as $delta =&gt; $item) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">167</span></td>
+       <td><span class="missed code">        if (!empty($entity-&gt;date_id) &amp;&amp; !in_array($delta, $selected_deltas)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">168</span></td>
+       <td><span class="missed code">          continue;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">169</span></td>
+       <td><span class="dead code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">170</span></td>
+       <td><span class="comment code">        else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">171</span></td>
+       <td><span class="missed code">          if (empty($item['value2']) || $item['value'] == $item['value2']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">172</span></td>
+       <td><span class="missed code">            $element[$delta] = array('#markup' =&gt; $item['value']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">173</span></td>
+       <td><span class="missed code">          }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">174</span></td>
+       <td><span class="comment code">          else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">175</span></td>
+       <td><span class="missed code">            $element[$delta] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">176</span></td>
+       <td><span class="missed code">              '#markup' =&gt; t('!start-date to !end-date', array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">177</span></td>
+       <td><span class="missed code">                '!start-date' =&gt; $item['value'],
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">178</span></td>
+       <td><span class="missed code">                '!end-date' =&gt; $item['value2']
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">179</span></td>
+       <td><span class="missed code">              )));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">180</span></td>
+       <td><span class="comment code">          }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">181</span></td>
+       <td><span class="comment code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">182</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">183</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">184</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">185</span></td>
+       <td><span class="missed code">    case 'format_interval':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">186</span></td>
+       <td><span class="missed code">      foreach ($items as $delta =&gt; $item) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">187</span></td>
+       <td><span class="missed code">        if (!empty($entity-&gt;date_id) &amp;&amp; !in_array($delta, $selected_deltas)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">188</span></td>
+       <td><span class="missed code">          continue;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">189</span></td>
+       <td><span class="dead code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">190</span></td>
+       <td><span class="comment code">        else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">191</span></td>
+       <td><span class="missed code">          $variables['delta'] = $delta;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">192</span></td>
+       <td><span class="missed code">          $variables['item'] = $item;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">193</span></td>
+       <td><span class="missed code">          $variables['dates'] = date_formatter_process($formatter, $entity_type, $entity, $field, $instance, $langcode, $item, $display);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">194</span></td>
+       <td><span class="missed code">          $variables['attributes'] = !empty($rdf_mapping) ? rdf_rdfa_attributes($rdf_mapping, $item['value']) : array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">195</span></td>
+       <td><span class="missed code">          $element[$delta] = array('#markup' =&gt; theme('date_display_interval', $variables));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">196</span></td>
+       <td><span class="comment code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">197</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">198</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">199</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">200</span></td>
+       <td><span class="missed code">    default:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">201</span></td>
+       <td><span class="missed code">      foreach ($items as $delta =&gt; $item) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">202</span></td>
+       <td><span class="missed code">        if (!empty($entity-&gt;date_id) &amp;&amp; !in_array($delta, $selected_deltas)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">203</span></td>
+       <td><span class="missed code">          continue;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">204</span></td>
+       <td><span class="dead code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">205</span></td>
+       <td><span class="comment code">        else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">206</span></td>
+       <td><span class="missed code">          $variables['delta'] = $delta;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">207</span></td>
+       <td><span class="missed code">          $variables['item'] = $item;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">208</span></td>
+       <td><span class="missed code">          $variables['dates'] = date_formatter_process($formatter, $entity_type, $entity, $field, $instance, $langcode, $item, $display);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">209</span></td>
+       <td><span class="missed code">          $variables['attributes'] = !empty($rdf_mapping) ? rdf_rdfa_attributes($rdf_mapping, $item['value']) : array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">210</span></td>
+       <td><span class="missed code">          $variables['show_remaining_days'] = $display['settings']['show_remaining_days'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">211</span></td>
+       <td><span class="missed code">          $output = theme('date_display_combination', $variables);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">212</span></td>
+       <td><span class="missed code">          if (!empty($output)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">213</span></td>
+       <td><span class="missed code">            $element[$delta] = array('#markup' =&gt; $output);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">214</span></td>
+       <td><span class="missed code">          }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">215</span></td>
+       <td><span class="comment code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">216</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">217</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">218</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">219</span></td>
+       <td><span class="missed code">  return $element;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">220</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">221</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">222</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">223</span></td>
+       <td><span class="comment code"> * Implements hook_field_is_empty().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">224</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">225</span></td>
+       <td><span class="covered code">function date_field_is_empty($item, $field) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">226</span></td>
+       <td><span class="comment code">  // Sometimes a $item is a date object.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">227</span></td>
+       <td><span class="comment code">  // Coming from repeating dates. Why??
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">228</span></td>
+       <td><span class="missed code">  if (!is_array($item)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">229</span></td>
+       <td><span class="missed code">    return FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">230</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">231</span></td>
+       <td><span class="missed code">  if (empty($item['value'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">232</span></td>
+       <td><span class="missed code">    return TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">233</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">234</span></td>
+       <td><span class="missed code">  elseif ($field['settings']['todate'] == 'required' &amp;&amp; empty($item['value2'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">235</span></td>
+       <td><span class="missed code">    return TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">236</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">237</span></td>
+       <td><span class="missed code">  return FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">238</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">239</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">240</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">241</span></td>
+       <td><span class="comment code"> * Implements hook_field_info().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">242</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">243</span></td>
+       <td><span class="covered code">function date_field_info() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">244</span></td>
+       <td><span class="covered code">  $granularity = array('year', 'month', 'day', 'hour', 'minute');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">245</span></td>
+       <td><span class="comment code">  $settings = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">246</span></td>
+       <td><span class="comment code">    'settings' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">247</span></td>
+       <td><span class="covered code">      'todate' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">248</span></td>
+       <td><span class="covered code">      'granularity' =&gt; drupal_map_assoc($granularity),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">249</span></td>
+       <td><span class="covered code">      'tz_handling' =&gt; 'site',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">250</span></td>
+       <td><span class="covered code">      'timezone_db' =&gt; 'UTC',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">251</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">252</span></td>
+       <td><span class="comment code">    'instance_settings' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">253</span></td>
+       <td><span class="covered code">      'default_value' =&gt; 'now',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">254</span></td>
+       <td><span class="covered code">      'default_value_code' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">255</span></td>
+       <td><span class="covered code">      'default_value2' =&gt; 'same',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">256</span></td>
+       <td><span class="covered code">      'default_value_code2' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">257</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">258</span></td>
+       <td><span class="comment code">    // Integrate with the Entity Metadata module.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">259</span></td>
+       <td><span class="covered code">    'property_type' =&gt; 'date',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">260</span></td>
+       <td><span class="covered code">    'property_callbacks' =&gt; array('date_entity_metadata_property_info_alter'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">261</span></td>
+       <td><span class="covered code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">262</span></td>
+       <td><span class="comment code">  return array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">263</span></td>
+       <td><span class="comment code">    'datetime' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">264</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Date'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">265</span></td>
+       <td><span class="covered code">      'description' =&gt; t('Store a date in the database as a datetime field, recommended for complete dates and times that may need timezone conversion.'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">266</span></td>
+       <td><span class="covered code">      'default_widget' =&gt; 'date_select',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">267</span></td>
+       <td><span class="covered code">      'default_formatter' =&gt; 'date_default',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">268</span></td>
+       <td><span class="covered code">      'default_token_formatter' =&gt; 'date_plain',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">269</span></td>
+       <td><span class="covered code">    ) + $settings,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">270</span></td>
+       <td><span class="comment code">    'date' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">271</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Date (ISO format)'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">272</span></td>
+       <td><span class="covered code">      'description' =&gt; t('Store a date in the database as an ISO date, recommended for historical or partial dates.'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">273</span></td>
+       <td><span class="covered code">      'default_widget' =&gt; 'date_select',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">274</span></td>
+       <td><span class="covered code">      'default_formatter' =&gt; 'date_default',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">275</span></td>
+       <td><span class="covered code">      'default_token_formatter' =&gt; 'date_plain',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">276</span></td>
+       <td><span class="covered code">    ) + $settings,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">277</span></td>
+       <td><span class="comment code">    'datestamp' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">278</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Date (Unix timestamp)'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">279</span></td>
+       <td><span class="covered code">      'description' =&gt; t('Store a date in the database as a timestamp, deprecated format to support legacy data.'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">280</span></td>
+       <td><span class="covered code">      'default_widget' =&gt; 'date_select',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">281</span></td>
+       <td><span class="covered code">      'default_formatter' =&gt; 'date_default',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">282</span></td>
+       <td><span class="covered code">      'default_token_formatter' =&gt; 'date_plain',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">283</span></td>
+       <td><span class="covered code">    ) + $settings,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">284</span></td>
+       <td><span class="covered code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">285</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">286</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">287</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">288</span></td>
+       <td><span class="comment code"> * Implements hook_field_widget_info().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">289</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">290</span></td>
+       <td><span class="covered code">function date_field_widget_info() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">291</span></td>
+       <td><span class="comment code">  $settings = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">292</span></td>
+       <td><span class="comment code">    'settings' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">293</span></td>
+       <td><span class="covered code">      'input_format' =&gt; date_default_format('date_select'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">294</span></td>
+       <td><span class="covered code">      'input_format_custom' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">295</span></td>
+       <td><span class="covered code">      'increment' =&gt; 15,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">296</span></td>
+       <td><span class="covered code">      'text_parts' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">297</span></td>
+       <td><span class="covered code">      'year_range' =&gt; '-3:+3',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">298</span></td>
+       <td><span class="covered code">      'label_position' =&gt; 'above',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">299</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">300</span></td>
+       <td><span class="comment code">    'behaviors' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">301</span></td>
+       <td><span class="covered code">      'multiple values' =&gt; FIELD_BEHAVIOR_DEFAULT,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">302</span></td>
+       <td><span class="covered code">      'default value' =&gt; FIELD_BEHAVIOR_NONE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">303</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">304</span></td>
+       <td><span class="covered code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">305</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">306</span></td>
+       <td><span class="comment code">  $info = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">307</span></td>
+       <td><span class="comment code">    'date_select' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">308</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Select list'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">309</span></td>
+       <td><span class="covered code">      'field types' =&gt; array('date', 'datestamp', 'datetime'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">310</span></td>
+       <td><span class="covered code">    ) + $settings,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">311</span></td>
+       <td><span class="comment code">    'date_text' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">312</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Text field'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">313</span></td>
+       <td><span class="covered code">      'field types' =&gt; array('date', 'datestamp', 'datetime'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">314</span></td>
+       <td><span class="covered code">    ) + $settings,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">315</span></td>
+       <td><span class="covered code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">316</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">317</span></td>
+       <td><span class="covered code">  if (module_exists('date_popup')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">318</span></td>
+       <td><span class="covered code">    $info['date_popup'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">319</span></td>
+       <td><span class="covered code">      'label' =&gt; t('Pop-up calendar'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">320</span></td>
+       <td><span class="covered code">      'field types' =&gt; array('date', 'datestamp', 'datetime'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">321</span></td>
+       <td><span class="covered code">    ) + $settings;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">322</span></td>
+       <td><span class="covered code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">323</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">324</span></td>
+       <td><span class="comment code">  // The date text widget should use an increment of 1.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">325</span></td>
+       <td><span class="covered code">  $info['date_text']['increment'] = 1;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">326</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">327</span></td>
+       <td><span class="covered code">  return $info;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">328</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">329</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">330</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">331</span></td>
+       <td><span class="comment code"> * Implements hook_field_load().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">332</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">333</span></td>
+       <td><span class="covered code">function date_field_load($entity_type, $entities, $field, $instances, $langcode, &amp;$items, $age) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">334</span></td>
+       <td><span class="missed code">  $timezone_db = date_get_timezone_db($field['settings']['tz_handling']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">335</span></td>
+       <td><span class="missed code">  $db_format = date_type_format($field['type']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">336</span></td>
+       <td><span class="missed code">  $process = date_process_values($field);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">337</span></td>
+       <td><span class="missed code">  foreach ($entities as $id =&gt; $entity) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">338</span></td>
+       <td><span class="missed code">    foreach ($items[$id] as $delta =&gt; &amp;$item) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">339</span></td>
+       <td><span class="comment code">      // If the file does not exist, mark the entire item as empty.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">340</span></td>
+       <td><span class="missed code">      if (is_array($item)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">341</span></td>
+       <td><span class="missed code">        $timezone = isset($item['timezone']) ? $item['timezone'] : '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">342</span></td>
+       <td><span class="missed code">        $item['timezone'] = date_get_timezone($field['settings']['tz_handling'], $timezone);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">343</span></td>
+       <td><span class="missed code">        $item['timezone_db'] = $timezone_db;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">344</span></td>
+       <td><span class="missed code">        $item['date_type'] = $field['type'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">345</span></td>
+       <td><span class="missed code">        if (!empty($field['settings']['cache_enabled']) &amp;&amp; ($delta &lt; $field['settings']['cache_count'] || $field['settings']['cache_count'] == 0)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">346</span></td>
+       <td><span class="missed code">          foreach ($process as $processed) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">347</span></td>
+       <td><span class="missed code">            if (!empty($item[$processed])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">348</span></td>
+       <td><span class="missed code">              $date = new DateObject($item[$processed], $item['timezone_db'], $db_format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">349</span></td>
+       <td><span class="missed code">              $date-&gt;limitGranularity($field['settings']['granularity']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">350</span></td>
+       <td><span class="missed code">              $item['db'][$processed] = $date;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">351</span></td>
+       <td><span class="missed code">            }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">352</span></td>
+       <td><span class="missed code">          }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">353</span></td>
+       <td><span class="missed code">          if (!empty($item['db']['value']) &amp;&amp; empty($item['db']['value2'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">354</span></td>
+       <td><span class="missed code">            $item['db']['value2'] = $item['db']['value'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">355</span></td>
+       <td><span class="missed code">          }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">356</span></td>
+       <td><span class="missed code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">357</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">358</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">359</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">360</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">361</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">362</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">363</span></td>
+       <td><span class="comment code"> * Implements hook_field_validate().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">364</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">365</span></td>
+       <td><span class="covered code">function date_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &amp;$errors) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">366</span></td>
+       <td><span class="missed code">  $field_name = $field['field_name'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">367</span></td>
+       <td><span class="missed code">  $flexible = 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">368</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">369</span></td>
+       <td><span class="comment code">  // Don't try to validate if there were any errors before this point
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">370</span></td>
+       <td><span class="comment code">  // since the element won't have been munged back into a date.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">371</span></td>
+       <td><span class="missed code">  if (!form_get_errors()) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">372</span></td>
+       <td><span class="missed code">    foreach ($items as $delta =&gt; $item) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">373</span></td>
+       <td><span class="missed code">      if (is_array($item) &amp;&amp; isset($item['value'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">374</span></td>
+       <td><span class="missed code">        $process = date_process_values($field, $instance);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">375</span></td>
+       <td><span class="missed code">        $date1 = new DateObject($item['value'], $item['timezone'], date_type_format($field['type']));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">376</span></td>
+       <td><span class="missed code">        if (count($process) == 1 || (empty($item['value2']) &amp;&amp; $item['value2'] !== 0)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">377</span></td>
+       <td><span class="missed code">          $date2 = clone($date1);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">378</span></td>
+       <td><span class="missed code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">379</span></td>
+       <td><span class="comment code">        else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">380</span></td>
+       <td><span class="missed code">          $date2 = new DateObject($item['value2'], $item['timezone'], date_type_format($field['type']));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">381</span></td>
+       <td><span class="comment code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">382</span></td>
+       <td><span class="missed code">        $valid1 = $date1-&gt;validGranularity($field['settings']['granularity'], $flexible);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">383</span></td>
+       <td><span class="missed code">        $valid2 = $date2-&gt;validGranularity($field['settings']['granularity'], $flexible);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">384</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">385</span></td>
+       <td><span class="missed code">        foreach ($process as $processed) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">386</span></td>
+       <td><span class="missed code">          if ($processed == 'value' &amp;&amp; $field['settings']['todate'] &amp;&amp; !$valid1 &amp;&amp; $valid2) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">387</span></td>
+       <td><span class="missed code">            $errors[$field['field_name']][$langcode][$delta][] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">388</span></td>
+       <td><span class="missed code">              'error' =&gt; 'value',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">389</span></td>
+       <td><span class="missed code">              'message' =&gt; t(&quot;A 'Start date' date is required for field %field #%delta.&quot;, array('%delta' =&gt; $field['cardinality'] ? intval($delta + 1) : '', '%field' =&gt; $instance['label'])),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">390</span></td>
+       <td><span class="comment code">            );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">391</span></td>
+       <td><span class="missed code">          }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">392</span></td>
+       <td><span class="missed code">          if ($processed == 'value2' &amp;&amp; $field['settings']['todate'] == 'required' &amp;&amp; ($instance['required'] &amp;&amp; $valid1 &amp;&amp; !$valid2)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">393</span></td>
+       <td><span class="missed code">            $errors[$field['field_name']][$langcode][$delta][] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">394</span></td>
+       <td><span class="missed code">              'error' =&gt; 'value2',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">395</span></td>
+       <td><span class="missed code">              'message' =&gt; t(&quot;An 'End date' is required for field %field #%delta.&quot;, array('%delta' =&gt; $field['cardinality'] ? intval($delta + 1) : '', '%field' =&gt; $instance['label'])),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">396</span></td>
+       <td><span class="comment code">            );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">397</span></td>
+       <td><span class="missed code">          }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">398</span></td>
+       <td><span class="missed code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">399</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">400</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">401</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">402</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">403</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">404</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">405</span></td>
+       <td><span class="comment code"> * Implements hook_field_insert().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">406</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">407</span></td>
+       <td><span class="covered code">function date_field_presave($entity_type, $entity, $field, $instance, $langcode, &amp;$items) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">408</span></td>
+       <td><span class="missed code">  $field_name = $field['field_name'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">409</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">410</span></td>
+       <td><span class="missed code">  if (empty($items)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">411</span></td>
+       <td><span class="missed code">    return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">412</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">413</span></td>
+       <td><span class="comment code">  // Add some information needed to interpret token values.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">414</span></td>
+       <td><span class="missed code">  $values = $items;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">415</span></td>
+       <td><span class="missed code">  foreach ($values as $delta =&gt; $item) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">416</span></td>
+       <td><span class="missed code">    $timezone = isset($item['timezone']) ? $item['timezone'] : '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">417</span></td>
+       <td><span class="missed code">    if (is_array($item)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">418</span></td>
+       <td><span class="missed code">      $items[$delta]['timezone'] = date_get_timezone($field['settings']['tz_handling'], $timezone);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">419</span></td>
+       <td><span class="missed code">      $items[$delta]['timezone_db'] = date_get_timezone_db($field['settings']['tz_handling']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">420</span></td>
+       <td><span class="missed code">      $items[$delta]['date_type'] = $field['type'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">421</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">422</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">423</span></td>
+       <td><span class="missed code">  $entity-&gt;{$field['field_name']}[$langcode] = $items;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">424</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">425</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">426</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">427</span></td>
+       <td><span class="comment code"> * Implements hook_field_insert().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">428</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">429</span></td>
+       <td><span class="covered code">function date_field_insert($entity_type, $entity, $field, $instance, $langcode, &amp;$items) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">430</span></td>
+       <td><span class="comment code">  $context = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">431</span></td>
+       <td><span class="missed code">    'entity_type' =&gt; $entity_type,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">432</span></td>
+       <td><span class="missed code">    'entity' =&gt; $entity,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">433</span></td>
+       <td><span class="missed code">    'field' =&gt; $field,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">434</span></td>
+       <td><span class="missed code">    'instance' =&gt; $instance,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">435</span></td>
+       <td><span class="missed code">    'langcode' =&gt; $langcode,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">436</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">437</span></td>
+       <td><span class="missed code">  drupal_alter('date_field_insert', $items, $context);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">438</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">439</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">440</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">441</span></td>
+       <td><span class="comment code"> * Implements hook_field_update().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">442</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">443</span></td>
+       <td><span class="covered code">function date_field_update($entity_type, $entity, $field, $instance, $langcode, &amp;$items) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">444</span></td>
+       <td><span class="comment code">  $context = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">445</span></td>
+       <td><span class="missed code">    'entity_type' =&gt; $entity_type,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">446</span></td>
+       <td><span class="missed code">    'entity' =&gt; $entity,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">447</span></td>
+       <td><span class="missed code">    'field' =&gt; $field,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">448</span></td>
+       <td><span class="missed code">    'instance' =&gt; $instance,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">449</span></td>
+       <td><span class="missed code">    'langcode' =&gt; $langcode,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">450</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">451</span></td>
+       <td><span class="missed code">  drupal_alter('date_field_update', $items, $context);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">452</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">453</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">454</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">455</span></td>
+       <td><span class="comment code"> * Implements hook_field_instance_settings_form().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">456</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">457</span></td>
+       <td><span class="comment code"> * Wrapper functions for date administration, included only when processing
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">458</span></td>
+       <td><span class="comment code"> * field settings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">459</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">460</span></td>
+       <td><span class="covered code">function date_field_instance_settings_form($field, $instance) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">461</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'date', 'date_admin');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">462</span></td>
+       <td><span class="missed code">  return _date_field_instance_settings_form($field, $instance);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">463</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">464</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">465</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">466</span></td>
+       <td><span class="comment code"> * Implements hook_field_widget_settings_form().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">467</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">468</span></td>
+       <td><span class="covered code">function date_field_widget_settings_form($field, $instance) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">469</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'date', 'date_admin');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">470</span></td>
+       <td><span class="missed code">  return _date_field_widget_settings_form($field, $instance);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">471</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">472</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">473</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">474</span></td>
+       <td><span class="comment code"> * Implements hook_field_settings_form().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">475</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">476</span></td>
+       <td><span class="covered code">function date_field_settings_form($field, $instance, $has_data) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">477</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'date', 'date_admin');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">478</span></td>
+       <td><span class="missed code">  return _date_field_settings_form($field, $instance, $has_data);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">479</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">480</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">481</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">482</span></td>
+       <td><span class="comment code"> * Implements hook_content_migrate_field_alter().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">483</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">484</span></td>
+       <td><span class="comment code"> * Use this to tweak the conversion of field settings from the D6 style to the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">485</span></td>
+       <td><span class="comment code"> * D7 style for specific situations not handled by basic conversion, as when
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">486</span></td>
+       <td><span class="comment code"> * field types or settings are changed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">487</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">488</span></td>
+       <td><span class="comment code"> * $field_value['widget_type'] is available to see what widget type was
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">489</span></td>
+       <td><span class="comment code"> * originally used.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">490</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">491</span></td>
+       <td><span class="covered code">function date_content_migrate_field_alter(&amp;$field_value, $instance_value) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">492</span></td>
+       <td><span class="missed code">  switch ($field_value['module']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">493</span></td>
+       <td><span class="missed code">    case 'date':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">494</span></td>
+       <td><span class="comment code">      // Those settings do not exist anymore, or have been moved to the instance
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">495</span></td>
+       <td><span class="comment code">      // level.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">496</span></td>
+       <td><span class="missed code">      unset($field_value['settings']['default_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">497</span></td>
+       <td><span class="missed code">      unset($field_value['settings']['repeat_collapsed']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">498</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">499</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">500</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">501</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">502</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">503</span></td>
+       <td><span class="comment code"> * Implements hook_content_migrate_instance_alter().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">504</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">505</span></td>
+       <td><span class="comment code"> * Use this to tweak the conversion of instance or widget settings from the D6
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">506</span></td>
+       <td><span class="comment code"> * style to the D7 style for specific situations not handled by basic
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">507</span></td>
+       <td><span class="comment code"> * conversion, as when formatter or widget names or settings are changed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">508</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">509</span></td>
+       <td><span class="covered code">function date_content_migrate_instance_alter(&amp;$instance_value, $field_value) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">510</span></td>
+       <td><span class="missed code">  switch ($instance_value['widget']['module']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">511</span></td>
+       <td><span class="missed code">    case 'date':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">512</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">513</span></td>
+       <td><span class="comment code">      // Some settings have been moved from field to instance.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">514</span></td>
+       <td><span class="missed code">      $instance_value['widget']['settings']['repeat_collapsed'] = $field_value['settings']['repeat_collapsed'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">515</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">516</span></td>
+       <td><span class="comment code">      // Some settings were moved from widget settings to instance settings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">517</span></td>
+       <td><span class="missed code">      $instance_value['settings']['default_value'] = $instance_value['default_value'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">518</span></td>
+       <td><span class="missed code">      unset($instance_value['default_value']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">519</span></td>
+       <td><span class="missed code">      $instance_value['settings']['default_value_code'] = $instance_value['widget']['settings']['default_value_code'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">520</span></td>
+       <td><span class="missed code">      unset($instance_value['widget']['settings']['default_value_code']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">521</span></td>
+       <td><span class="missed code">      $instance_value['settings']['default_value2'] = $instance_value['widget']['settings']['default_value2'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">522</span></td>
+       <td><span class="missed code">      unset($instance_value['widget']['settings']['default_value2']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">523</span></td>
+       <td><span class="missed code">      $instance_value['settings']['default_value_code2'] = $instance_value['widget']['settings']['default_value_code2'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">524</span></td>
+       <td><span class="missed code">      unset($instance_value['widget']['settings']['default_value_code2']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">525</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">526</span></td>
+       <td><span class="comment code">      // We need to retrieve formatter settings from the variables and store
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">527</span></td>
+       <td><span class="comment code">      // them in the instance.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">528</span></td>
+       <td><span class="missed code">      foreach ($instance_value['display'] as $context =&gt; &amp;$display) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">529</span></td>
+       <td><span class="missed code">        if ($display['type'] != 'format_interval') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">530</span></td>
+       <td><span class="missed code">          $old_settings = date_old_formatter_get_settings($instance_value['field_name'], $instance_value['bundle'], $context);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">531</span></td>
+       <td><span class="missed code">          $display['settings'] = array_merge($display['settings'], $old_settings);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">532</span></td>
+       <td><span class="comment code">          // If the formatter was the 'default', then use the old
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">533</span></td>
+       <td><span class="comment code">          // 'default_format' field property.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">534</span></td>
+       <td><span class="missed code">          $format = ($display['type'] == 'default') ? $field_value['settings']['default_format'] : $display['type'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">535</span></td>
+       <td><span class="missed code">          $display['settings']['format_type'] = $format;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">536</span></td>
+       <td><span class="missed code">          $display['type'] = 'date_default';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">537</span></td>
+       <td><span class="missed code">        }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">538</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">539</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">540</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">541</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">542</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">543</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">544</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">545</span></td>
+       <td><span class="comment code"> * Constructs an array of old formatter settings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">546</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">547</span></td>
+       <td><span class="covered code">function date_old_formatter_get_settings($field_name, $type_name, $context) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">548</span></td>
+       <td><span class="missed code">  $options = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">549</span></td>
+       <td><span class="missed code">  $value = 'date:' . $type_name . ':' . $context . ':' . $field_name;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">550</span></td>
+       <td><span class="missed code">  $options['show_repeat_rule'] = variable_get($value . '_show_repeat_rule', 'show');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">551</span></td>
+       <td><span class="missed code">  $options['multiple_number'] = variable_get($value . '_multiple_number', '');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">552</span></td>
+       <td><span class="missed code">  $options['multiple_from'] = variable_get($value . '_multiple_from', '');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">553</span></td>
+       <td><span class="missed code">  $options['multiple_to'] = variable_get($value . '_multiple_to', '');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">554</span></td>
+       <td><span class="missed code">  $options['fromto'] = variable_get($value . '_fromto', 'both');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">555</span></td>
+       <td><span class="missed code">  return $options;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">556</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">557</span></td>
+       <td><span class="covered code"></span></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Legend</h2>
+<dl>
+  <dt><span class="missed">Missed</span></dt>
+  <dd>lines code that <strong>were not</strong> excersized during program execution.</dd>
+  <dt><span class="covered">Covered</span></dt>
+  <dd>lines code <strong>were</strong> excersized during program execution.</dd>
+  <dt><span class="comment">Comment/non executable</span></dt>
+  <dd>Comment or non-executable line of code.</dd>
+  <dt><span class="dead">Dead</span></dt>
+  <dd>lines of code that according to xdebug could not be executed.  This is counted as coverage code because 
+  in almost all cases it is code that runnable.</dd>
+</dl>
+</body>
+</html>

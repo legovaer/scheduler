@@ -1,0 +1,4363 @@
+<html>
+<head>
+<title>Simpletest Coverage - sites/all/modules/date/date_popup/date_popup.module</title>
+</head>
+<style type="text/css">
+body {
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, Arial, Helvetica, sans-serif;
+}
+h1 {
+  font-size: medium;
+}
+#code {
+  border-spacing: 0;
+}
+.lineNo {
+  color: #ccc;
+}
+.code, .lineNo {
+  white-space: pre;
+  font-family: monospace;
+}
+.covered {
+  color: #090;
+}
+.missed {
+  color: #f00;
+}
+.dead {
+  color: #00f;
+}
+.comment {
+  color: #333;
+}
+</style>
+<body>
+<h1 id="title">Simpletest Coverage - sites/all/modules/date/date_popup/date_popup.module</h1>
+<table id="code">
+  <tbody>
+    <tr>
+       <td><span class="lineNo">1</span></td>
+       <td><span class="comment code">&lt;?php
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">2</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">3</span></td>
+       <td><span class="comment code"> * @file
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">4</span></td>
+       <td><span class="comment code"> * A module to enable jquery calendar and time entry popups.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">5</span></td>
+       <td><span class="comment code"> * Requires the Date API.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">6</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">7</span></td>
+       <td><span class="comment code"> * Add a type of #date_popup to any date, time, or datetime field that will
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">8</span></td>
+       <td><span class="comment code"> * use this popup. Set #date_format to the way the date should be presented
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">9</span></td>
+       <td><span class="comment code"> * to the user in the form. Set #default_value to be a date in the local
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">10</span></td>
+       <td><span class="comment code"> * timezone, and note the timezone name in #date_timezone.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">11</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">12</span></td>
+       <td><span class="comment code"> * The element will create two textfields, one for the date and one for the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">13</span></td>
+       <td><span class="comment code"> * time. The date textfield will include a jQuery popup calendar date picker,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">14</span></td>
+       <td><span class="comment code"> * and the time textfield uses a jQuery timepicker.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">15</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">16</span></td>
+       <td><span class="comment code"> * If no time elements are included in the format string, only the date
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">17</span></td>
+       <td><span class="comment code"> * textfield will be created. If no date elements are included in the format
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">18</span></td>
+       <td><span class="comment code"> * string, only the time textfield, will be created.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">19</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">20</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">21</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">22</span></td>
+       <td><span class="comment code"> * Load needed files.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">23</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">24</span></td>
+       <td><span class="comment code"> * Play nice with jQuery UI.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">25</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">26</span></td>
+       <td><span class="covered code">function date_popup_add() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">27</span></td>
+       <td><span class="missed code">  static $loaded = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">28</span></td>
+       <td><span class="missed code">  if ($loaded) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">29</span></td>
+       <td><span class="missed code">    return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">30</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">31</span></td>
+       <td><span class="missed code">  drupal_add_library('system', 'ui.datepicker');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">32</span></td>
+       <td><span class="missed code">  drupal_add_library('date_popup', 'timeentry');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">33</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">34</span></td>
+       <td><span class="comment code">  // Add the wvega-timepicker library if it's available.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">35</span></td>
+       <td><span class="missed code">  $wvega_path = date_popup_get_wvega_path();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">36</span></td>
+       <td><span class="missed code">  if ($wvega_path) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">37</span></td>
+       <td><span class="missed code">    drupal_add_js($wvega_path . '/jquery.timepicker.js');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">38</span></td>
+       <td><span class="missed code">    drupal_add_css($wvega_path . '/jquery.timepicker.css');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">39</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">40</span></td>
+       <td><span class="missed code">  $loaded = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">41</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">42</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">43</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">44</span></td>
+       <td><span class="comment code"> * Get the location of the Willington Vega timepicker library.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">45</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">46</span></td>
+       <td><span class="comment code"> * @return string
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">47</span></td>
+       <td><span class="comment code"> *   The location of the library, or FALSE if the library isn't installed.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">48</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">49</span></td>
+       <td><span class="covered code">function date_popup_get_wvega_path() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">50</span></td>
+       <td><span class="missed code">  $path = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">51</span></td>
+       <td><span class="missed code">  if (function_exists('libraries_get_path')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">52</span></td>
+       <td><span class="missed code">    $path = libraries_get_path('wvega-timepicker');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">53</span></td>
+       <td><span class="missed code">    if (!file_exists($path)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">54</span></td>
+       <td><span class="missed code">      $path = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">55</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">56</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">57</span></td>
+       <td><span class="missed code">  elseif (file_exists('sites/all/libraries/wvega-timepicker/jquery.timepicker.js')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">58</span></td>
+       <td><span class="missed code">    $path = 'sites/all/libraries/wvega-timepicker';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">59</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">60</span></td>
+       <td><span class="missed code">  return $path;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">61</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">62</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">63</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">64</span></td>
+       <td><span class="comment code"> * Get the name of the preferred default timepicker.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">65</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">66</span></td>
+       <td><span class="comment code"> * If the wvega timepicker is available on the system, default to using that,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">67</span></td>
+       <td><span class="comment code"> * unless the administrator has specifically chosen otherwise.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">68</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">69</span></td>
+       <td><span class="covered code">function date_popup_get_preferred_timepicker() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">70</span></td>
+       <td><span class="missed code">  $wvega_available = date_popup_get_wvega_path();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">71</span></td>
+       <td><span class="missed code">  return $wvega_available ? 'wvega' : 'default';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">72</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">73</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">74</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">75</span></td>
+       <td><span class="comment code"> * Implements hook_library().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">76</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">77</span></td>
+       <td><span class="covered code">function date_popup_library() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">78</span></td>
+       <td><span class="missed code">  $libraries = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">79</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">80</span></td>
+       <td><span class="missed code">  $path = drupal_get_path('module', 'date_popup');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">81</span></td>
+       <td><span class="missed code">  $libraries['timeentry'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">82</span></td>
+       <td><span class="missed code">    'title' =&gt; 'Time Entry',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">83</span></td>
+       <td><span class="missed code">    'website' =&gt; 'http://plugins.jquery.com/project/timeEntry',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">84</span></td>
+       <td><span class="missed code">    'version' =&gt; '1.4.7',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">85</span></td>
+       <td><span class="comment code">    'js' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">86</span></td>
+       <td><span class="missed code">      $path . '/jquery.timeentry.pack.js' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">87</span></td>
+       <td><span class="missed code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">88</span></td>
+       <td><span class="comment code">    'css' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">89</span></td>
+       <td><span class="missed code">      $path . '/themes/jquery.timeentry.css' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">90</span></td>
+       <td><span class="missed code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">91</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">92</span></td>
+       <td><span class="missed code">  return $libraries;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">93</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">94</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">95</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">96</span></td>
+       <td><span class="comment code"> * Create a unique CSS id name and output a single inline JS block.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">97</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">98</span></td>
+       <td><span class="comment code"> * For each startup function to call and settings array to pass it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">99</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">100</span></td>
+       <td><span class="comment code"> * This used to create a unique CSS class for each unique combination of
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">101</span></td>
+       <td><span class="comment code"> * function and settings, but using classes requires a DOM traversal
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">102</span></td>
+       <td><span class="comment code"> * and is much slower than an id lookup.  The new approach returns to
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">103</span></td>
+       <td><span class="comment code"> * requiring a duplicate copy of the settings/code for every element
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">104</span></td>
+       <td><span class="comment code"> * that uses them, but is much faster.  We could combine the logic by
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">105</span></td>
+       <td><span class="comment code"> * putting the ids for each unique function/settings combo into
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">106</span></td>
+       <td><span class="comment code"> * Drupal.settings and searching for each listed id.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">107</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">108</span></td>
+       <td><span class="comment code"> * @param string $id
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">109</span></td>
+       <td><span class="comment code"> *   The CSS class prefix to search the DOM for.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">110</span></td>
+       <td><span class="comment code"> *   TODO : unused ?
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">111</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">112</span></td>
+       <td><span class="comment code"> * @param string $func
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">113</span></td>
+       <td><span class="comment code"> *   The jQuery function to invoke on each DOM element
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">114</span></td>
+       <td><span class="comment code"> *   containing the returned CSS class.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">115</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">116</span></td>
+       <td><span class="comment code"> * @param array $settings
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">117</span></td>
+       <td><span class="comment code"> *   The settings array to pass to the jQuery function.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">118</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">119</span></td>
+       <td><span class="comment code"> * @returns
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">120</span></td>
+       <td><span class="comment code"> *   The CSS id to assign to the element that should have $func($settings)
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">121</span></td>
+       <td><span class="comment code"> *   invoked on it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">122</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">123</span></td>
+       <td><span class="covered code">function date_popup_js_settings_id($id, $func, $settings) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">124</span></td>
+       <td><span class="missed code">  static $js_added = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">125</span></td>
+       <td><span class="missed code">  static $id_count = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">126</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">127</span></td>
+       <td><span class="comment code">  // Make sure popup date selector grid is in correct year.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">128</span></td>
+       <td><span class="missed code">  if (!empty($settings['yearRange'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">129</span></td>
+       <td><span class="missed code">    $parts = explode(':', $settings['yearRange']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">130</span></td>
+       <td><span class="comment code">    // Set the default date to 0 or the lowest bound if
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">131</span></td>
+       <td><span class="comment code">    // the date ranges do not include the current year.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">132</span></td>
+       <td><span class="comment code">    // Necessary for the datepicker to render and select dates correctly.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">133</span></td>
+       <td><span class="missed code">    $default_date = ($parts[0] &gt; 0 || 0 &gt; $parts[1]) ? $parts[0] : 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">134</span></td>
+       <td><span class="missed code">    $settings += array('defaultDate' =&gt; (string) $default_date . 'y');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">135</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">136</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">137</span></td>
+       <td><span class="missed code">  if (!$js_added) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">138</span></td>
+       <td><span class="missed code">    drupal_add_js(drupal_get_path('module', 'date_popup') . '/date_popup.js');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">139</span></td>
+       <td><span class="missed code">    $js_added = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">140</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">141</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">142</span></td>
+       <td><span class="comment code">  // We use a static array to account for possible multiple form_builder()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">143</span></td>
+       <td><span class="comment code">  // calls in the same request (form instance on 'Preview').
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">144</span></td>
+       <td><span class="missed code">  if (!isset($id_count[$id])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">145</span></td>
+       <td><span class="missed code">    $id_count[$id] = 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">146</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">147</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">148</span></td>
+       <td><span class="comment code">  // It looks like we need the additional id_count for this to
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">149</span></td>
+       <td><span class="comment code">  // work correctly when there are multiple values.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">150</span></td>
+       <td><span class="comment code">  // $return_id = &quot;$id-$func-popup&quot;;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">151</span></td>
+       <td><span class="missed code">  $return_id = &quot;$id-$func-popup-&quot; . $id_count[$id]++;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">152</span></td>
+       <td><span class="missed code">  $js_settings['datePopup'][$return_id] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">153</span></td>
+       <td><span class="missed code">    'func' =&gt; $func,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">154</span></td>
+       <td><span class="missed code">    'settings' =&gt; $settings,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">155</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">156</span></td>
+       <td><span class="missed code">  drupal_add_js($js_settings, 'setting');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">157</span></td>
+       <td><span class="missed code">  return $return_id;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">158</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">159</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">160</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">161</span></td>
+       <td><span class="comment code"> * Date popup theme handler.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">162</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">163</span></td>
+       <td><span class="covered code">function date_popup_theme() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">164</span></td>
+       <td><span class="comment code">  return array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">165</span></td>
+       <td><span class="comment code">    'date_popup' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">166</span></td>
+       <td><span class="missed code">      'render element' =&gt; 'element',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">167</span></td>
+       <td><span class="missed code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">168</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">169</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">170</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">171</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">172</span></td>
+       <td><span class="comment code"> * Implements hook_element_info().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">173</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">174</span></td>
+       <td><span class="comment code"> * Set the #type to date_popup and fill the element #default_value with
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">175</span></td>
+       <td><span class="comment code"> * a date adjusted to the proper local timezone in datetime format
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">176</span></td>
+       <td><span class="comment code"> * (YYYY-MM-DD HH:MM:SS).
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">177</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">178</span></td>
+       <td><span class="comment code"> * The element will create two textfields, one for the date and one for the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">179</span></td>
+       <td><span class="comment code"> * time. The date textfield will include a jQuery popup calendar date picker,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">180</span></td>
+       <td><span class="comment code"> * and the time textfield uses a jQuery timepicker.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">181</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">182</span></td>
+       <td><span class="comment code"> * NOTE - Converting a date stored in the database from UTC to the local zone
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">183</span></td>
+       <td><span class="comment code"> * and converting it back to UTC before storing it is not handled by this
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">184</span></td>
+       <td><span class="comment code"> * element and must be done in pre-form and post-form processing!!
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">185</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">186</span></td>
+       <td><span class="comment code"> * #date_timezone
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">187</span></td>
+       <td><span class="comment code"> *   The local timezone to be used to create this date.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">188</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">189</span></td>
+       <td><span class="comment code"> * #date_format
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">190</span></td>
+       <td><span class="comment code"> *   Unlike earlier versions of this popup, most formats will work.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">191</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">192</span></td>
+       <td><span class="comment code"> * #date_increment
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">193</span></td>
+       <td><span class="comment code"> *   Increment minutes and seconds by this amount, default is 1.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">194</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">195</span></td>
+       <td><span class="comment code"> * #date_year_range
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">196</span></td>
+       <td><span class="comment code"> *   The number of years to go back and forward in a year selector,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">197</span></td>
+       <td><span class="comment code"> *   default is -3:+3 (3 back and 3 forward).
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">198</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">199</span></td>
+       <td><span class="comment code"> * #datepicker_options
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">200</span></td>
+       <td><span class="comment code"> *   An associative array representing the jQuery datepicker options you want
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">201</span></td>
+       <td><span class="comment code"> *   to set for this element. Use the jQuery datepicker option names as keys.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">202</span></td>
+       <td><span class="comment code"> *   Hard coded defaults are:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">203</span></td>
+       <td><span class="comment code"> *   - changeMonth =&gt; TRUE
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">204</span></td>
+       <td><span class="comment code"> *   - changeYear =&gt; TRUE
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">205</span></td>
+       <td><span class="comment code"> *   - autoPopUp =&gt; 'focus'
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">206</span></td>
+       <td><span class="comment code"> *   - closeAtTop =&gt; FALSE
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">207</span></td>
+       <td><span class="comment code"> *   - speed =&gt; 'immediate'
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">208</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">209</span></td>
+       <td><span class="covered code">function date_popup_element_info() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">210</span></td>
+       <td><span class="missed code">  $timepicker = date_popup_get_preferred_timepicker();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">211</span></td>
+       <td><span class="missed code">  $type['date_popup'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">212</span></td>
+       <td><span class="missed code">    '#input' =&gt; TRUE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">213</span></td>
+       <td><span class="missed code">    '#tree' =&gt; TRUE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">214</span></td>
+       <td><span class="missed code">    '#date_timezone' =&gt; date_default_timezone(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">215</span></td>
+       <td><span class="missed code">    '#date_flexible' =&gt; 0,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">216</span></td>
+       <td><span class="missed code">    '#date_format' =&gt; variable_get('date_format_short', 'm/d/Y - H:i'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">217</span></td>
+       <td><span class="missed code">    '#datepicker_options' =&gt; array(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">218</span></td>
+       <td><span class="missed code">    '#timepicker' =&gt; variable_get('date_popup_timepicker', $timepicker),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">219</span></td>
+       <td><span class="missed code">    '#date_increment' =&gt; 1,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">220</span></td>
+       <td><span class="missed code">    '#date_year_range' =&gt; '-3:+3',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">221</span></td>
+       <td><span class="missed code">    '#date_label_position' =&gt; 'above',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">222</span></td>
+       <td><span class="missed code">    '#process' =&gt; array('date_popup_element_process'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">223</span></td>
+       <td><span class="missed code">    '#value_callback' =&gt; 'date_popup_element_value_callback',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">224</span></td>
+       <td><span class="missed code">    '#theme_wrappers' =&gt; array('date_popup'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">225</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">226</span></td>
+       <td><span class="missed code">  if (module_exists('ctools')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">227</span></td>
+       <td><span class="missed code">    $type['date_popup']['#pre_render'] = array('ctools_dependent_pre_render');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">228</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">229</span></td>
+       <td><span class="missed code">  return $type;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">230</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">231</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">232</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">233</span></td>
+       <td><span class="comment code"> * Date popup date granularity.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">234</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">235</span></td>
+       <td><span class="covered code">function date_popup_date_granularity($element) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">236</span></td>
+       <td><span class="missed code">  $granularity = date_format_order($element['#date_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">237</span></td>
+       <td><span class="missed code">  return array_intersect($granularity, array('month', 'day', 'year'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">238</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">239</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">240</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">241</span></td>
+       <td><span class="comment code"> * Date popup time granularity.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">242</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">243</span></td>
+       <td><span class="covered code">function date_popup_time_granularity($element) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">244</span></td>
+       <td><span class="missed code">  $granularity = date_format_order($element['#date_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">245</span></td>
+       <td><span class="missed code">  return array_intersect($granularity, array('hour', 'minute', 'second'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">246</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">247</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">248</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">249</span></td>
+       <td><span class="comment code"> * Date popup date format.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">250</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">251</span></td>
+       <td><span class="covered code">function date_popup_date_format($element) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">252</span></td>
+       <td><span class="missed code">  return (date_limit_format($element['#date_format'], date_popup_date_granularity($element)));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">253</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">254</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">255</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">256</span></td>
+       <td><span class="comment code"> * Date popup time format.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">257</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">258</span></td>
+       <td><span class="covered code">function date_popup_time_format($element) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">259</span></td>
+       <td><span class="missed code">  return date_popup_format_to_popup_time(date_limit_format($element['#date_format'], date_popup_time_granularity($element)), $element['#timepicker']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">260</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">261</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">262</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">263</span></td>
+       <td><span class="comment code"> * Element value callback for date_popup element.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">264</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">265</span></td>
+       <td><span class="comment code">// @codingStandardsIgnoreStart
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">266</span></td>
+       <td><span class="covered code">function date_popup_element_value_callback($element, $input = FALSE, &amp;$form_state) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">267</span></td>
+       <td><span class="missed code">  $granularity = date_format_order($element['#date_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">268</span></td>
+       <td><span class="missed code">  $has_time = date_has_time($granularity);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">269</span></td>
+       <td><span class="missed code">  $date = NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">270</span></td>
+       <td><span class="missed code">  $return = $has_time ? array('date' =&gt; '', 'time' =&gt; '') : array('date' =&gt; '');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">271</span></td>
+       <td><span class="comment code">  // Normal input from submitting the form element.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">272</span></td>
+       <td><span class="comment code">  // Check is_array() to skip the string input values created by Views pagers.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">273</span></td>
+       <td><span class="comment code">  // Those string values, if present, should be interpreted as empty input.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">274</span></td>
+       <td><span class="missed code">  if ($input !== FALSE &amp;&amp; is_array($input)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">275</span></td>
+       <td><span class="missed code">    $return = $input;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">276</span></td>
+       <td><span class="missed code">    $date = date_popup_input_date($element, $input);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">277</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">278</span></td>
+       <td><span class="comment code">  // No input? Try the default value.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">279</span></td>
+       <td><span class="missed code">  elseif (!empty($element['#default_value'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">280</span></td>
+       <td><span class="missed code">    $date = date_default_date($element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">281</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">282</span></td>
+       <td><span class="comment code">  // Date with errors won't re-display.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">283</span></td>
+       <td><span class="missed code">  if (date_is_date($date)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">284</span></td>
+       <td><span class="missed code">    $return['date'] = !$date-&gt;timeOnly ? date_format_date($date, 'custom', date_popup_date_format($element)) : '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">285</span></td>
+       <td><span class="missed code">    $return['time'] = $has_time ? date_format_date($date, 'custom', date_popup_time_format($element)) : '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">286</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">287</span></td>
+       <td><span class="missed code">  elseif (!empty($input)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">288</span></td>
+       <td><span class="missed code">    $return = $input;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">289</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">290</span></td>
+       <td><span class="missed code">  return $return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">291</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">292</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">293</span></td>
+       <td><span class="comment code">// @codingStandardsIgnoreEnd
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">294</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">295</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">296</span></td>
+       <td><span class="comment code"> * Javascript popup element processing.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">297</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">298</span></td>
+       <td><span class="comment code"> * Add popup attributes to $element.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">299</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">300</span></td>
+       <td><span class="covered code">function date_popup_element_process($element, &amp;$form_state, $form) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">301</span></td>
+       <td><span class="missed code">  if (date_hidden_element($element)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">302</span></td>
+       <td><span class="missed code">    return $element;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">303</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">304</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">305</span></td>
+       <td><span class="missed code">  date_popup_add();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">306</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'date_api', 'date_api_elements');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">307</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">308</span></td>
+       <td><span class="missed code">  $element['#tree'] = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">309</span></td>
+       <td><span class="missed code">  $element['#theme_wrappers'] = array('date_popup');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">310</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">311</span></td>
+       <td><span class="missed code">  if (!empty($element['#ajax'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">312</span></td>
+       <td><span class="missed code">    $element['#ajax'] += array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">313</span></td>
+       <td><span class="comment code">      'trigger_as' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">314</span></td>
+       <td><span class="missed code">        'name' =&gt; $element['#name'],
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">315</span></td>
+       <td><span class="missed code">      ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">316</span></td>
+       <td><span class="missed code">      'event' =&gt; 'change',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">317</span></td>
+       <td><span class="comment code">    );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">318</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">319</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">320</span></td>
+       <td><span class="missed code">  $element['date'] = date_popup_process_date_part($element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">321</span></td>
+       <td><span class="missed code">  $element['time'] = date_popup_process_time_part($element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">322</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">323</span></td>
+       <td><span class="comment code">  // Make changes if instance is set to be rendered as a regular field.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">324</span></td>
+       <td><span class="missed code">  if (!empty($element['#instance']['widget']['settings']['no_fieldset']) &amp;&amp; $element['#field']['cardinality'] == 1) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">325</span></td>
+       <td><span class="missed code">    if (!empty($element['date']) &amp;&amp; empty($element['time'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">326</span></td>
+       <td><span class="missed code">      $element['date']['#title'] = check_plain($element['#instance']['label']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">327</span></td>
+       <td><span class="missed code">      $element['date']['#required'] = $element['#required'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">328</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">329</span></td>
+       <td><span class="missed code">    elseif (empty($element['date']) &amp;&amp; !empty($element['time'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">330</span></td>
+       <td><span class="missed code">      $element['time']['#title'] = check_plain($element['#instance']['label']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">331</span></td>
+       <td><span class="missed code">      $element['time']['#required'] = $element['#required'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">332</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">333</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">334</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">335</span></td>
+       <td><span class="missed code">  if (isset($element['#element_validate'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">336</span></td>
+       <td><span class="missed code">    array_push($element['#element_validate'], 'date_popup_validate');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">337</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">338</span></td>
+       <td><span class="comment code">  else {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">339</span></td>
+       <td><span class="missed code">    $element['#element_validate'] = array('date_popup_validate');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">340</span></td>
+       <td><span class="comment code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">341</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">342</span></td>
+       <td><span class="comment code">  $context = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">343</span></td>
+       <td><span class="missed code">    'form' =&gt; $form,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">344</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">345</span></td>
+       <td><span class="missed code">  drupal_alter('date_popup_process', $element, $form_state, $context);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">346</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">347</span></td>
+       <td><span class="missed code">  return $element;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">348</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">349</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">350</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">351</span></td>
+       <td><span class="comment code"> * Process the date portion of the element.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">352</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">353</span></td>
+       <td><span class="covered code">function date_popup_process_date_part(&amp;$element) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">354</span></td>
+       <td><span class="missed code">  $granularity = date_format_order($element['#date_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">355</span></td>
+       <td><span class="missed code">  $date_granularity = date_popup_date_granularity($element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">356</span></td>
+       <td><span class="missed code">  if (empty($date_granularity)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">357</span></td>
+       <td><span class="missed code">    return array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">358</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">359</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">360</span></td>
+       <td><span class="comment code">  // The datepicker can't handle zero or negative values like 0:+1
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">361</span></td>
+       <td><span class="comment code">  // even though the Date API can handle them, so rework the value
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">362</span></td>
+       <td><span class="comment code">  // we pass to the datepicker to use defaults it can accept (such as +0:+1)
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">363</span></td>
+       <td><span class="comment code">  // date_range_string() adds the necessary +/- signs to the range string.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">364</span></td>
+       <td><span class="missed code">  $this_year = date_format(date_now(), 'Y');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">365</span></td>
+       <td><span class="comment code">  // When used as a Views exposed filter widget, $element['#value'] contains an array instead an string.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">366</span></td>
+       <td><span class="comment code">  // Fill the 'date' string in this case.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">367</span></td>
+       <td><span class="missed code">  $mock = NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">368</span></td>
+       <td><span class="missed code">  $callback_values = date_popup_element_value_callback($element, FALSE, $mock);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">369</span></td>
+       <td><span class="missed code">  if (!isset($element['#value']['date']) &amp;&amp; isset($callback_values['date'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">370</span></td>
+       <td><span class="missed code">    $element['#value']['date'] = $callback_values['date'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">371</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">372</span></td>
+       <td><span class="missed code">  $date = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">373</span></td>
+       <td><span class="missed code">  if (!empty($element['#value']['date'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">374</span></td>
+       <td><span class="missed code">    $date = new DateObject($element['#value']['date'], $element['#date_timezone'], date_popup_date_format($element));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">375</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">376</span></td>
+       <td><span class="missed code">  $range = date_range_years($element['#date_year_range'], $date);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">377</span></td>
+       <td><span class="missed code">  $year_range = date_range_string($range);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">378</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">379</span></td>
+       <td><span class="comment code">  // Add the dynamic datepicker options. Allow element-specific datepicker
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">380</span></td>
+       <td><span class="comment code">  // preferences to override these options for whatever reason they see fit.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">381</span></td>
+       <td><span class="missed code">  $settings = $element['#datepicker_options'] + array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">382</span></td>
+       <td><span class="missed code">    'changeMonth' =&gt; TRUE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">383</span></td>
+       <td><span class="missed code">    'changeYear' =&gt; TRUE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">384</span></td>
+       <td><span class="missed code">    'autoPopUp' =&gt; 'focus',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">385</span></td>
+       <td><span class="missed code">    'closeAtTop' =&gt; FALSE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">386</span></td>
+       <td><span class="missed code">    'speed' =&gt; 'immediate',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">387</span></td>
+       <td><span class="missed code">    'firstDay' =&gt; intval(variable_get('date_first_day', 0)),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">388</span></td>
+       <td><span class="comment code">    // 'buttonImage' =&gt; base_path()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">389</span></td>
+       <td><span class="comment code">    // . drupal_get_path('module', 'date_api') .&quot;/images/calendar.png&quot;,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">390</span></td>
+       <td><span class="comment code">    // 'buttonImageOnly' =&gt; TRUE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">391</span></td>
+       <td><span class="missed code">    'dateFormat' =&gt; date_popup_format_to_popup(date_popup_date_format($element), 'datepicker'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">392</span></td>
+       <td><span class="missed code">    'yearRange' =&gt; $year_range,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">393</span></td>
+       <td><span class="comment code">    // Custom setting, will be expanded in Drupal.behaviors.date_popup()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">394</span></td>
+       <td><span class="missed code">    'fromTo' =&gt; isset($fromto),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">395</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">396</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">397</span></td>
+       <td><span class="comment code">  // Create a unique id for each set of custom settings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">398</span></td>
+       <td><span class="missed code">  $id = date_popup_js_settings_id($element['#id'], 'datepicker', $settings);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">399</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">400</span></td>
+       <td><span class="comment code">  // Manually build this element and set the value -
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">401</span></td>
+       <td><span class="comment code">  // this will prevent corrupting the parent value.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">402</span></td>
+       <td><span class="missed code">  $parents = array_merge($element['#parents'], array('date'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">403</span></td>
+       <td><span class="comment code">  $sub_element = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">404</span></td>
+       <td><span class="missed code">    '#type' =&gt; 'textfield',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">405</span></td>
+       <td><span class="missed code">    '#title' =&gt; theme('date_part_label_date', array('part_type' =&gt; 'date', 'element' =&gt; $element)),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">406</span></td>
+       <td><span class="missed code">    '#title_display' =&gt; $element['#date_label_position'] == 'above' ? 'before' : 'invisible',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">407</span></td>
+       <td><span class="missed code">    '#default_value' =&gt; date_format_date($date, 'custom', date_popup_date_format($element)),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">408</span></td>
+       <td><span class="missed code">    '#id' =&gt; $id,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">409</span></td>
+       <td><span class="missed code">    '#input' =&gt; FALSE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">410</span></td>
+       <td><span class="missed code">    '#size' =&gt; !empty($element['#size']) ? $element['#size'] : 20,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">411</span></td>
+       <td><span class="missed code">    '#maxlength' =&gt; !empty($element['#maxlength']) ? $element['#maxlength'] : 30,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">412</span></td>
+       <td><span class="missed code">    '#attributes' =&gt; $element['#attributes'],
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">413</span></td>
+       <td><span class="missed code">    '#parents' =&gt; $parents,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">414</span></td>
+       <td><span class="missed code">    '#name' =&gt; array_shift($parents) . '[' . implode('][', $parents) . ']',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">415</span></td>
+       <td><span class="missed code">    '#ajax' =&gt; !empty($element['#ajax']) ? $element['#ajax'] : FALSE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">416</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">417</span></td>
+       <td><span class="missed code">  $sub_element['#value'] = $sub_element['#default_value'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">418</span></td>
+       <td><span class="comment code">  // TODO, figure out exactly when we want this description.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">419</span></td>
+       <td><span class="comment code">  // In many places it is not desired.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">420</span></td>
+       <td><span class="missed code">  $sub_element['#description'] = ' ' . t('E.g., @date', array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">421</span></td>
+       <td><span class="missed code">      '@date' =&gt; date_format_date(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">422</span></td>
+       <td><span class="missed code">        date_example_date(),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">423</span></td>
+       <td><span class="missed code">        'custom',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">424</span></td>
+       <td><span class="missed code">        date_popup_date_format($element)
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">425</span></td>
+       <td><span class="missed code">        ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">426</span></td>
+       <td><span class="missed code">      ));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">427</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">428</span></td>
+       <td><span class="missed code">  return $sub_element;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">429</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">430</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">431</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">432</span></td>
+       <td><span class="comment code"> * Process the time portion of the element.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">433</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">434</span></td>
+       <td><span class="covered code">function date_popup_process_time_part(&amp;$element) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">435</span></td>
+       <td><span class="missed code">  $granularity = date_format_order($element['#date_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">436</span></td>
+       <td><span class="missed code">  $has_time = date_has_time($granularity);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">437</span></td>
+       <td><span class="missed code">  if (empty($has_time)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">438</span></td>
+       <td><span class="missed code">    return array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">439</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">440</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">441</span></td>
+       <td><span class="comment code">  // When used as a Views exposed filter widget, $element['#value'] contains an array instead an string.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">442</span></td>
+       <td><span class="comment code">  // Fill the 'time' string in this case.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">443</span></td>
+       <td><span class="missed code">  $mock = NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">444</span></td>
+       <td><span class="missed code">  $callback_values = date_popup_element_value_callback($element, FALSE, $mock);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">445</span></td>
+       <td><span class="missed code">  if (!isset($element['#value']['time']) &amp;&amp; isset($callback_values['time'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">446</span></td>
+       <td><span class="missed code">    $element['#value']['time'] = $callback_values['time'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">447</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">448</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">449</span></td>
+       <td><span class="missed code">  switch ($element['#timepicker']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">450</span></td>
+       <td><span class="missed code">    case 'default':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">451</span></td>
+       <td><span class="missed code">      $func = 'timeEntry';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">452</span></td>
+       <td><span class="comment code">      $settings = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">453</span></td>
+       <td><span class="missed code">        'show24Hours' =&gt; strpos($element['#date_format'], 'H') !== FALSE ? TRUE : FALSE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">454</span></td>
+       <td><span class="missed code">        'showSeconds' =&gt; (in_array('second', $granularity) ? TRUE : FALSE),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">455</span></td>
+       <td><span class="comment code">        'timeSteps' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">456</span></td>
+       <td><span class="missed code">          1,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">457</span></td>
+       <td><span class="missed code">          intval($element['#date_increment']),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">458</span></td>
+       <td><span class="missed code">          (in_array('second', $granularity) ? $element['#date_increment'] : 0),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">459</span></td>
+       <td><span class="missed code">        ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">460</span></td>
+       <td><span class="missed code">        'spinnerImage' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">461</span></td>
+       <td><span class="missed code">        'fromTo' =&gt; isset($fromto),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">462</span></td>
+       <td><span class="missed code">      );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">463</span></td>
+       <td><span class="missed code">      if (strpos($element['#date_format'], 'a') !== FALSE) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">464</span></td>
+       <td><span class="comment code">        // Then we are using lowercase am/pm.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">465</span></td>
+       <td><span class="missed code">        $settings['ampmNames'] = array('am', 'pm');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">466</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">467</span></td>
+       <td><span class="missed code">      if (strpos($element['#date_format'], ' A') !== FALSE || strpos($element['#date_format'], ' a') !== FALSE) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">468</span></td>
+       <td><span class="missed code">        $settings['ampmPrefix'] = ' ';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">469</span></td>
+       <td><span class="missed code">      }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">470</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">471</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">472</span></td>
+       <td><span class="missed code">    case 'wvega':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">473</span></td>
+       <td><span class="missed code">      $func = 'timepicker';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">474</span></td>
+       <td><span class="missed code">      $grans = array('hour', 'minute', 'second');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">475</span></td>
+       <td><span class="missed code">      $time_granularity = array_intersect($granularity, $grans);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">476</span></td>
+       <td><span class="missed code">      $format = date_popup_format_to_popup_time(date_limit_format($element['#date_format'], $time_granularity), 'wvega');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">477</span></td>
+       <td><span class="comment code">      // The first value in the dropdown list should be the same as the element
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">478</span></td>
+       <td><span class="comment code">      // default_value, but it needs to be in JS format (i.e. milliseconds since
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">479</span></td>
+       <td><span class="comment code">      // the epoch).
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">480</span></td>
+       <td><span class="missed code">      $start_time = new DateObject($element['#default_value'], $element['#date_timezone'], DATE_FORMAT_DATETIME);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">481</span></td>
+       <td><span class="missed code">      date_increment_round($start_time, $element['#date_increment']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">482</span></td>
+       <td><span class="missed code">      $start_time = $start_time-&gt;format(DATE_FORMAT_UNIX) * 1000;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">483</span></td>
+       <td><span class="comment code">      $settings = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">484</span></td>
+       <td><span class="missed code">        'timeFormat' =&gt; $format,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">485</span></td>
+       <td><span class="missed code">        'interval' =&gt; $element['#date_increment'],
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">486</span></td>
+       <td><span class="missed code">        'startTime' =&gt; $start_time,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">487</span></td>
+       <td><span class="missed code">        'scrollbar' =&gt; TRUE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">488</span></td>
+       <td><span class="missed code">      );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">489</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">490</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">491</span></td>
+       <td><span class="missed code">    default:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">492</span></td>
+       <td><span class="missed code">      $func = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">493</span></td>
+       <td><span class="missed code">      $settings = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">494</span></td>
+       <td><span class="missed code">      break;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">495</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">496</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">497</span></td>
+       <td><span class="comment code">  // Create a unique id for each set of custom settings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">498</span></td>
+       <td><span class="missed code">  $id = date_popup_js_settings_id($element['#id'], $func, $settings);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">499</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">500</span></td>
+       <td><span class="comment code">  // Manually build this element and set the value -
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">501</span></td>
+       <td><span class="comment code">  // this will prevent corrupting the parent value.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">502</span></td>
+       <td><span class="missed code">  $parents = array_merge($element['#parents'], array('time'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">503</span></td>
+       <td><span class="comment code">  $sub_element = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">504</span></td>
+       <td><span class="missed code">    '#type' =&gt; 'textfield',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">505</span></td>
+       <td><span class="missed code">    '#title' =&gt; theme('date_part_label_time', array('part_type' =&gt; 'time', 'element' =&gt; $element)),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">506</span></td>
+       <td><span class="missed code">    '#title_display' =&gt; $element['#date_label_position'] == 'above' ? 'before' : 'invisible',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">507</span></td>
+       <td><span class="missed code">    '#default_value' =&gt; $element['#value']['time'],
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">508</span></td>
+       <td><span class="missed code">    '#id' =&gt; $id,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">509</span></td>
+       <td><span class="missed code">    '#size' =&gt; 15,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">510</span></td>
+       <td><span class="missed code">    '#maxlength' =&gt; 10,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">511</span></td>
+       <td><span class="missed code">    '#attributes' =&gt; $element['#attributes'],
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">512</span></td>
+       <td><span class="missed code">    '#parents' =&gt; $parents,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">513</span></td>
+       <td><span class="missed code">    '#name' =&gt; array_shift($parents) . '[' . implode('][', $parents) . ']',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">514</span></td>
+       <td><span class="missed code">    '#ajax' =&gt; !empty($element['#ajax']) ? $element['#ajax'] : FALSE,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">515</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">516</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">517</span></td>
+       <td><span class="missed code">  $sub_element['#value'] = $sub_element['#default_value'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">518</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">519</span></td>
+       <td><span class="comment code">  // TODO, figure out exactly when we want this description.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">520</span></td>
+       <td><span class="comment code">  // In many places it is not desired.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">521</span></td>
+       <td><span class="missed code">  $example_date = date_now();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">522</span></td>
+       <td><span class="missed code">  date_increment_round($example_date, $element['#date_increment']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">523</span></td>
+       <td><span class="missed code">  $sub_element['#description'] = t('E.g., @date', array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">524</span></td>
+       <td><span class="missed code">    '@date' =&gt; date_format_date(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">525</span></td>
+       <td><span class="missed code">      $example_date,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">526</span></td>
+       <td><span class="missed code">      'custom',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">527</span></td>
+       <td><span class="missed code">      date_popup_time_format($element)
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">528</span></td>
+       <td><span class="missed code">    )));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">529</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">530</span></td>
+       <td><span class="missed code">  return ($sub_element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">531</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">532</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">533</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">534</span></td>
+       <td><span class="comment code"> * Massage the input values back into a single date.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">535</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">536</span></td>
+       <td><span class="comment code"> * When used as a Views widget, the validation step always gets triggered,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">537</span></td>
+       <td><span class="comment code"> * even with no form submission. Before form submission $element['#value']
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">538</span></td>
+       <td><span class="comment code"> * contains a string, after submission it contains an array.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">539</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">540</span></td>
+       <td><span class="covered code">function date_popup_validate($element, &amp;$form_state) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">541</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">542</span></td>
+       <td><span class="missed code">  if (date_hidden_element($element)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">543</span></td>
+       <td><span class="missed code">    return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">544</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">545</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">546</span></td>
+       <td><span class="missed code">  if (is_string($element['#value'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">547</span></td>
+       <td><span class="missed code">    return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">548</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">549</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">550</span></td>
+       <td><span class="missed code">  module_load_include('inc', 'date_api', 'date_api_elements');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">551</span></td>
+       <td><span class="missed code">  date_popup_add();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">552</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">553</span></td>
+       <td><span class="missed code">  $input_exists = NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">554</span></td>
+       <td><span class="missed code">  $input = drupal_array_get_nested_value($form_state['values'], $element['#parents'], $input_exists);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">555</span></td>
+       <td><span class="comment code">  // If the date is a string, it is not considered valid and can cause problems
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">556</span></td>
+       <td><span class="comment code">  // later on, so just exit out now.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">557</span></td>
+       <td><span class="missed code">  if (is_string($input)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">558</span></td>
+       <td><span class="missed code">    return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">559</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">560</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">561</span></td>
+       <td><span class="missed code">  drupal_alter('date_popup_pre_validate', $element, $form_state, $input);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">562</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">563</span></td>
+       <td><span class="missed code">  $granularity = date_format_order($element['#date_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">564</span></td>
+       <td><span class="missed code">  $date_granularity = date_popup_date_granularity($element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">565</span></td>
+       <td><span class="missed code">  $time_granularity = date_popup_time_granularity($element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">566</span></td>
+       <td><span class="missed code">  $has_time = date_has_time($granularity);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">567</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">568</span></td>
+       <td><span class="comment code">  // @codingStandardsIgnoreStart
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">569</span></td>
+       <td><span class="missed code">  $label = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">570</span></td>
+       <td><span class="missed code">  if (!empty($element['#date_title'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">571</span></td>
+       <td><span class="missed code">    $label = t($element['#date_title']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">572</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">573</span></td>
+       <td><span class="missed code">  elseif (!empty($element['#title'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">574</span></td>
+       <td><span class="missed code">    $label = t($element['#title']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">575</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">576</span></td>
+       <td><span class="comment code">  // @codingStandardsIgnoreEnd
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">577</span></td>
+       <td><span class="missed code">  $date = date_popup_input_date($element, $input);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">578</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">579</span></td>
+       <td><span class="comment code">  // If the date has errors, display them.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">580</span></td>
+       <td><span class="comment code">  // If something was input but there is no date, the date is invalid.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">581</span></td>
+       <td><span class="comment code">  // If the field is empty and required, set error message and return.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">582</span></td>
+       <td><span class="missed code">  $error_field = implode('][', $element['#parents']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">583</span></td>
+       <td><span class="missed code">  if (empty($date) || !empty($date-&gt;errors)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">584</span></td>
+       <td><span class="missed code">    if (is_object($date) &amp;&amp; !empty($date-&gt;errors)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">585</span></td>
+       <td><span class="missed code">      $message = t('The value input for field %field is invalid:', array('%field' =&gt; $label));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">586</span></td>
+       <td><span class="missed code">      $message .= '&lt;br /&gt;' . implode('&lt;br /&gt;', $date-&gt;errors);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">587</span></td>
+       <td><span class="missed code">      form_set_error($error_field, $message);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">588</span></td>
+       <td><span class="missed code">      return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">589</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">590</span></td>
+       <td><span class="missed code">    if (!empty($input['date'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">591</span></td>
+       <td><span class="missed code">      $message = t('The value input for field %field is invalid.', array('%field' =&gt; $label));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">592</span></td>
+       <td><span class="missed code">      form_set_error($error_field, $message);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">593</span></td>
+       <td><span class="missed code">      return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">594</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">595</span></td>
+       <td><span class="missed code">    if ($element['#required']) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">596</span></td>
+       <td><span class="missed code">      $message = t('A valid date is required for %title.', array('%title' =&gt; $label));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">597</span></td>
+       <td><span class="missed code">      form_set_error($error_field, $message);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">598</span></td>
+       <td><span class="missed code">      return;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">599</span></td>
+       <td><span class="dead code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">600</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">601</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">602</span></td>
+       <td><span class="comment code">  // If the created date is valid, set it.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">603</span></td>
+       <td><span class="missed code">  $value = !empty($date) ? $date-&gt;format(DATE_FORMAT_DATETIME) : NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">604</span></td>
+       <td><span class="missed code">  form_set_value($element, $value, $form_state);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">605</span></td>
+       <td><span class="missed code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">606</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">607</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">608</span></td>
+       <td><span class="comment code"> * Helper function for extracting a date value out of user input.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">609</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">610</span></td>
+       <td><span class="comment code"> * @param bool $auto_complete
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">611</span></td>
+       <td><span class="comment code"> *   Should we add a time value to complete the date if there is no time?
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">612</span></td>
+       <td><span class="comment code"> *   Useful anytime the time value is optional.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">613</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">614</span></td>
+       <td><span class="covered code">function date_popup_input_date($element, $input, $auto_complete = FALSE) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">615</span></td>
+       <td><span class="missed code">  if (empty($input) || !is_array($input) || !array_key_exists('date', $input) || empty($input['date'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">616</span></td>
+       <td><span class="missed code">    return NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">617</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">618</span></td>
+       <td><span class="missed code">  date_popup_add();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">619</span></td>
+       <td><span class="missed code">  $granularity = date_format_order($element['#date_format']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">620</span></td>
+       <td><span class="missed code">  $has_time = date_has_time($granularity);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">621</span></td>
+       <td><span class="missed code">  $flexible = !empty($element['#date_flexible']) ? $element['#date_flexible'] : 0;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">622</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">623</span></td>
+       <td><span class="missed code">  $format = date_popup_date_format($element);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">624</span></td>
+       <td><span class="missed code">  $format .= $has_time ? ' ' . date_popup_time_format($element) : '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">625</span></td>
+       <td><span class="missed code">  $datetime = trim($input['date']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">626</span></td>
+       <td><span class="missed code">  $datetime .= $has_time ? ' ' . trim($input['time']) : '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">627</span></td>
+       <td><span class="missed code">  $date = new DateObject($datetime, $element['#date_timezone'], $format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">628</span></td>
+       <td><span class="missed code">  if (is_object($date)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">629</span></td>
+       <td><span class="missed code">    $date-&gt;limitGranularity($granularity);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">630</span></td>
+       <td><span class="missed code">    if ($date-&gt;validGranularity($granularity, $flexible)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">631</span></td>
+       <td><span class="missed code">      date_increment_round($date, $element['#date_increment']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">632</span></td>
+       <td><span class="missed code">    }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">633</span></td>
+       <td><span class="missed code">    return $date;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">634</span></td>
+       <td><span class="dead code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">635</span></td>
+       <td><span class="missed code">  return NULL;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">636</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">637</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">638</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">639</span></td>
+       <td><span class="comment code"> * Allowable time formats.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">640</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">641</span></td>
+       <td><span class="covered code">function date_popup_time_formats($with_seconds = FALSE) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">642</span></td>
+       <td><span class="comment code">  return array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">643</span></td>
+       <td><span class="missed code">    'H:i:s',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">644</span></td>
+       <td><span class="missed code">    'h:i:sA',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">645</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">646</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">647</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">648</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">649</span></td>
+       <td><span class="comment code"> * Format options array.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">650</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">651</span></td>
+       <td><span class="comment code"> * TODO Remove any formats not supported by the widget, if any.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">652</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">653</span></td>
+       <td><span class="covered code">function date_popup_formats() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">654</span></td>
+       <td><span class="comment code">  // Load short date formats.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">655</span></td>
+       <td><span class="missed code">  $formats = system_get_date_formats('short');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">656</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">657</span></td>
+       <td><span class="comment code">  // Load custom date formats.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">658</span></td>
+       <td><span class="missed code">  if ($formats_custom = system_get_date_formats('custom')) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">659</span></td>
+       <td><span class="missed code">    $formats = array_merge($formats, $formats_custom);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">660</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">661</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">662</span></td>
+       <td><span class="missed code">  $formats = str_replace('i', 'i:s', array_keys($formats));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">663</span></td>
+       <td><span class="missed code">  $formats = drupal_map_assoc($formats);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">664</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">665</span></td>
+       <td><span class="missed code">  return $formats;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">666</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">667</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">668</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">669</span></td>
+       <td><span class="comment code"> * Recreate a date format string so it has the values popup expects.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">670</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">671</span></td>
+       <td><span class="comment code"> * @param string $format
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">672</span></td>
+       <td><span class="comment code"> *   A normal date format string, like Y-m-d
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">673</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">674</span></td>
+       <td><span class="comment code"> * @return string
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">675</span></td>
+       <td><span class="comment code"> *   A format string in popup format, like YMD-, for the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">676</span></td>
+       <td><span class="comment code"> *   earlier 'calendar' version, or m/d/Y for the later 'datepicker'
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">677</span></td>
+       <td><span class="comment code"> *   version.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">678</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">679</span></td>
+       <td><span class="covered code">function date_popup_format_to_popup($format) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">680</span></td>
+       <td><span class="missed code">  if (empty($format)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">681</span></td>
+       <td><span class="missed code">    $format = 'Y-m-d';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">682</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">683</span></td>
+       <td><span class="missed code">  $replace = date_popup_datepicker_format_replacements();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">684</span></td>
+       <td><span class="missed code">  return strtr($format, $replace);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">685</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">686</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">687</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">688</span></td>
+       <td><span class="comment code"> * Recreate a time format string so it has the values popup expects.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">689</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">690</span></td>
+       <td><span class="comment code"> * @param string $format
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">691</span></td>
+       <td><span class="comment code"> *   A normal time format string, like h:i (a)
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">692</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">693</span></td>
+       <td><span class="comment code"> * @return string
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">694</span></td>
+       <td><span class="comment code"> *   A format string that the popup can accept like h:i a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">695</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">696</span></td>
+       <td><span class="covered code">function date_popup_format_to_popup_time($format, $timepicker = NULL) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">697</span></td>
+       <td><span class="missed code">  if (empty($format)) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">698</span></td>
+       <td><span class="missed code">    $format = 'H:i';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">699</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">700</span></td>
+       <td><span class="comment code">  $symbols = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">701</span></td>
+       <td><span class="missed code">    '/',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">702</span></td>
+       <td><span class="missed code">    '-',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">703</span></td>
+       <td><span class="missed code">    ' .',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">704</span></td>
+       <td><span class="missed code">    ',',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">705</span></td>
+       <td><span class="missed code">    'F',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">706</span></td>
+       <td><span class="missed code">    'M',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">707</span></td>
+       <td><span class="missed code">    'l',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">708</span></td>
+       <td><span class="missed code">    'z',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">709</span></td>
+       <td><span class="missed code">    'w',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">710</span></td>
+       <td><span class="missed code">    'W',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">711</span></td>
+       <td><span class="missed code">    'd',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">712</span></td>
+       <td><span class="missed code">    'j',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">713</span></td>
+       <td><span class="missed code">    'm',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">714</span></td>
+       <td><span class="missed code">    'n',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">715</span></td>
+       <td><span class="missed code">    'y',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">716</span></td>
+       <td><span class="missed code">    'Y',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">717</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">718</span></td>
+       <td><span class="missed code">  $format = str_replace($symbols, '', $format);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">719</span></td>
+       <td><span class="missed code">  $format = strtr($format, date_popup_timepicker_format_replacements($timepicker));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">720</span></td>
+       <td><span class="missed code">  return $format;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">721</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">722</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">723</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">724</span></td>
+       <td><span class="comment code"> * Reconstruct popup format string into normal format string.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">725</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">726</span></td>
+       <td><span class="comment code"> * @param string $format
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">727</span></td>
+       <td><span class="comment code"> *   A string in popup format, like YMD-
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">728</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">729</span></td>
+       <td><span class="comment code"> * @return string
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">730</span></td>
+       <td><span class="comment code"> *   A normal date format string, like Y-m-d
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">731</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">732</span></td>
+       <td><span class="covered code">function date_popup_popup_to_format($format) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">733</span></td>
+       <td><span class="missed code">  $replace = array_flip(date_popup_datepicker_format_replacements());
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">734</span></td>
+       <td><span class="missed code">  return strtr($format, $replace);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">735</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">736</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">737</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">738</span></td>
+       <td><span class="comment code"> * Return a map of format replacements required for a given timepicker.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">739</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">740</span></td>
+       <td><span class="comment code"> * Client-side time entry plugins don't support all possible date formats.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">741</span></td>
+       <td><span class="comment code"> * This function returns a map of format replacements required to change any
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">742</span></td>
+       <td><span class="comment code"> * input format into one that the given timepicker can support.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">743</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">744</span></td>
+       <td><span class="comment code"> * @param string $timepicker
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">745</span></td>
+       <td><span class="comment code"> *   The time entry plugin being used: either 'wvega' or 'default'.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">746</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">747</span></td>
+       <td><span class="comment code"> * @return array
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">748</span></td>
+       <td><span class="comment code"> *   A map of replacements.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">749</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">750</span></td>
+       <td><span class="covered code">function date_popup_timepicker_format_replacements($timepicker = 'default') {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">751</span></td>
+       <td><span class="comment code">  switch ($timepicker) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">752</span></td>
+       <td><span class="missed code">    case 'wvega':
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">753</span></td>
+       <td><span class="comment code">      // The wvega timepicker only supports uppercase AM/PM.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">754</span></td>
+       <td><span class="missed code">      return array('a' =&gt; 'A');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">755</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">756</span></td>
+       <td><span class="missed code">    default:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">757</span></td>
+       <td><span class="comment code">      // The default timeEntry plugin requires leading zeros.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">758</span></td>
+       <td><span class="missed code">      return array('G' =&gt; 'H', 'g' =&gt; 'h');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">759</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">760</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">761</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">762</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">763</span></td>
+       <td><span class="comment code"> * The format replacement patterns for the new datepicker.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">764</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">765</span></td>
+       <td><span class="covered code">function date_popup_datepicker_format_replacements() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">766</span></td>
+       <td><span class="comment code">  return array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">767</span></td>
+       <td><span class="missed code">    'd' =&gt; 'dd',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">768</span></td>
+       <td><span class="missed code">    'j' =&gt; 'd',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">769</span></td>
+       <td><span class="missed code">    'l' =&gt; 'DD',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">770</span></td>
+       <td><span class="missed code">    'D' =&gt; 'D',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">771</span></td>
+       <td><span class="missed code">    'm' =&gt; 'mm',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">772</span></td>
+       <td><span class="missed code">    'n' =&gt; 'm',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">773</span></td>
+       <td><span class="missed code">    'F' =&gt; 'MM',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">774</span></td>
+       <td><span class="missed code">    'M' =&gt; 'M',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">775</span></td>
+       <td><span class="missed code">    'Y' =&gt; 'yy',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">776</span></td>
+       <td><span class="missed code">    'y' =&gt; 'y',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">777</span></td>
+       <td><span class="missed code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">778</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">779</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">780</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">781</span></td>
+       <td><span class="comment code"> * Format a date popup element.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">782</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">783</span></td>
+       <td><span class="comment code"> * Use a class that will float date and time next to each other.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">784</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">785</span></td>
+       <td><span class="covered code">function theme_date_popup($vars) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">786</span></td>
+       <td><span class="missed code">  $element = $vars['element'];
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">787</span></td>
+       <td><span class="missed code">  $attributes = !empty($element['#wrapper_attributes']) ? $element['#wrapper_attributes'] : array('class' =&gt; array());
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">788</span></td>
+       <td><span class="missed code">  $attributes['class'][] = 'container-inline-date';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">789</span></td>
+       <td><span class="comment code">  // If there is no description, the floating date
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">790</span></td>
+       <td><span class="comment code">  // elements need some extra padding below them.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">791</span></td>
+       <td><span class="missed code">  $wrapper_attributes = array('class' =&gt; array('date-padding'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">792</span></td>
+       <td><span class="missed code">  if (empty($element['date']['#description'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">793</span></td>
+       <td><span class="missed code">    $wrapper_attributes['class'][] = 'clearfix';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">794</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">795</span></td>
+       <td><span class="comment code">  // Add an wrapper to mimic the way a single value field works,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">796</span></td>
+       <td><span class="comment code">  // for ease in using #states.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">797</span></td>
+       <td><span class="missed code">  if (isset($element['#children'])) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">798</span></td>
+       <td><span class="missed code">    $element['#children'] = '&lt;div id=&quot;' . $element['#id'] . '&quot; ' . drupal_attributes($wrapper_attributes) . '&gt;' . $element['#children'] . '&lt;/div&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">799</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">800</span></td>
+       <td><span class="missed code">  return '&lt;div ' . drupal_attributes($attributes) . '&gt;' . theme('form_element', $element) . '&lt;/div&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">801</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">802</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">803</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">804</span></td>
+       <td><span class="comment code"> * Implements hook_menu().
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">805</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">806</span></td>
+       <td><span class="covered code">function date_popup_menu() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">807</span></td>
+       <td><span class="covered code">  $items = array();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">808</span></td>
+       <td><span class="comment code">  // TODO Fix this later.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">809</span></td>
+       <td><span class="covered code">  $items['admin/config/date/date_popup'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">810</span></td>
+       <td><span class="covered code">    'title' =&gt; 'Date Popup',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">811</span></td>
+       <td><span class="covered code">    'description' =&gt; 'Configure the Date Popup settings.',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">812</span></td>
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_get_form',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">813</span></td>
+       <td><span class="covered code">    'page arguments' =&gt; array('date_popup_settings'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">814</span></td>
+       <td><span class="covered code">    'access callback' =&gt; 'user_access',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">815</span></td>
+       <td><span class="covered code">    'access arguments' =&gt; array('administer site configuration'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">816</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">817</span></td>
+       <td><span class="covered code">  return $items;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">818</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">819</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">820</span></td>
+       <td><span class="comment code"> * General configuration form for controlling the Date Popup behaviour.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">821</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">822</span></td>
+       <td><span class="covered code">function date_popup_settings() {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">823</span></td>
+       <td><span class="missed code">  $wvega_available = date_popup_get_wvega_path();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">824</span></td>
+       <td><span class="missed code">  $preferred_timepicker = date_popup_get_preferred_timepicker();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">825</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">826</span></td>
+       <td><span class="missed code">  $form['#prefix'] = t('&lt;p&gt;The Date Popup module allows for manual time entry or use of a jQuery timepicker plugin. The Date module comes with a default jQuery timepicker which is already installed. The module also supports a dropdown timepicker that must be downloaded separately. The dropdown timepicker will not appear as an option until the code is available in the libraries folder. If you do not want to use a jQuery timepicker, you can choose the &quot;Manual time entry&quot; option below and users will get a regular textfield instead.&lt;/p&gt;');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">827</span></td>
+       <td><span class="missed code">  $form['date_popup_timepicker'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">828</span></td>
+       <td><span class="missed code">    '#type' =&gt; 'select',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">829</span></td>
+       <td><span class="comment code">    '#options' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">830</span></td>
+       <td><span class="missed code">      'default' =&gt; t('Use default jQuery timepicker'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">831</span></td>
+       <td><span class="missed code">      'wvega'   =&gt; t('Use dropdown timepicker'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">832</span></td>
+       <td><span class="missed code">      'none'    =&gt; t('Manual time entry, no jQuery timepicker'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">833</span></td>
+       <td><span class="missed code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">834</span></td>
+       <td><span class="missed code">    '#title' =&gt; t('Timepicker'),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">835</span></td>
+       <td><span class="missed code">    '#default_value' =&gt; variable_get('date_popup_timepicker', $preferred_timepicker),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">836</span></td>
+       <td><span class="comment code">  );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">837</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">838</span></td>
+       <td><span class="missed code">  if (!$wvega_available) {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">839</span></td>
+       <td><span class="missed code">    $form['#prefix'] .= t('&lt;p&gt;To install the dropdown timepicker, create a &lt;code&gt;!directory&lt;/code&gt; directory in your site installation. Then visit &lt;a href=&quot;@download&quot;&gt;@download&lt;/a&gt;, download the latest copy and unzip it. You will see files with names like jquery.timepicker-1.1.2.js and jquery.timepicker-1.1.2.css. Rename them to jquery.timepicker.js and jquery.timepicker.css and copy them into &lt;code&gt;!directory&lt;/code&gt;.&lt;/p&gt;', array('!directory' =&gt; 'sites/all/libraries/wvega-timepicker', '@download' =&gt; 'https://github.com/wvega/timepicker/archives/master'));
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">840</span></td>
+       <td><span class="missed code">    unset($form['date_popup_timepicker']['#options']['wvega']);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">841</span></td>
+       <td><span class="missed code">  }
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">842</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">843</span></td>
+       <td><span class="comment code">  $css = &lt;&lt;&lt;EOM
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">844</span></td>
+       <td><span class="comment code">/* ___________ IE6 IFRAME FIX ________ */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">845</span></td>
+       <td><span class="comment code">.ui-datepicker-cover {
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">846</span></td>
+       <td><span class="comment code">  display: none; /*sorry for IE5*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">847</span></td>
+       <td><span class="comment code">  display/**/: block; /*sorry for IE5*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">848</span></td>
+       <td><span class="comment code">  position: absolute; /*must have*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">849</span></td>
+       <td><span class="comment code">  z-index: -1; /*must have*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">850</span></td>
+       <td><span class="comment code">  filter: mask(); /*must have*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">851</span></td>
+       <td><span class="comment code">  top: -4px; /*must have*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">852</span></td>
+       <td><span class="comment code">  left: -4px; /*must have*/ /* LTR */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">853</span></td>
+       <td><span class="comment code">  width: 200px; /*must have*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">854</span></td>
+       <td><span class="comment code">  height: 200px; /*must have*/
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">855</span></td>
+       <td><span class="comment code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">856</span></td>
+       <td><span class="missed code">EOM;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">857</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">858</span></td>
+       <td><span class="missed code">  $form['#suffix'] = t('&lt;p&gt;The Date Popup calendar includes some css for IE6 that breaks css validation. Since IE 6 is now superceded by IE 7, 8, and 9, the special css for IE 6 has been removed from the regular css used by the Date Popup. If you find you need that css after all, you can add it back in your theme. Look at the way the Garland theme adds special IE-only css in in its page.tpl.php file. The css you need is:&lt;/p&gt;') . '&lt;blockquote&gt;&lt;PRE&gt;' . $css . '&lt;/PRE&gt;&lt;/blockquote&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">859</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">860</span></td>
+       <td><span class="missed code">  return system_settings_form($form);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">861</span></td>
+       <td><span class="dead code">}
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">862</span></td>
+       <td><span class="covered code"></span></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Legend</h2>
+<dl>
+  <dt><span class="missed">Missed</span></dt>
+  <dd>lines code that <strong>were not</strong> excersized during program execution.</dd>
+  <dt><span class="covered">Covered</span></dt>
+  <dd>lines code <strong>were</strong> excersized during program execution.</dd>
+  <dt><span class="comment">Comment/non executable</span></dt>
+  <dd>Comment or non-executable line of code.</dd>
+  <dt><span class="dead">Dead</span></dt>
+  <dd>lines of code that according to xdebug could not be executed.  This is counted as coverage code because 
+  in almost all cases it is code that runnable.</dd>
+</dl>
+</body>
+</html>
