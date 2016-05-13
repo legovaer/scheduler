@@ -21,5 +21,7 @@ cd "$DRUPAL_TI_DRUPAL_DIR/$DRUPAL_TI_MODULES_PATH"
 drush en date -y
 
 cd "$DRUPAL_TI_DRUPAL_DIR"
+touch "code-coverage-settings.dat"
+
 php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=sites/all/modules/.*\.php$' '--include=sites/all/modules/.*\.inc$' '--include=sites/all/modules/.*\.module$' '--exclude=sites/all/modules/*/tests/.*'
-sed -i "require 'autocoverage.php';" "$DRUPAL_TI_DRUPAL_DIR/sites/default/settings.php"
+sudo sed -i "require 'autocoverage.php';" "/home/travis/build/legovaer/drupal-7/drupal/sites/default/settings.php"
