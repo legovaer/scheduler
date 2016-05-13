@@ -123,8 +123,10 @@ script:
   - drupal-ti script
 
 after_script:
+  - cd "$DRUPAL_TI_DRUPAL_DIR"
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-close.php
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-report.php
+  - ls -ls "coverage-report/"
   - drupal-ti after_script
 
 notifications:
