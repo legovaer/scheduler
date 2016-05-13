@@ -102,8 +102,9 @@ mysql:
   encoding: utf8
 
 before_install:
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - sudo apt-get install php5-xdebug
-  - yes yes | sudo git clone git@github.com:simpletest/simpletest.git /usr/local/simpletest
+  - sudo git clone git@github.com:simpletest/simpletest.git /usr/local/simpletest
   - composer self-update
   - cd ./tests
   - composer global require "lionsad/drupal_ti:dev-master"
