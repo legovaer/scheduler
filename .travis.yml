@@ -65,9 +65,9 @@ after_script:
 - cd coverage-report/
 - git config credential.helper "store --file=.git/credentials"
 - echo "https://${GH_TOKEN}:x-oauth-basic@github.com" > .git/credentials
-- git add *
+- git add .
 - git commit -m "Added report for $TRAVIS_BUILD_NUMBER"
-- git push
+- git push -f
 - git tag $TRAVIS_BUILD_NUMBER
 - git push --tags
 - drupal-ti after_script
