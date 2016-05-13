@@ -25,7 +25,7 @@ touch "code-coverage-settings.dat"
 sudo chmod +x "code-coverage-settings.dat"
 ls -ls
 wget https://www.drupal.org/files/issues/2189345-39.patch
-wget https://gist.githubusercontent.com/legovaer/7e9edb6767b98847818d6c58cea6bf7c/raw/468907dcef0482db3f51aa144a7b47770284aadb/fix-simpletest.patch
+wget https://gist.githubusercontent.com/legovaer/7e9edb6767b98847818d6c58cea6bf7c/raw/07d21c64b858918c38c2932549362fb24acf447b/fix-simpletest.patch
 git apply -v 2189345-39.patch
 git apply -v fix-simpletest.patch
 
