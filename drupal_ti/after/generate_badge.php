@@ -17,6 +17,8 @@ if (!is_null($elements)) {
   }
 }
 
+echo "Found $percent";
+
 if ($percent == NULL) {
   $url = "https://img.shields.io/badge/coverage-fail-lightgrey.svg";
 }
