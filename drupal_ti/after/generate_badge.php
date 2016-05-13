@@ -32,5 +32,5 @@ else {
   $url = "https://img.shields.io/badge/coverage-$percent-$color.svg";
 }
 
-exec("wget https://img.shields.io/badge/coverage-$percent-$color.svg");
+exec("wget https://img.shields.io/badge/coverage-$percent-$color.svg --secure-protocol=tlsv1");
 exec("mv coverage-$percent-$color.svg badge.svg");
