@@ -1,6 +1,12 @@
 #!/bin/bash
+
 # Add an optional statement to see that this is running in Travis CI.
 echo "running drupal_ti/before/before_script.sh"
+
+cd /home/travis
+git config --global user.email "${GH_EMAIL}"
+git config --global user.name "${GH_NAME}"
+git config --global push.default simple
 
 set -e $DRUPAL_TI_DEBUG
 
