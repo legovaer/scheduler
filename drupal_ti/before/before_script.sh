@@ -19,6 +19,7 @@ cd "$DRUPAL_TI_DRUPAL_DIR/$DRUPAL_TI_MODULES_PATH"
 
 # Manually clone the dependencies
 drush en date -y
+cp -R /home/travis/scheduler /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules/scheduler
 ls -ls /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules
 
 cd "$DRUPAL_TI_DRUPAL_DIR"
@@ -31,4 +32,3 @@ git apply -v 2189345-39.patch
 git apply -v fix-simpletest.patch
 
 php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=sites/all/modules/scheduler/.*\.php$' '--include=sites/all/modules/scheduler/.*\.inc$' '--include=sites/all/modules/scheduler/.*\.module$' '--exclude=sites/all/modules/scheduler/tests/.*'
-cat  /home/travis/build/legovaer/drupal-7/drupal/scripts/run-tests.sh
