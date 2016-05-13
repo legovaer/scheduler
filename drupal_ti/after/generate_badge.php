@@ -17,7 +17,6 @@ if (!is_null($elements)) {
   }
 }
 
-echo "Found $percent";
 
 if ($percent == NULL) {
   $url = "https://img.shields.io/badge/coverage-fail-lightgrey.svg";
@@ -33,13 +32,5 @@ else {
   $url = "https://img.shields.io/badge/coverage-$percent-$color.svg";
 }
 
-$img = "badge.svg";
-
-$ch = curl_init($url);
-$fp = fopen($img, 'wb');
-curl_setopt($ch, CURLOPT_FILE, $fp);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_exec($ch);
-curl_close($ch);
-fclose($fp);
-
+exec("wget https://img.shields.io/badge/coverage-$percent-$color.svg");
+exec("mv coverage-$percent-$color.svg badge.svg");
