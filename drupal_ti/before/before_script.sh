@@ -19,7 +19,9 @@ cd "$DRUPAL_TI_DRUPAL_DIR/$DRUPAL_TI_MODULES_PATH"
 
 # Manually clone the dependencies
 drush en date -y
+drush pm-uninstall scheduler -y
 cp -R /home/travis/scheduler /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules/scheduler
+drush en scheduler -y
 ls -ls /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules
 
 cd "$DRUPAL_TI_DRUPAL_DIR"
@@ -31,5 +33,5 @@ wget https://gist.githubusercontent.com/legovaer/7e9edb6767b98847818d6c58cea6bf7
 git apply -v 2189345-39.patch
 git apply -v fix-simpletest.patch
 
-#php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=sites/all/modules/scheduler/.*\.php$' '--include=sites/all/modules/scheduler/.*\.inc$' '--include=sites/all/modules/scheduler/.*\.module$' '--exclude=sites/all/modules/scheduler/tests/.*'
-php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=*scheduler*.*\.php$' '--include=*scheduler*.*\.inc$' '--include=*scheduler*.*\.module$' '--exclude=*/scheduler/tests/.*'
+php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=sites/all/modules/scheduler/.*\.php$' '--include=sites/all/modules/scheduler/.*\.inc$' '--include=sites/all/modules/scheduler/.*\.module$' '--exclude=sites/all/modules/scheduler/tests/.*'
+#php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=*scheduler*.*\.php$' '--include=*scheduler*.*\.inc$' '--include=*scheduler*.*\.module$' '--exclude=*/scheduler/tests/.*'
