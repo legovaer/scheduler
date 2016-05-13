@@ -102,6 +102,8 @@ mysql:
   encoding: utf8
 
 before_install:
+  - apt-get install php5-xdebug
+  - git clone git@github.com:simpletest/simpletest.git /usr/local/simpletest
   - composer self-update
   - cd ./tests
   - composer global require "lionsad/drupal_ti:dev-master"
@@ -121,6 +123,8 @@ script:
   - drupal-ti script
 
 after_script:
+  - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-close.php
+  - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-report.php
   - drupal-ti after_script
 
 notifications:
