@@ -112,6 +112,9 @@ install:
 
 before_script:
   - drush dl date -y
+  - cd "$DRUPAL_TI_DRUPAL_DIR"
+  - wget https://www.drupal.org/files/issues/2189345-39.patch
+  - git apply -v 2189345-39.patch
   - drupal-ti before_script
 
 script:
