@@ -70,7 +70,7 @@ after_script:
 - echo "https://${GH_TOKEN}:x-oauth-basic@github.com" > .git/credentials
 - php "$TRAVIS_BUILD_DIR/drupal_ti/after/generate_badge.php"
 - git add .
-- git commit -m "Added report for $TRAVIS_BUILD_NUMBER"
+- git commit -m "Added report for $TRAVIS_JOB_NUMBER"
 - git push -f
 - git tag $TRAVIS_BUILD_NUMBER
 - git push --tags

@@ -1,6 +1,9 @@
 
-README
---------------------------------------------------------------------------
+[![Coverage](https://rawgit.com/legovaer/scheduler/7.x-1.x-reports/badge.svg)]
+(https://rawgit.com/legovaer/scheduler/7.x-1.x-reports/index.html)
+
+# Scheduler
+
 This module allows nodes to be published and unpublished on specified dates.
 
 Dates can be entered either as plain text or with Javascript calendar

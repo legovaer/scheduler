@@ -22,16 +22,13 @@ drush en date -y
 drush pm-uninstall scheduler -y
 cp -R /home/travis/scheduler /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules/scheduler
 drush en scheduler -y
-ls -ls /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules
 
 cd "$DRUPAL_TI_DRUPAL_DIR"
 touch "code-coverage-settings.dat"
 sudo chmod +x "code-coverage-settings.dat"
-ls -ls
 wget https://www.drupal.org/files/issues/2189345-39.patch
 wget https://gist.githubusercontent.com/legovaer/7e9edb6767b98847818d6c58cea6bf7c/raw/07d21c64b858918c38c2932549362fb24acf447b/fix-simpletest.patch
 git apply -v 2189345-39.patch
 git apply -v fix-simpletest.patch
 
 php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=sites/all/modules/scheduler/.*\.php$' '--include=sites/all/modules/scheduler/.*\.inc$' '--include=sites/all/modules/scheduler/.*\.module$' '--exclude=sites/all/modules/scheduler/tests/.*'
-#php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=*scheduler*.*\.php$' '--include=*scheduler*.*\.inc$' '--include=*scheduler*.*\.module$' '--exclude=*/scheduler/tests/.*'
