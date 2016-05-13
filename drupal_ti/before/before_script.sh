@@ -32,4 +32,4 @@ git apply -v 2189345-39.patch
 git apply -v fix-simpletest.patch
 
 #php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=sites/all/modules/scheduler/.*\.php$' '--include=sites/all/modules/scheduler/.*\.inc$' '--include=sites/all/modules/scheduler/.*\.module$' '--exclude=sites/all/modules/scheduler/tests/.*'
-php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=/home/travis/build/legovaer/scheduler/.*\.php$' '--include=/home/travis/build/legovaer/scheduler.*\.inc$' '--include=/home/travis/build/legovaer/scheduler.*\.module$' '--exclude=/home/travis/build/legovaer/schedulertests/.*'
+php /usr/local/simpletest/extensions/coverage/bin/php-coverage-open.php '--include=*scheduler*.*\.php$' '--include=*scheduler*.*\.inc$' '--include=*scheduler*.*\.module$' '--exclude=*/scheduler/tests/.*'
