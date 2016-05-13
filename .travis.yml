@@ -125,9 +125,16 @@ script:
 after_script:
   - cd "/home/travis/build/legovaer/drupal-7/drupal"
   - ls -ls
+  - git clone 7.x-1.x-reports https://github.com/legovaer/scheduler.git coverage-report
+  - rm -rf coverage-report/*
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-close.php
   - php /usr/local/simpletest/extensions/coverage/bin/php-coverage-report.php
-  - ls -ls "coverage-report/"
+  - cd coverage-report/
+  - git add *
+  - git commit -m "Added report for $TRAVIS_BUILD_NUMBER"
+  - git push
+  - git tag $TRAVIS_BUILD_NUMBER
+  - git push --tags
   - drupal-ti after_script
 
 notifications:
