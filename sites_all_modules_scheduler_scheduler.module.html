@@ -178,17 +178,17 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">29</span></td>
-       <td><span class="missed code">      'title' =&gt; t('Administer scheduler'),
+       <td><span class="covered code">      'title' =&gt; t('Administer scheduler'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">30</span></td>
-       <td><span class="missed code">      'description' =&gt; t('Configure scheduler date formats, pop-up calendar, default times, lightweight cron'),
+       <td><span class="covered code">      'description' =&gt; t('Configure scheduler date formats, pop-up calendar, default times, lightweight cron'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">31</span></td>
-       <td><span class="missed code">    ),
+       <td><span class="covered code">    ),
 </span></td>
     </tr>
     <tr>
@@ -198,42 +198,42 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">33</span></td>
-       <td><span class="missed code">      'title' =&gt; t('Schedule content publication'),
+       <td><span class="covered code">      'title' =&gt; t('Schedule content publication'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">34</span></td>
-       <td><span class="missed code">      'description' =&gt; t('Allows users to set a start and end time for content publication'),
+       <td><span class="covered code">      'description' =&gt; t('Allows users to set a start and end time for content publication'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">35</span></td>
-       <td><span class="missed code">    ),
+       <td><span class="covered code">    ),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">36</span></td>
-       <td><span class="comment code">    'view scheduled content' =&gt; array(
+       <td><span class="covered code">    'view scheduled content' =&gt; array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">37</span></td>
-       <td><span class="missed code">      'title' =&gt; t('View scheduled content list'),
+       <td><span class="covered code">      'title' =&gt; t('View scheduled content list'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">38</span></td>
-       <td><span class="missed code">      'description' =&gt; t('Allows users to see all content which is scheduled.'),
+       <td><span class="covered code">      'description' =&gt; t('Allows users to see all content which is scheduled.'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">39</span></td>
-       <td><span class="missed code">    ),
+       <td><span class="covered code">    ),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">40</span></td>
-       <td><span class="missed code">  );
+       <td><span class="covered code">  );
 </span></td>
     </tr>
     <tr>
@@ -268,47 +268,47 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">47</span></td>
-       <td><span class="missed code">  $items = array();
+       <td><span class="covered code">  $items = array();
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">48</span></td>
-       <td><span class="missed code">  $items['scheduler/cron'] = array(
+       <td><span class="covered code">  $items['scheduler/cron'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">49</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Lightweight cron handler',
+       <td><span class="covered code">    'title' =&gt; 'Lightweight cron handler',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">50</span></td>
-       <td><span class="missed code">    'description' =&gt; 'Run the lightweight cron process',
+       <td><span class="covered code">    'description' =&gt; 'Run the lightweight cron process',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">51</span></td>
-       <td><span class="missed code">    'page callback' =&gt; '_scheduler_run_cron',
+       <td><span class="covered code">    'page callback' =&gt; '_scheduler_run_cron',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">52</span></td>
-       <td><span class="missed code">    'access callback' =&gt; '_scheduler_cron_access',
+       <td><span class="covered code">    'access callback' =&gt; '_scheduler_cron_access',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">53</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array(2),
+       <td><span class="covered code">    'access arguments' =&gt; array(2),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">54</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_CALLBACK,
+       <td><span class="covered code">    'type' =&gt; MENU_CALLBACK,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">55</span></td>
-       <td><span class="missed code">    'file' =&gt; 'scheduler.cron.inc',
+       <td><span class="covered code">    'file' =&gt; 'scheduler.cron.inc',
 </span></td>
     </tr>
     <tr>
@@ -328,27 +328,27 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">59</span></td>
-       <td><span class="missed code">  $items['scheduler/timecheck'] = array(
+       <td><span class="covered code">  $items['scheduler/timecheck'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">60</span></td>
-       <td><span class="missed code">    'page callback' =&gt; 'drupal_goto',
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_goto',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">61</span></td>
-       <td><span class="missed code">    'page arguments' =&gt; array('admin/config/content/scheduler/timecheck'),
+       <td><span class="covered code">    'page arguments' =&gt; array('admin/config/content/scheduler/timecheck'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">62</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array('administer scheduler'),
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">63</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_CALLBACK,
+       <td><span class="covered code">    'type' =&gt; MENU_CALLBACK,
 </span></td>
     </tr>
     <tr>
@@ -358,42 +358,42 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">65</span></td>
-       <td><span class="missed code">  $items['admin/config/content/scheduler'] = array(
+       <td><span class="covered code">  $items['admin/config/content/scheduler'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">66</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Scheduler',
+       <td><span class="covered code">    'title' =&gt; 'Scheduler',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">67</span></td>
-       <td><span class="missed code">    'description' =&gt; &quot;Configure settings for scheduled publishing and unpublishing, run the lightweight cron and check your servers clock time.&quot;,
+       <td><span class="covered code">    'description' =&gt; &quot;Configure settings for scheduled publishing and unpublishing, run the lightweight cron and check your servers clock time.&quot;,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">68</span></td>
-       <td><span class="missed code">    'page callback' =&gt; 'drupal_get_form',
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_get_form',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">69</span></td>
-       <td><span class="missed code">    'page arguments' =&gt; array('scheduler_admin'),
+       <td><span class="covered code">    'page arguments' =&gt; array('scheduler_admin'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">70</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array('administer scheduler'),
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">71</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_NORMAL_ITEM,
+       <td><span class="covered code">    'type' =&gt; MENU_NORMAL_ITEM,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">72</span></td>
-       <td><span class="missed code">    'file' =&gt; 'scheduler.admin.inc',
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
 </span></td>
     </tr>
     <tr>
@@ -403,22 +403,22 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">74</span></td>
-       <td><span class="missed code">  $items['admin/config/content/scheduler/default'] = array(
+       <td><span class="covered code">  $items['admin/config/content/scheduler/default'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">75</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Settings',
+       <td><span class="covered code">    'title' =&gt; 'Settings',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">76</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_DEFAULT_LOCAL_TASK,
+       <td><span class="covered code">    'type' =&gt; MENU_DEFAULT_LOCAL_TASK,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">77</span></td>
-       <td><span class="missed code">    'weight' =&gt; 5,
+       <td><span class="covered code">    'weight' =&gt; 5,
 </span></td>
     </tr>
     <tr>
@@ -428,47 +428,47 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">79</span></td>
-       <td><span class="missed code">  $items['admin/config/content/scheduler/cron'] = array(
+       <td><span class="covered code">  $items['admin/config/content/scheduler/cron'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">80</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Lightweight Cron',
+       <td><span class="covered code">    'title' =&gt; 'Lightweight Cron',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">81</span></td>
-       <td><span class="missed code">    'description' =&gt; 'A lightweight cron handler to allow more frequent runs of Schedulers internal cron system.',
+       <td><span class="covered code">    'description' =&gt; 'A lightweight cron handler to allow more frequent runs of Schedulers internal cron system.',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">82</span></td>
-       <td><span class="missed code">    'page callback' =&gt; 'drupal_get_form',
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_get_form',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">83</span></td>
-       <td><span class="missed code">    'page arguments' =&gt; array('_scheduler_lightweight_cron'),
+       <td><span class="covered code">    'page arguments' =&gt; array('_scheduler_lightweight_cron'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">84</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array('administer scheduler'),
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">85</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_LOCAL_TASK,
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">86</span></td>
-       <td><span class="missed code">    'weight' =&gt; 10,
+       <td><span class="covered code">    'weight' =&gt; 10,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">87</span></td>
-       <td><span class="missed code">    'file' =&gt; 'scheduler.admin.inc',
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
 </span></td>
     </tr>
     <tr>
@@ -478,42 +478,42 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">89</span></td>
-       <td><span class="missed code">  $items['admin/config/content/scheduler/timecheck'] = array(
+       <td><span class="covered code">  $items['admin/config/content/scheduler/timecheck'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">90</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Time Check',
+       <td><span class="covered code">    'title' =&gt; 'Time Check',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">91</span></td>
-       <td><span class="missed code">    'description' =&gt; 'Allows site admin to check their servers internal clock',
+       <td><span class="covered code">    'description' =&gt; 'Allows site admin to check their servers internal clock',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">92</span></td>
-       <td><span class="missed code">    'page callback' =&gt; '_scheduler_timecheck',
+       <td><span class="covered code">    'page callback' =&gt; '_scheduler_timecheck',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">93</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array('administer scheduler'),
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">94</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_LOCAL_TASK,
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">95</span></td>
-       <td><span class="missed code">    'weight' =&gt; 15,
+       <td><span class="covered code">    'weight' =&gt; 15,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">96</span></td>
-       <td><span class="missed code">    'file' =&gt; 'scheduler.admin.inc',
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
 </span></td>
     </tr>
     <tr>
@@ -523,47 +523,47 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">98</span></td>
-       <td><span class="missed code">  $items['admin/content/scheduler'] = array(
+       <td><span class="covered code">  $items['admin/content/scheduler'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">99</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Scheduled',
+       <td><span class="covered code">    'title' =&gt; 'Scheduled',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">100</span></td>
-       <td><span class="missed code">    'page callback' =&gt; 'scheduler_list',
+       <td><span class="covered code">    'page callback' =&gt; 'scheduler_list',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">101</span></td>
-       <td><span class="missed code">    'page arguments' =&gt; array(NULL, NULL),
+       <td><span class="covered code">    'page arguments' =&gt; array(NULL, NULL),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">102</span></td>
-       <td><span class="missed code">    'access callback' =&gt; 'scheduler_list_access_callback',
+       <td><span class="covered code">    'access callback' =&gt; 'scheduler_list_access_callback',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">103</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array(NULL),
+       <td><span class="covered code">    'access arguments' =&gt; array(NULL),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">104</span></td>
-       <td><span class="missed code">    'description' =&gt; 'Display a list of scheduled nodes',
+       <td><span class="covered code">    'description' =&gt; 'Display a list of scheduled nodes',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">105</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_LOCAL_TASK,
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">106</span></td>
-       <td><span class="missed code">    'file' =&gt; 'scheduler.admin.inc',
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
 </span></td>
     </tr>
     <tr>
@@ -578,22 +578,22 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">109</span></td>
-       <td><span class="missed code">  $items['admin/config/content/scheduler/list'] = array(
+       <td><span class="covered code">  $items['admin/config/content/scheduler/list'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">110</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Scheduled Content',
+       <td><span class="covered code">    'title' =&gt; 'Scheduled Content',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">111</span></td>
-       <td><span class="missed code">    'weight' =&gt; 20,
+       <td><span class="covered code">    'weight' =&gt; 20,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">112</span></td>
-       <td><span class="missed code">  ) + $items['admin/content/scheduler'];
+       <td><span class="covered code">  ) + $items['admin/content/scheduler'];
 </span></td>
     </tr>
     <tr>
@@ -618,42 +618,42 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">117</span></td>
-       <td><span class="missed code">  $items['admin/content/scheduler/delete/%'] = array(
+       <td><span class="covered code">  $items['admin/content/scheduler/delete/%'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">118</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Delete Scheduled Data',
+       <td><span class="covered code">    'title' =&gt; 'Delete Scheduled Data',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">119</span></td>
-       <td><span class="missed code">    'description' =&gt; 'Delete obsolete rows from Scheduler table',
+       <td><span class="covered code">    'description' =&gt; 'Delete obsolete rows from Scheduler table',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">120</span></td>
-       <td><span class="missed code">    'page callback' =&gt; 'drupal_get_form',
+       <td><span class="covered code">    'page callback' =&gt; 'drupal_get_form',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">121</span></td>
-       <td><span class="missed code">    'page arguments' =&gt; array('_scheduler_delete_row_confirm', 4),
+       <td><span class="covered code">    'page arguments' =&gt; array('_scheduler_delete_row_confirm', 4),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">122</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array('administer scheduler'),
+       <td><span class="covered code">    'access arguments' =&gt; array('administer scheduler'),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">123</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_CALLBACK,
+       <td><span class="covered code">    'type' =&gt; MENU_CALLBACK,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">124</span></td>
-       <td><span class="missed code">    'file' =&gt; 'scheduler.admin.inc',
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
 </span></td>
     </tr>
     <tr>
@@ -663,17 +663,17 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">126</span></td>
-       <td><span class="missed code">  $items['user/%/scheduler'] = array(
+       <td><span class="covered code">  $items['user/%/scheduler'] = array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">127</span></td>
-       <td><span class="missed code">    'title' =&gt; 'Scheduled',
+       <td><span class="covered code">    'title' =&gt; 'Scheduled',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">128</span></td>
-       <td><span class="missed code">    'page callback' =&gt; 'scheduler_list',
+       <td><span class="covered code">    'page callback' =&gt; 'scheduler_list',
 </span></td>
     </tr>
     <tr>
@@ -683,32 +683,32 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">130</span></td>
-       <td><span class="missed code">    'page arguments' =&gt; array('user_only', 1),
+       <td><span class="covered code">    'page arguments' =&gt; array('user_only', 1),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">131</span></td>
-       <td><span class="missed code">    'access callback' =&gt; 'scheduler_list_access_callback',
+       <td><span class="covered code">    'access callback' =&gt; 'scheduler_list_access_callback',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">132</span></td>
-       <td><span class="missed code">    'access arguments' =&gt; array(1),
+       <td><span class="covered code">    'access arguments' =&gt; array(1),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">133</span></td>
-       <td><span class="missed code">    'description' =&gt; 'Display a list of scheduled nodes',
+       <td><span class="covered code">    'description' =&gt; 'Display a list of scheduled nodes',
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">134</span></td>
-       <td><span class="missed code">    'type' =&gt; MENU_LOCAL_TASK,
+       <td><span class="covered code">    'type' =&gt; MENU_LOCAL_TASK,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">135</span></td>
-       <td><span class="missed code">    'file' =&gt; 'scheduler.admin.inc',
+       <td><span class="covered code">    'file' =&gt; 'scheduler.admin.inc',
 </span></td>
     </tr>
     <tr>
@@ -718,7 +718,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">137</span></td>
-       <td><span class="missed code">  return $items;
+       <td><span class="covered code">  return $items;
 </span></td>
     </tr>
     <tr>
@@ -1273,7 +1273,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">248</span></td>
-       <td><span class="missed code">  $result = TRUE;
+       <td><span class="covered code">  $result = TRUE;
 </span></td>
     </tr>
     <tr>
@@ -1283,27 +1283,27 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">250</span></td>
-       <td><span class="missed code">  $hook = 'scheduler_allow_' . $action . 'ing';
+       <td><span class="covered code">  $hook = 'scheduler_allow_' . $action . 'ing';
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">251</span></td>
-       <td><span class="missed code">  foreach (module_implements($hook) as $module) {
+       <td><span class="covered code">  foreach (module_implements($hook) as $module) {
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">252</span></td>
-       <td><span class="missed code">    $function = $module . '_' . $hook;
+       <td><span class="covered code">    $function = $module . '_' . $hook;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">253</span></td>
-       <td><span class="missed code">    $result &amp;= $function($node);
+       <td><span class="covered code">    $result &amp;= $function($node);
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">254</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
@@ -1313,7 +1313,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">256</span></td>
-       <td><span class="missed code">  return $result;
+       <td><span class="covered code">  return $result;
 </span></td>
     </tr>
     <tr>
@@ -2248,37 +2248,37 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">443</span></td>
-       <td><span class="missed code">  $nids = array_keys($nodes);
+       <td><span class="covered code">  $nids = array_keys($nodes);
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">444</span></td>
-       <td><span class="missed code">  $result = db_query('SELECT * FROM {scheduler} WHERE nid IN (:nids)', array(':nids' =&gt; $nids));
+       <td><span class="covered code">  $result = db_query('SELECT * FROM {scheduler} WHERE nid IN (:nids)', array(':nids' =&gt; $nids));
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">445</span></td>
-       <td><span class="missed code">  foreach ($result as $record) {
+       <td><span class="covered code">  foreach ($result as $record) {
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">446</span></td>
-       <td><span class="missed code">    $nid = $record-&gt;nid;
+       <td><span class="covered code">    $nid = $record-&gt;nid;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">447</span></td>
-       <td><span class="missed code">    $nodes[$nid]-&gt;publish_on = $record-&gt;publish_on;
+       <td><span class="covered code">    $nodes[$nid]-&gt;publish_on = $record-&gt;publish_on;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">448</span></td>
-       <td><span class="missed code">    $nodes[$nid]-&gt;unpublish_on = $record-&gt;unpublish_on;
+       <td><span class="covered code">    $nodes[$nid]-&gt;unpublish_on = $record-&gt;unpublish_on;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">449</span></td>
-       <td><span class="missed code">    $row = array();
+       <td><span class="covered code">    $row = array();
 </span></td>
     </tr>
     <tr>
@@ -2303,12 +2303,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">454</span></td>
-       <td><span class="missed code">    $row['published'] = $record-&gt;publish_on ? date(variable_get('date_format_long', 'l, F j, Y - H:i'), $record-&gt;publish_on) : NULL;
+       <td><span class="covered code">    $row['published'] = $record-&gt;publish_on ? date(variable_get('date_format_long', 'l, F j, Y - H:i'), $record-&gt;publish_on) : NULL;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">455</span></td>
-       <td><span class="missed code">    $row['unpublished'] = $record-&gt;unpublish_on ? date(variable_get('date_format_long', 'l, F j, Y - H:i'), $record-&gt;unpublish_on) : NULL;
+       <td><span class="covered code">    $row['unpublished'] = $record-&gt;unpublish_on ? date(variable_get('date_format_long', 'l, F j, Y - H:i'), $record-&gt;unpublish_on) : NULL;
 </span></td>
     </tr>
     <tr>
@@ -2338,27 +2338,27 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">461</span></td>
-       <td><span class="missed code">    $row['publish_on'] = $record-&gt;publish_on;
+       <td><span class="covered code">    $row['publish_on'] = $record-&gt;publish_on;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">462</span></td>
-       <td><span class="missed code">    $row['unpublish_on'] = $record-&gt;unpublish_on;
+       <td><span class="covered code">    $row['unpublish_on'] = $record-&gt;unpublish_on;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">463</span></td>
-       <td><span class="missed code">    $nodes[$nid]-&gt;scheduler = $row;
+       <td><span class="covered code">    $nodes[$nid]-&gt;scheduler = $row;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">464</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">465</span></td>
-       <td><span class="missed code">}
+       <td><span class="covered code">}
 </span></td>
     </tr>
     <tr>
@@ -2773,12 +2773,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">548</span></td>
-       <td><span class="missed code">  foreach (array('publish_on', 'unpublish_on') as $key) {
+       <td><span class="covered code">  foreach (array('publish_on', 'unpublish_on') as $key) {
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">549</span></td>
-       <td><span class="missed code">    if (empty($node-&gt;$key) || is_array($node-&gt;$key)) {
+       <td><span class="covered code">    if (empty($node-&gt;$key) || is_array($node-&gt;$key)) {
 </span></td>
     </tr>
     <tr>
@@ -2788,17 +2788,17 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">551</span></td>
-       <td><span class="missed code">      $node-&gt;$key = 0;
+       <td><span class="covered code">      $node-&gt;$key = 0;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">552</span></td>
-       <td><span class="missed code">    }
+       <td><span class="covered code">    }
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">553</span></td>
-       <td><span class="missed code">    elseif (!is_numeric($node-&gt;$key)) {
+       <td><span class="covered code">    elseif (!is_numeric($node-&gt;$key)) {
 </span></td>
     </tr>
     <tr>
@@ -2818,7 +2818,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">557</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
@@ -2828,7 +2828,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">559</span></td>
-       <td><span class="missed code">  if ($node-&gt;publish_on &gt; 0) {
+       <td><span class="covered code">  if ($node-&gt;publish_on &gt; 0) {
 </span></td>
     </tr>
     <tr>
@@ -2838,7 +2838,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">561</span></td>
-       <td><span class="missed code">    $publication_allowed = _scheduler_allow($node, 'publish');
+       <td><span class="covered code">    $publication_allowed = _scheduler_allow($node, 'publish');
 </span></td>
     </tr>
     <tr>
@@ -2853,12 +2853,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">564</span></td>
-       <td><span class="missed code">    $publish_immediately = variable_get('scheduler_publish_past_date_' . $node-&gt;type, 'error') == 'publish';
+       <td><span class="covered code">    $publish_immediately = variable_get('scheduler_publish_past_date_' . $node-&gt;type, 'error') == 'publish';
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">565</span></td>
-       <td><span class="missed code">    if ($publication_allowed &amp;&amp; $publish_immediately &amp;&amp; $node-&gt;publish_on &lt;= REQUEST_TIME) {
+       <td><span class="covered code">    if ($publication_allowed &amp;&amp; $publish_immediately &amp;&amp; $node-&gt;publish_on &lt;= REQUEST_TIME) {
 </span></td>
     </tr>
     <tr>
@@ -2868,7 +2868,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">567</span></td>
-       <td><span class="missed code">      if (variable_get('scheduler_publish_touch_' . $node-&gt;type, 0) == 1) {
+       <td><span class="covered code">      if (variable_get('scheduler_publish_touch_' . $node-&gt;type, 0) == 1) {
 </span></td>
     </tr>
     <tr>
@@ -2883,12 +2883,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">570</span></td>
-       <td><span class="missed code">      $node-&gt;publish_on = 0;
+       <td><span class="covered code">      $node-&gt;publish_on = 0;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">571</span></td>
-       <td><span class="missed code">      $node-&gt;status = 1;
+       <td><span class="covered code">      $node-&gt;status = 1;
 </span></td>
     </tr>
     <tr>
@@ -2898,12 +2898,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">573</span></td>
-       <td><span class="missed code">      _scheduler_scheduler_api($node, 'publish_immediately');
+       <td><span class="covered code">      _scheduler_scheduler_api($node, 'publish_immediately');
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">574</span></td>
-       <td><span class="missed code">    }
+       <td><span class="covered code">    }
 </span></td>
     </tr>
     <tr>
@@ -2918,7 +2918,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">577</span></td>
-       <td><span class="missed code">      $node-&gt;status = 0;
+       <td><span class="covered code">      $node-&gt;status = 0;
 </span></td>
     </tr>
     <tr>
@@ -2943,22 +2943,22 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">582</span></td>
-       <td><span class="missed code">      if ($publication_allowed) {
+       <td><span class="covered code">      if ($publication_allowed) {
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">583</span></td>
-       <td><span class="missed code">        $date_format = variable_get('scheduler_date_format', SCHEDULER_DATE_FORMAT);
+       <td><span class="covered code">        $date_format = variable_get('scheduler_date_format', SCHEDULER_DATE_FORMAT);
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">584</span></td>
-       <td><span class="missed code">        drupal_set_message(t('This post is unpublished and will be published @publish_time.', array('@publish_time' =&gt; format_date($node-&gt;publish_on, 'custom', $date_format))), 'status', FALSE);
+       <td><span class="covered code">        drupal_set_message(t('This post is unpublished and will be published @publish_time.', array('@publish_time' =&gt; format_date($node-&gt;publish_on, 'custom', $date_format))), 'status', FALSE);
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">585</span></td>
-       <td><span class="missed code">      }
+       <td><span class="covered code">      }
 </span></td>
     </tr>
     <tr>
@@ -2968,12 +2968,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">587</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">588</span></td>
-       <td><span class="missed code">}
+       <td><span class="covered code">}
 </span></td>
     </tr>
     <tr>
@@ -3008,32 +3008,32 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">595</span></td>
-       <td><span class="missed code">  if (!empty($node-&gt;publish_on) || !empty($node-&gt;unpublish_on)) {
+       <td><span class="covered code">  if (!empty($node-&gt;publish_on) || !empty($node-&gt;unpublish_on)) {
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">596</span></td>
-       <td><span class="missed code">    db_insert('scheduler')-&gt;fields(array(
+       <td><span class="covered code">    db_insert('scheduler')-&gt;fields(array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">597</span></td>
-       <td><span class="missed code">      'nid' =&gt; $node-&gt;nid,
+       <td><span class="covered code">      'nid' =&gt; $node-&gt;nid,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">598</span></td>
-       <td><span class="missed code">      'publish_on' =&gt; $node-&gt;publish_on,
+       <td><span class="covered code">      'publish_on' =&gt; $node-&gt;publish_on,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">599</span></td>
-       <td><span class="missed code">      'unpublish_on' =&gt; $node-&gt;unpublish_on,
+       <td><span class="covered code">      'unpublish_on' =&gt; $node-&gt;unpublish_on,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">600</span></td>
-       <td><span class="missed code">    ))-&gt;execute();
+       <td><span class="covered code">    ))-&gt;execute();
 </span></td>
     </tr>
     <tr>
@@ -3048,7 +3048,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">603</span></td>
-       <td><span class="missed code">    if (module_exists('rules')) {
+       <td><span class="covered code">    if (module_exists('rules')) {
 </span></td>
     </tr>
     <tr>
@@ -3088,12 +3088,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">611</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">612</span></td>
-       <td><span class="missed code">}
+       <td><span class="covered code">}
 </span></td>
     </tr>
     <tr>
@@ -3138,27 +3138,27 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">621</span></td>
-       <td><span class="missed code">  if (!empty($node-&gt;publish_on) || !empty($node-&gt;unpublish_on)) {
+       <td><span class="covered code">  if (!empty($node-&gt;publish_on) || !empty($node-&gt;unpublish_on)) {
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">622</span></td>
-       <td><span class="missed code">    db_merge('scheduler')-&gt;key(array('nid' =&gt; $node-&gt;nid))-&gt;fields(array(
+       <td><span class="covered code">    db_merge('scheduler')-&gt;key(array('nid' =&gt; $node-&gt;nid))-&gt;fields(array(
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">623</span></td>
-       <td><span class="missed code">      'publish_on' =&gt; $node-&gt;publish_on,
+       <td><span class="covered code">      'publish_on' =&gt; $node-&gt;publish_on,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">624</span></td>
-       <td><span class="missed code">      'unpublish_on' =&gt; $node-&gt;unpublish_on,
+       <td><span class="covered code">      'unpublish_on' =&gt; $node-&gt;unpublish_on,
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">625</span></td>
-       <td><span class="missed code">    ))-&gt;execute();
+       <td><span class="covered code">    ))-&gt;execute();
 </span></td>
     </tr>
     <tr>
@@ -3173,7 +3173,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">628</span></td>
-       <td><span class="missed code">    if (module_exists('rules')) {
+       <td><span class="covered code">    if (module_exists('rules')) {
 </span></td>
     </tr>
     <tr>
@@ -3213,7 +3213,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">636</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
@@ -3223,7 +3223,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">638</span></td>
-       <td><span class="missed code">    scheduler_node_delete($node);
+       <td><span class="covered code">    scheduler_node_delete($node);
 </span></td>
     </tr>
     <tr>
@@ -3233,7 +3233,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">640</span></td>
-       <td><span class="missed code">}
+       <td><span class="covered code">}
 </span></td>
     </tr>
     <tr>
@@ -3263,12 +3263,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">646</span></td>
-       <td><span class="missed code">  db_delete('scheduler')-&gt;condition('nid', $node-&gt;nid)-&gt;execute();
+       <td><span class="covered code">  db_delete('scheduler')-&gt;condition('nid', $node-&gt;nid)-&gt;execute();
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">647</span></td>
-       <td><span class="missed code">}
+       <td><span class="covered code">}
 </span></td>
     </tr>
     <tr>
@@ -3403,7 +3403,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">674</span></td>
-       <td><span class="missed code">  module_load_include('inc', 'scheduler', 'scheduler.cron');
+       <td><span class="covered code">  module_load_include('inc', 'scheduler', 'scheduler.cron');
 </span></td>
     </tr>
     <tr>
@@ -3453,7 +3453,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">684</span></td>
-       <td><span class="missed code">  if (module_exists('i18n_sync')) {
+       <td><span class="covered code">  if (module_exists('i18n_sync')) {
 </span></td>
     </tr>
     <tr>
@@ -3493,12 +3493,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">692</span></td>
-       <td><span class="missed code">  $scheduler_cron = &amp;drupal_static(__FUNCTION__, FALSE);
+       <td><span class="covered code">  $scheduler_cron = &amp;drupal_static(__FUNCTION__, FALSE);
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">693</span></td>
-       <td><span class="missed code">  $scheduler_cron = TRUE;
+       <td><span class="covered code">  $scheduler_cron = TRUE;
 </span></td>
     </tr>
     <tr>
@@ -3523,17 +3523,17 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">698</span></td>
-       <td><span class="missed code">  $nodes_published = _scheduler_publish();
+       <td><span class="covered code">  $nodes_published = _scheduler_publish();
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">699</span></td>
-       <td><span class="missed code">  $nodes_unpublished = _scheduler_unpublish();
+       <td><span class="covered code">  $nodes_unpublished = _scheduler_unpublish();
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">700</span></td>
-       <td><span class="missed code">  if (variable_get('scheduler_cache_clear_all', 0) &amp;&amp; ($nodes_published || $nodes_unpublished)) {
+       <td><span class="covered code">  if (variable_get('scheduler_cache_clear_all', 0) &amp;&amp; ($nodes_published || $nodes_unpublished)) {
 </span></td>
     </tr>
     <tr>
@@ -3543,12 +3543,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">702</span></td>
-       <td><span class="missed code">    cache_clear_all();
+       <td><span class="covered code">    cache_clear_all();
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">703</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
@@ -3563,7 +3563,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">706</span></td>
-       <td><span class="missed code">  drupal_static_reset(__FUNCTION__);
+       <td><span class="covered code">  drupal_static_reset(__FUNCTION__);
 </span></td>
     </tr>
     <tr>
@@ -3578,12 +3578,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">709</span></td>
-       <td><span class="missed code">  module_exists('i18n_sync') ? i18n_sync($i18n_sync_saved_state) : NULL;
+       <td><span class="covered code">  module_exists('i18n_sync') ? i18n_sync($i18n_sync_saved_state) : NULL;
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">710</span></td>
-       <td><span class="missed code">}
+       <td><span class="covered code">}
 </span></td>
     </tr>
     <tr>
@@ -3788,7 +3788,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">751</span></td>
-       <td><span class="missed code">  foreach (module_implements('scheduler_api') as $module) {
+       <td><span class="covered code">  foreach (module_implements('scheduler_api') as $module) {
 </span></td>
     </tr>
     <tr>
@@ -3803,12 +3803,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">754</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">755</span></td>
-       <td><span class="missed code">}
+       <td><span class="covered code">}
 </span></td>
     </tr>
     <tr>
@@ -3848,17 +3848,17 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">763</span></td>
-       <td><span class="missed code">      'arguments' =&gt; array('now' =&gt; NULL),
+       <td><span class="covered code">      'arguments' =&gt; array('now' =&gt; NULL),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">764</span></td>
-       <td><span class="missed code">    ),
+       <td><span class="covered code">    ),
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">765</span></td>
-       <td><span class="missed code">  );
+       <td><span class="covered code">  );
 </span></td>
     </tr>
     <tr>
@@ -3933,7 +3933,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">780</span></td>
-       <td><span class="missed code">  $fields = array();
+       <td><span class="covered code">  $fields = array();
 </span></td>
     </tr>
     <tr>
@@ -3943,22 +3943,22 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">782</span></td>
-       <td><span class="missed code">  foreach (node_type_get_types() as $type) {
+       <td><span class="covered code">  foreach (node_type_get_types() as $type) {
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">783</span></td>
-       <td><span class="missed code">    $publishing_enabled = variable_get('scheduler_publish_enable_' . $type-&gt;type, 0);
+       <td><span class="covered code">    $publishing_enabled = variable_get('scheduler_publish_enable_' . $type-&gt;type, 0);
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">784</span></td>
-       <td><span class="missed code">    $unpublishing_enabled = variable_get('scheduler_unpublish_enable_' . $type-&gt;type, 0);
+       <td><span class="covered code">    $unpublishing_enabled = variable_get('scheduler_unpublish_enable_' . $type-&gt;type, 0);
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">785</span></td>
-       <td><span class="missed code">    $use_vertical_tabs = variable_get('scheduler_use_vertical_tabs_' . $type-&gt;type, 1);
+       <td><span class="covered code">    $use_vertical_tabs = variable_get('scheduler_use_vertical_tabs_' . $type-&gt;type, 1);
 </span></td>
     </tr>
     <tr>
@@ -3968,7 +3968,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">787</span></td>
-       <td><span class="missed code">    if (($publishing_enabled || $unpublishing_enabled) &amp;&amp; !$use_vertical_tabs) {
+       <td><span class="covered code">    if (($publishing_enabled || $unpublishing_enabled) &amp;&amp; !$use_vertical_tabs) {
 </span></td>
     </tr>
     <tr>
@@ -4003,12 +4003,12 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">794</span></td>
-       <td><span class="missed code">  }
+       <td><span class="covered code">  }
 </span></td>
     </tr>
     <tr>
        <td><span class="lineNo">795</span></td>
-       <td><span class="missed code">  return $fields;
+       <td><span class="covered code">  return $fields;
 </span></td>
     </tr>
     <tr>
@@ -4323,7 +4323,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">858</span></td>
-       <td><span class="comment code">        // Throw an exception if the date format was not recognized.
+       <td><span class="covered code">        // Throw an exception if the date format was not recognized.
 </span></td>
     </tr>
     <tr>
@@ -4413,7 +4413,7 @@ h1 {
     </tr>
     <tr>
        <td><span class="lineNo">876</span></td>
-       <td><span class="comment code">
+       <td><span class="covered code">
 </span></td>
     </tr>
     <tr>
