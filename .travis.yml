@@ -52,7 +52,7 @@ before_install:
 - cd wget-1.16
 - ./configure
 - ./configure --with-ssl=openssl
-- make && make install
+- sudo make && sudo make install
 - wget -V
 - drupal-ti before_install
 - php $TRAVIS_BUILD_DIR/drupal_ti/before/before_install.php
