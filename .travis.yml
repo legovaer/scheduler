@@ -54,9 +54,9 @@ before_install:
 #- ./configure --with-ssl=openssl
 #- sudo make && sudo make install
 #- sudo apt-get install --only-upgrade wget
-- wget http://cz.archive.ubuntu.com/ubuntu/pool/main/w/wget/wget_1.13.4-2ubuntu1.2_i386.deb
-- sudo dpkg -i
-- wget -V
+#- wget http://cz.archive.ubuntu.com/ubuntu/pool/main/w/wget/wget_1.13.4-2ubuntu1.2_i386.deb
+#- sudo dpkg -i
+#- wget -V
 - drupal-ti before_install
 - php $TRAVIS_BUILD_DIR/drupal_ti/before/before_install.php
 
