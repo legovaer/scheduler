@@ -39,7 +39,11 @@ mysql:
   encoding: utf8
 before_install:
 - composer self-update
+# composer global require drupal-ti
 - git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
+- cd drupal_ti/
+- composer install
+- cd ../
 - mkdir -p "$HOME/.composer/vendor/bin"
 - ln -sf $(pwd)/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
 - cd ./tests
@@ -47,8 +51,8 @@ before_install:
 install:
 - drupal-ti install
 before_script:
-- drupal-ti before_script
 - drupal-ti drush en date -y
+- drupal-ti before_script
 script:
 - drupal-ti script
 after_script:
