@@ -40,12 +40,13 @@ mysql:
 before_install:
 - composer self-update
 # composer global require drupal-ti
-- git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
-- cd drupal_ti/
-- composer install
-- cd ../
-- mkdir -p "$HOME/.composer/vendor/bin"
-- ln -sf $(pwd)/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
+- composer global require ""lionsad/drupal_ti:dev-master"
+#- git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
+#- cd drupal_ti/
+#- composer install
+#- cd ../
+#- mkdir -p "$HOME/.composer/vendor/bin"
+#- ln -sf $(pwd)/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
 - cd ./tests
 - drupal-ti before_install
 install:
