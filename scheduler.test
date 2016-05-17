@@ -24,9 +24,8 @@ abstract class SchedulerTestBase extends DrupalWebTestCase {
   protected $admin_user;
 
   function setUp() {
-    parent::setUp('date', 'date_api');
+    parent::setUp('scheduler');
   }
-
 
   /**
    * Common settings and options.
