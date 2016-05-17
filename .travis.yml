@@ -52,7 +52,7 @@ install:
 - drupal-ti install
 before_script:
 - drupal-ti before_script
-- drupal-ti drush en date -y
+- drush en date -y
 - ls -ls /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules
 script:
 - drupal-ti script
