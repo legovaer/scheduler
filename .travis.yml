@@ -25,7 +25,7 @@ env:
   - DRUPAL_TI_PHPUNIT_ARGS=""
   - DRUPAL_TI_COVERAGE="satooshi/php-coveralls:0.6.*"
   - DRUPAL_TI_COVERAGE_FILE="build/logs/clover.xml"
-  - DRUPAL_TI_SIMPLETEST_COVERAGE="1"
+  - DRUPAL_TI_SIMPLETEST_COVERAGE="0"
   - DRUPAL_TI_SIMPLETEST_COVERAGE_GENERATE_BADGES="1"
   - DRUPAL_TI_SIMPLETEST_COVERAGE_PHP_VERSION="5.4"
   - secure: ZkrEh3VWkbLGsXkfIllOg5ffTpccJGkRPhcrdjQ4CBZBoQLMoH5aGiKHng3O2vHCJ0wLWTM1nh2lYonIKHNdokNl2Y/kt5BF8RoTq0yvvWU2SqebTn1KWhRWqPOWAtLEViyw3C/Cs9VmymmsP257sTjq52BJqv45TRbHGKM9vqIFDEMQ1gEziKaO6BYj4mKRx2c9InFkLNWP9Otc/lYQLgkvBMBCzK/dGprvCOWRWjX87Ro+psUdwpi0uFF+Db+e6SUpGV/K+zGIkWbi0eQ7iGXrUkdpBmP7/crP25tr4VJvjo7mQcpMcQhBOh9FkFCOVtlpuwQRcrzhGa484vtVlVdRr9WiKHV2YZM3AqaMpUgsmiEy2fYgY419cBWem6OEWCAuGMjCEIxYA4aJYbJ7A8UXIrTa+IGCsAW6jcQoePxZ9pBNPKCmYtKf2EcnIwrdq70W6+SJiT40EKmS/oaYG305IXxOt430pjGCswaCg1KJJvO3Z/Ti8oCVenc2JzysJF2hkttNjMjiaqB4vbcyIxzRQJi3U91Q4hSE6p8exRFPEQ1oMf+P2yEf3DumMF6HPqqlLMfUPP889zfFFa7CAyaPb9wPSQ6ARaIH4qqlbdyd1OUjrR7Y2D2eYKyIenyS1KQkw5cEJc3QclQQ6sX1tAfMPwsRt5DsqfCH1/L3udA=
@@ -54,6 +54,7 @@ before_script:
 - drupal-ti before_script
 - cd /home/travis/build/legovaer/drupal-7/drupal
 - drush en date -y
+- drush en simpletest -y
 - ls -ls /home/travis/build/legovaer/drupal-7/drupal/sites/all/modules
 script:
 - drupal-ti script
