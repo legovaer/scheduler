@@ -48,6 +48,8 @@ before_install:
 - git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
 - cd drupal_ti/
 - composer install
+- mkdir -p "$HOME/.composer/vendor/bin"
+- ln -sf $(pwd)/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
 - cd $TRAVIS_BUILD_DIR/tests
 
 #- wget  http://ftp.gnu.org/gnu/wget/wget-1.16.tar.gz
