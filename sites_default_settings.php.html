@@ -1,0 +1,3058 @@
+<html>
+<head>
+<title>Simpletest Coverage - sites/default/settings.php</title>
+</head>
+<style type="text/css">
+body {
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, Arial, Helvetica, sans-serif;
+}
+h1 {
+  font-size: medium;
+}
+#code {
+  border-spacing: 0;
+}
+.lineNo {
+  color: #ccc;
+}
+.code, .lineNo {
+  white-space: pre;
+  font-family: monospace;
+}
+.covered {
+  color: #090;
+}
+.missed {
+  color: #f00;
+}
+.dead {
+  color: #00f;
+}
+.comment {
+  color: #333;
+}
+</style>
+<body>
+<h1 id="title">Simpletest Coverage - sites/default/settings.php</h1>
+<table id="code">
+  <tbody>
+    <tr>
+       <td><span class="lineNo">1</span></td>
+       <td><span class="comment code">&lt;?php
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">2</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">3</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">4</span></td>
+       <td><span class="comment code"> * @file
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">5</span></td>
+       <td><span class="comment code"> * Drupal site-specific configuration file.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">6</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">7</span></td>
+       <td><span class="comment code"> * IMPORTANT NOTE:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">8</span></td>
+       <td><span class="comment code"> * This file may have been set to read-only by the Drupal installation program.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">9</span></td>
+       <td><span class="comment code"> * If you make changes to this file, be sure to protect it again after making
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">10</span></td>
+       <td><span class="comment code"> * your modifications. Failure to remove write permissions to this file is a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">11</span></td>
+       <td><span class="comment code"> * security risk.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">12</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">13</span></td>
+       <td><span class="comment code"> * The configuration file to be loaded is based upon the rules below. However
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">14</span></td>
+       <td><span class="comment code"> * if the multisite aliasing file named sites/sites.php is present, it will be
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">15</span></td>
+       <td><span class="comment code"> * loaded, and the aliases in the array $sites will override the default
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">16</span></td>
+       <td><span class="comment code"> * directory rules below. See sites/example.sites.php for more information about
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">17</span></td>
+       <td><span class="comment code"> * aliases.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">18</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">19</span></td>
+       <td><span class="comment code"> * The configuration directory will be discovered by stripping the website's
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">20</span></td>
+       <td><span class="comment code"> * hostname from left to right and pathname from right to left. The first
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">21</span></td>
+       <td><span class="comment code"> * configuration file found will be used and any others will be ignored. If no
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">22</span></td>
+       <td><span class="comment code"> * other configuration file is found then the default configuration file at
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">23</span></td>
+       <td><span class="comment code"> * 'sites/default' will be used.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">24</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">25</span></td>
+       <td><span class="comment code"> * For example, for a fictitious site installed at
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">26</span></td>
+       <td><span class="comment code"> * http://www.drupal.org:8080/mysite/test/, the 'settings.php' file is searched
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">27</span></td>
+       <td><span class="comment code"> * for in the following directories:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">28</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">29</span></td>
+       <td><span class="comment code"> * - sites/8080.www.drupal.org.mysite.test
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">30</span></td>
+       <td><span class="comment code"> * - sites/www.drupal.org.mysite.test
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">31</span></td>
+       <td><span class="comment code"> * - sites/drupal.org.mysite.test
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">32</span></td>
+       <td><span class="comment code"> * - sites/org.mysite.test
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">33</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">34</span></td>
+       <td><span class="comment code"> * - sites/8080.www.drupal.org.mysite
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">35</span></td>
+       <td><span class="comment code"> * - sites/www.drupal.org.mysite
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">36</span></td>
+       <td><span class="comment code"> * - sites/drupal.org.mysite
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">37</span></td>
+       <td><span class="comment code"> * - sites/org.mysite
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">38</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">39</span></td>
+       <td><span class="comment code"> * - sites/8080.www.drupal.org
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">40</span></td>
+       <td><span class="comment code"> * - sites/www.drupal.org
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">41</span></td>
+       <td><span class="comment code"> * - sites/drupal.org
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">42</span></td>
+       <td><span class="comment code"> * - sites/org
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">43</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">44</span></td>
+       <td><span class="comment code"> * - sites/default
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">45</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">46</span></td>
+       <td><span class="comment code"> * Note that if you are installing on a non-standard port number, prefix the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">47</span></td>
+       <td><span class="comment code"> * hostname with that number. For example,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">48</span></td>
+       <td><span class="comment code"> * http://www.drupal.org:8080/mysite/test/ could be loaded from
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">49</span></td>
+       <td><span class="comment code"> * sites/8080.www.drupal.org.mysite.test/.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">50</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">51</span></td>
+       <td><span class="comment code"> * @see example.sites.php
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">52</span></td>
+       <td><span class="comment code"> * @see conf_path()
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">53</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">54</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">55</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">56</span></td>
+       <td><span class="comment code"> * Database settings:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">57</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">58</span></td>
+       <td><span class="comment code"> * The $databases array specifies the database connection or
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">59</span></td>
+       <td><span class="comment code"> * connections that Drupal may use.  Drupal is able to connect
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">60</span></td>
+       <td><span class="comment code"> * to multiple databases, including multiple types of databases,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">61</span></td>
+       <td><span class="comment code"> * during the same request.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">62</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">63</span></td>
+       <td><span class="comment code"> * Each database connection is specified as an array of settings,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">64</span></td>
+       <td><span class="comment code"> * similar to the following:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">65</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">66</span></td>
+       <td><span class="comment code"> * array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">67</span></td>
+       <td><span class="comment code"> *   'driver' =&gt; 'mysql',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">68</span></td>
+       <td><span class="comment code"> *   'database' =&gt; 'databasename',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">69</span></td>
+       <td><span class="comment code"> *   'username' =&gt; 'username',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">70</span></td>
+       <td><span class="comment code"> *   'password' =&gt; 'password',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">71</span></td>
+       <td><span class="comment code"> *   'host' =&gt; 'localhost',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">72</span></td>
+       <td><span class="comment code"> *   'port' =&gt; 3306,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">73</span></td>
+       <td><span class="comment code"> *   'prefix' =&gt; 'myprefix_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">74</span></td>
+       <td><span class="comment code"> *   'collation' =&gt; 'utf8_general_ci',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">75</span></td>
+       <td><span class="comment code"> * );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">76</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">77</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">78</span></td>
+       <td><span class="comment code"> * The &quot;driver&quot; property indicates what Drupal database driver the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">79</span></td>
+       <td><span class="comment code"> * connection should use.  This is usually the same as the name of the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">80</span></td>
+       <td><span class="comment code"> * database type, such as mysql or sqlite, but not always.  The other
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">81</span></td>
+       <td><span class="comment code"> * properties will vary depending on the driver.  For SQLite, you must
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">82</span></td>
+       <td><span class="comment code"> * specify a database file name in a directory that is writable by the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">83</span></td>
+       <td><span class="comment code"> * webserver.  For most other drivers, you must specify a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">84</span></td>
+       <td><span class="comment code"> * username, password, host, and database name.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">85</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">86</span></td>
+       <td><span class="comment code"> * Transaction support is enabled by default for all drivers that support it,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">87</span></td>
+       <td><span class="comment code"> * including MySQL. To explicitly disable it, set the 'transactions' key to
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">88</span></td>
+       <td><span class="comment code"> * FALSE.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">89</span></td>
+       <td><span class="comment code"> * Note that some configurations of MySQL, such as the MyISAM engine, don't
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">90</span></td>
+       <td><span class="comment code"> * support it and will proceed silently even if enabled. If you experience
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">91</span></td>
+       <td><span class="comment code"> * transaction related crashes with such configuration, set the 'transactions'
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">92</span></td>
+       <td><span class="comment code"> * key to FALSE.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">93</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">94</span></td>
+       <td><span class="comment code"> * For each database, you may optionally specify multiple &quot;target&quot; databases.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">95</span></td>
+       <td><span class="comment code"> * A target database allows Drupal to try to send certain queries to a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">96</span></td>
+       <td><span class="comment code"> * different database if it can but fall back to the default connection if not.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">97</span></td>
+       <td><span class="comment code"> * That is useful for master/slave replication, as Drupal may try to connect
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">98</span></td>
+       <td><span class="comment code"> * to a slave server when appropriate and if one is not available will simply
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">99</span></td>
+       <td><span class="comment code"> * fall back to the single master server.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">100</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">101</span></td>
+       <td><span class="comment code"> * The general format for the $databases array is as follows:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">102</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">103</span></td>
+       <td><span class="comment code"> * $databases['default']['default'] = $info_array;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">104</span></td>
+       <td><span class="comment code"> * $databases['default']['slave'][] = $info_array;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">105</span></td>
+       <td><span class="comment code"> * $databases['default']['slave'][] = $info_array;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">106</span></td>
+       <td><span class="comment code"> * $databases['extra']['default'] = $info_array;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">107</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">108</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">109</span></td>
+       <td><span class="comment code"> * In the above example, $info_array is an array of settings described above.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">110</span></td>
+       <td><span class="comment code"> * The first line sets a &quot;default&quot; database that has one master database
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">111</span></td>
+       <td><span class="comment code"> * (the second level default).  The second and third lines create an array
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">112</span></td>
+       <td><span class="comment code"> * of potential slave databases.  Drupal will select one at random for a given
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">113</span></td>
+       <td><span class="comment code"> * request as needed.  The fourth line creates a new database with a name of
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">114</span></td>
+       <td><span class="comment code"> * &quot;extra&quot;.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">115</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">116</span></td>
+       <td><span class="comment code"> * For a single database configuration, the following is sufficient:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">117</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">118</span></td>
+       <td><span class="comment code"> * $databases['default']['default'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">119</span></td>
+       <td><span class="comment code"> *   'driver' =&gt; 'mysql',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">120</span></td>
+       <td><span class="comment code"> *   'database' =&gt; 'databasename',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">121</span></td>
+       <td><span class="comment code"> *   'username' =&gt; 'username',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">122</span></td>
+       <td><span class="comment code"> *   'password' =&gt; 'password',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">123</span></td>
+       <td><span class="comment code"> *   'host' =&gt; 'localhost',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">124</span></td>
+       <td><span class="comment code"> *   'prefix' =&gt; 'main_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">125</span></td>
+       <td><span class="comment code"> *   'collation' =&gt; 'utf8_general_ci',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">126</span></td>
+       <td><span class="comment code"> * );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">127</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">128</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">129</span></td>
+       <td><span class="comment code"> * You can optionally set prefixes for some or all database table names
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">130</span></td>
+       <td><span class="comment code"> * by using the 'prefix' setting. If a prefix is specified, the table
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">131</span></td>
+       <td><span class="comment code"> * name will be prepended with its value. Be sure to use valid database
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">132</span></td>
+       <td><span class="comment code"> * characters only, usually alphanumeric and underscore. If no prefixes
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">133</span></td>
+       <td><span class="comment code"> * are desired, leave it as an empty string ''.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">134</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">135</span></td>
+       <td><span class="comment code"> * To have all database names prefixed, set 'prefix' as a string:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">136</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">137</span></td>
+       <td><span class="comment code"> *   'prefix' =&gt; 'main_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">138</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">139</span></td>
+       <td><span class="comment code"> * To provide prefixes for specific tables, set 'prefix' as an array.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">140</span></td>
+       <td><span class="comment code"> * The array's keys are the table names and the values are the prefixes.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">141</span></td>
+       <td><span class="comment code"> * The 'default' element is mandatory and holds the prefix for any tables
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">142</span></td>
+       <td><span class="comment code"> * not specified elsewhere in the array. Example:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">143</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">144</span></td>
+       <td><span class="comment code"> *   'prefix' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">145</span></td>
+       <td><span class="comment code"> *     'default'   =&gt; 'main_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">146</span></td>
+       <td><span class="comment code"> *     'users'     =&gt; 'shared_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">147</span></td>
+       <td><span class="comment code"> *     'sessions'  =&gt; 'shared_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">148</span></td>
+       <td><span class="comment code"> *     'role'      =&gt; 'shared_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">149</span></td>
+       <td><span class="comment code"> *     'authmap'   =&gt; 'shared_',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">150</span></td>
+       <td><span class="comment code"> *   ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">151</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">152</span></td>
+       <td><span class="comment code"> * You can also use a reference to a schema/database as a prefix. This may be
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">153</span></td>
+       <td><span class="comment code"> * useful if your Drupal installation exists in a schema that is not the default
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">154</span></td>
+       <td><span class="comment code"> * or you want to access several databases from the same code base at the same
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">155</span></td>
+       <td><span class="comment code"> * time.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">156</span></td>
+       <td><span class="comment code"> * Example:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">157</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">158</span></td>
+       <td><span class="comment code"> *   'prefix' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">159</span></td>
+       <td><span class="comment code"> *     'default'   =&gt; 'main.',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">160</span></td>
+       <td><span class="comment code"> *     'users'     =&gt; 'shared.',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">161</span></td>
+       <td><span class="comment code"> *     'sessions'  =&gt; 'shared.',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">162</span></td>
+       <td><span class="comment code"> *     'role'      =&gt; 'shared.',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">163</span></td>
+       <td><span class="comment code"> *     'authmap'   =&gt; 'shared.',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">164</span></td>
+       <td><span class="comment code"> *   );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">165</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">166</span></td>
+       <td><span class="comment code"> * NOTE: MySQL and SQLite's definition of a schema is a database.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">167</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">168</span></td>
+       <td><span class="comment code"> * Advanced users can add or override initial commands to execute when
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">169</span></td>
+       <td><span class="comment code"> * connecting to the database server, as well as PDO connection settings. For
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">170</span></td>
+       <td><span class="comment code"> * example, to enable MySQL SELECT queries to exceed the max_join_size system
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">171</span></td>
+       <td><span class="comment code"> * variable, and to reduce the database connection timeout to 5 seconds:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">172</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">173</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">174</span></td>
+       <td><span class="comment code"> * $databases['default']['default'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">175</span></td>
+       <td><span class="comment code"> *   'init_commands' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">176</span></td>
+       <td><span class="comment code"> *     'big_selects' =&gt; 'SET SQL_BIG_SELECTS=1',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">177</span></td>
+       <td><span class="comment code"> *   ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">178</span></td>
+       <td><span class="comment code"> *   'pdo' =&gt; array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">179</span></td>
+       <td><span class="comment code"> *     PDO::ATTR_TIMEOUT =&gt; 5,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">180</span></td>
+       <td><span class="comment code"> *   ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">181</span></td>
+       <td><span class="comment code"> * );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">182</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">183</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">184</span></td>
+       <td><span class="comment code"> * WARNING: These defaults are designed for database portability. Changing them
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">185</span></td>
+       <td><span class="comment code"> * may cause unexpected behavior, including potential data loss.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">186</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">187</span></td>
+       <td><span class="comment code"> * @see DatabaseConnection_mysql::__construct
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">188</span></td>
+       <td><span class="comment code"> * @see DatabaseConnection_pgsql::__construct
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">189</span></td>
+       <td><span class="comment code"> * @see DatabaseConnection_sqlite::__construct
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">190</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">191</span></td>
+       <td><span class="comment code"> * Database configuration format:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">192</span></td>
+       <td><span class="comment code"> * @code
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">193</span></td>
+       <td><span class="comment code"> *   $databases['default']['default'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">194</span></td>
+       <td><span class="comment code"> *     'driver' =&gt; 'mysql',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">195</span></td>
+       <td><span class="comment code"> *     'database' =&gt; 'databasename',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">196</span></td>
+       <td><span class="comment code"> *     'username' =&gt; 'username',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">197</span></td>
+       <td><span class="comment code"> *     'password' =&gt; 'password',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">198</span></td>
+       <td><span class="comment code"> *     'host' =&gt; 'localhost',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">199</span></td>
+       <td><span class="comment code"> *     'prefix' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">200</span></td>
+       <td><span class="comment code"> *   );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">201</span></td>
+       <td><span class="comment code"> *   $databases['default']['default'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">202</span></td>
+       <td><span class="comment code"> *     'driver' =&gt; 'pgsql',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">203</span></td>
+       <td><span class="comment code"> *     'database' =&gt; 'databasename',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">204</span></td>
+       <td><span class="comment code"> *     'username' =&gt; 'username',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">205</span></td>
+       <td><span class="comment code"> *     'password' =&gt; 'password',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">206</span></td>
+       <td><span class="comment code"> *     'host' =&gt; 'localhost',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">207</span></td>
+       <td><span class="comment code"> *     'prefix' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">208</span></td>
+       <td><span class="comment code"> *   );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">209</span></td>
+       <td><span class="comment code"> *   $databases['default']['default'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">210</span></td>
+       <td><span class="comment code"> *     'driver' =&gt; 'sqlite',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">211</span></td>
+       <td><span class="comment code"> *     'database' =&gt; '/path/to/databasefilename',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">212</span></td>
+       <td><span class="comment code"> *   );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">213</span></td>
+       <td><span class="comment code"> * @endcode
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">214</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">215</span></td>
+       <td><span class="comment code">$databases = array (
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">216</span></td>
+       <td><span class="comment code">  'default' =&gt; 
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">217</span></td>
+       <td><span class="comment code">  array (
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">218</span></td>
+       <td><span class="comment code">    'default' =&gt; 
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">219</span></td>
+       <td><span class="comment code">    array (
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">220</span></td>
+       <td><span class="covered code">      'database' =&gt; 'drupal_travis_db',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">221</span></td>
+       <td><span class="covered code">      'username' =&gt; 'root',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">222</span></td>
+       <td><span class="covered code">      'password' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">223</span></td>
+       <td><span class="covered code">      'host' =&gt; '127.0.0.1',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">224</span></td>
+       <td><span class="covered code">      'port' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">225</span></td>
+       <td><span class="covered code">      'driver' =&gt; 'mysql',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">226</span></td>
+       <td><span class="covered code">      'prefix' =&gt; '',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">227</span></td>
+       <td><span class="covered code">    ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">228</span></td>
+       <td><span class="covered code">  ),
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">229</span></td>
+       <td><span class="covered code">);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">230</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">231</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">232</span></td>
+       <td><span class="comment code"> * Access control for update.php script.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">233</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">234</span></td>
+       <td><span class="comment code"> * If you are updating your Drupal installation using the update.php script but
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">235</span></td>
+       <td><span class="comment code"> * are not logged in using either an account with the &quot;Administer software
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">236</span></td>
+       <td><span class="comment code"> * updates&quot; permission or the site maintenance account (the account that was
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">237</span></td>
+       <td><span class="comment code"> * created during installation), you will need to modify the access check
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">238</span></td>
+       <td><span class="comment code"> * statement below. Change the FALSE to a TRUE to disable the access check.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">239</span></td>
+       <td><span class="comment code"> * After finishing the upgrade, be sure to open this file again and change the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">240</span></td>
+       <td><span class="comment code"> * TRUE back to a FALSE!
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">241</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">242</span></td>
+       <td><span class="covered code">$update_free_access = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">243</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">244</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">245</span></td>
+       <td><span class="comment code"> * Salt for one-time login links and cancel links, form tokens, etc.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">246</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">247</span></td>
+       <td><span class="comment code"> * This variable will be set to a random value by the installer. All one-time
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">248</span></td>
+       <td><span class="comment code"> * login links will be invalidated if the value is changed. Note that if your
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">249</span></td>
+       <td><span class="comment code"> * site is deployed on a cluster of web servers, you must ensure that this
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">250</span></td>
+       <td><span class="comment code"> * variable has the same value on each server. If this variable is empty, a hash
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">251</span></td>
+       <td><span class="comment code"> * of the serialized database credentials will be used as a fallback salt.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">252</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">253</span></td>
+       <td><span class="comment code"> * For enhanced security, you may set this variable to a value using the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">254</span></td>
+       <td><span class="comment code"> * contents of a file outside your docroot that is never saved together
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">255</span></td>
+       <td><span class="comment code"> * with any backups of your Drupal files and database.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">256</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">257</span></td>
+       <td><span class="comment code"> * Example:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">258</span></td>
+       <td><span class="comment code"> *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">259</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">260</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">261</span></td>
+       <td><span class="covered code">$drupal_hash_salt = 'sHCwNNOoahqahgYLX-0-uTyNLprFWgMGOq-Xd1hMduQ';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">262</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">263</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">264</span></td>
+       <td><span class="comment code"> * Base URL (optional).
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">265</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">266</span></td>
+       <td><span class="comment code"> * If Drupal is generating incorrect URLs on your site, which could
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">267</span></td>
+       <td><span class="comment code"> * be in HTML headers (links to CSS and JS files) or visible links on pages
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">268</span></td>
+       <td><span class="comment code"> * (such as in menus), uncomment the Base URL statement below (remove the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">269</span></td>
+       <td><span class="comment code"> * leading hash sign) and fill in the absolute URL to your Drupal installation.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">270</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">271</span></td>
+       <td><span class="comment code"> * You might also want to force users to use a given domain.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">272</span></td>
+       <td><span class="comment code"> * See the .htaccess file for more information.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">273</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">274</span></td>
+       <td><span class="comment code"> * Examples:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">275</span></td>
+       <td><span class="comment code"> *   $base_url = 'http://www.example.com';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">276</span></td>
+       <td><span class="comment code"> *   $base_url = 'http://www.example.com:8888';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">277</span></td>
+       <td><span class="comment code"> *   $base_url = 'http://www.example.com/drupal';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">278</span></td>
+       <td><span class="comment code"> *   $base_url = 'https://www.example.com:8888/drupal';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">279</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">280</span></td>
+       <td><span class="comment code"> * It is not allowed to have a trailing slash; Drupal will add it
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">281</span></td>
+       <td><span class="comment code"> * for you.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">282</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">283</span></td>
+       <td><span class="comment code"># $base_url = 'http://www.example.com';  // NO trailing slash!
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">284</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">285</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">286</span></td>
+       <td><span class="comment code"> * PHP settings:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">287</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">288</span></td>
+       <td><span class="comment code"> * To see what PHP settings are possible, including whether they can be set at
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">289</span></td>
+       <td><span class="comment code"> * runtime (by using ini_set()), read the PHP documentation:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">290</span></td>
+       <td><span class="comment code"> * http://www.php.net/manual/ini.list.php
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">291</span></td>
+       <td><span class="comment code"> * See drupal_environment_initialize() in includes/bootstrap.inc for required
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">292</span></td>
+       <td><span class="comment code"> * runtime settings and the .htaccess file for non-runtime settings. Settings
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">293</span></td>
+       <td><span class="comment code"> * defined there should not be duplicated here so as to avoid conflict issues.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">294</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">295</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">296</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">297</span></td>
+       <td><span class="comment code"> * Some distributions of Linux (most notably Debian) ship their PHP
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">298</span></td>
+       <td><span class="comment code"> * installations with garbage collection (gc) disabled. Since Drupal depends on
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">299</span></td>
+       <td><span class="comment code"> * PHP's garbage collection for clearing sessions, ensure that garbage
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">300</span></td>
+       <td><span class="comment code"> * collection occurs by using the most common settings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">301</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">302</span></td>
+       <td><span class="covered code">ini_set('session.gc_probability', 1);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">303</span></td>
+       <td><span class="covered code">ini_set('session.gc_divisor', 100);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">304</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">305</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">306</span></td>
+       <td><span class="comment code"> * Set session lifetime (in seconds), i.e. the time from the user's last visit
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">307</span></td>
+       <td><span class="comment code"> * to the active session may be deleted by the session garbage collector. When
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">308</span></td>
+       <td><span class="comment code"> * a session is deleted, authenticated users are logged out, and the contents
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">309</span></td>
+       <td><span class="comment code"> * of the user's $_SESSION variable is discarded.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">310</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">311</span></td>
+       <td><span class="covered code">ini_set('session.gc_maxlifetime', 200000);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">312</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">313</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">314</span></td>
+       <td><span class="comment code"> * Set session cookie lifetime (in seconds), i.e. the time from the session is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">315</span></td>
+       <td><span class="comment code"> * created to the cookie expires, i.e. when the browser is expected to discard
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">316</span></td>
+       <td><span class="comment code"> * the cookie. The value 0 means &quot;until the browser is closed&quot;.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">317</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">318</span></td>
+       <td><span class="covered code">ini_set('session.cookie_lifetime', 2000000);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">319</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">320</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">321</span></td>
+       <td><span class="comment code"> * If you encounter a situation where users post a large amount of text, and
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">322</span></td>
+       <td><span class="comment code"> * the result is stripped out upon viewing but can still be edited, Drupal's
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">323</span></td>
+       <td><span class="comment code"> * output filter may not have sufficient memory to process it.  If you
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">324</span></td>
+       <td><span class="comment code"> * experience this issue, you may wish to uncomment the following two lines
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">325</span></td>
+       <td><span class="comment code"> * and increase the limits of these variables.  For more information, see
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">326</span></td>
+       <td><span class="comment code"> * http://php.net/manual/pcre.configuration.php.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">327</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">328</span></td>
+       <td><span class="comment code"># ini_set('pcre.backtrack_limit', 200000);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">329</span></td>
+       <td><span class="comment code"># ini_set('pcre.recursion_limit', 200000);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">330</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">331</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">332</span></td>
+       <td><span class="comment code"> * Drupal automatically generates a unique session cookie name for each site
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">333</span></td>
+       <td><span class="comment code"> * based on its full domain name. If you have multiple domains pointing at the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">334</span></td>
+       <td><span class="comment code"> * same Drupal site, you can either redirect them all to a single domain (see
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">335</span></td>
+       <td><span class="comment code"> * comment in .htaccess), or uncomment the line below and specify their shared
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">336</span></td>
+       <td><span class="comment code"> * base domain. Doing so assures that users remain logged in as they cross
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">337</span></td>
+       <td><span class="comment code"> * between your various domains. Make sure to always start the $cookie_domain
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">338</span></td>
+       <td><span class="comment code"> * with a leading dot, as per RFC 2109.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">339</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">340</span></td>
+       <td><span class="comment code"># $cookie_domain = '.example.com';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">341</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">342</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">343</span></td>
+       <td><span class="comment code"> * Variable overrides:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">344</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">345</span></td>
+       <td><span class="comment code"> * To override specific entries in the 'variable' table for this site,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">346</span></td>
+       <td><span class="comment code"> * set them here. You usually don't need to use this feature. This is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">347</span></td>
+       <td><span class="comment code"> * useful in a configuration file for a vhost or directory, rather than
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">348</span></td>
+       <td><span class="comment code"> * the default settings.php. Any configuration setting from the 'variable'
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">349</span></td>
+       <td><span class="comment code"> * table can be given a new value. Note that any values you provide in
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">350</span></td>
+       <td><span class="comment code"> * these variable overrides will not be modifiable from the Drupal
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">351</span></td>
+       <td><span class="comment code"> * administration interface.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">352</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">353</span></td>
+       <td><span class="comment code"> * The following overrides are examples:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">354</span></td>
+       <td><span class="comment code"> * - site_name: Defines the site's name.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">355</span></td>
+       <td><span class="comment code"> * - theme_default: Defines the default theme for this site.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">356</span></td>
+       <td><span class="comment code"> * - anonymous: Defines the human-readable name of anonymous users.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">357</span></td>
+       <td><span class="comment code"> * Remove the leading hash signs to enable.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">358</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">359</span></td>
+       <td><span class="comment code"># $conf['site_name'] = 'My Drupal site';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">360</span></td>
+       <td><span class="comment code"># $conf['theme_default'] = 'garland';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">361</span></td>
+       <td><span class="comment code"># $conf['anonymous'] = 'Visitor';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">362</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">363</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">364</span></td>
+       <td><span class="comment code"> * A custom theme can be set for the offline page. This applies when the site
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">365</span></td>
+       <td><span class="comment code"> * is explicitly set to maintenance mode through the administration page or when
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">366</span></td>
+       <td><span class="comment code"> * the database is inactive due to an error. It can be set through the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">367</span></td>
+       <td><span class="comment code"> * 'maintenance_theme' key. The template file should also be copied into the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">368</span></td>
+       <td><span class="comment code"> * theme. It is located inside 'modules/system/maintenance-page.tpl.php'.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">369</span></td>
+       <td><span class="comment code"> * Note: This setting does not apply to installation and update pages.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">370</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">371</span></td>
+       <td><span class="comment code"># $conf['maintenance_theme'] = 'bartik';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">372</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">373</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">374</span></td>
+       <td><span class="comment code"> * Reverse Proxy Configuration:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">375</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">376</span></td>
+       <td><span class="comment code"> * Reverse proxy servers are often used to enhance the performance
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">377</span></td>
+       <td><span class="comment code"> * of heavily visited sites and may also provide other site caching,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">378</span></td>
+       <td><span class="comment code"> * security, or encryption benefits. In an environment where Drupal
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">379</span></td>
+       <td><span class="comment code"> * is behind a reverse proxy, the real IP address of the client should
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">380</span></td>
+       <td><span class="comment code"> * be determined such that the correct client IP address is available
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">381</span></td>
+       <td><span class="comment code"> * to Drupal's logging, statistics, and access management systems. In
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">382</span></td>
+       <td><span class="comment code"> * the most simple scenario, the proxy server will add an
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">383</span></td>
+       <td><span class="comment code"> * X-Forwarded-For header to the request that contains the client IP
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">384</span></td>
+       <td><span class="comment code"> * address. However, HTTP headers are vulnerable to spoofing, where a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">385</span></td>
+       <td><span class="comment code"> * malicious client could bypass restrictions by setting the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">386</span></td>
+       <td><span class="comment code"> * X-Forwarded-For header directly. Therefore, Drupal's proxy
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">387</span></td>
+       <td><span class="comment code"> * configuration requires the IP addresses of all remote proxies to be
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">388</span></td>
+       <td><span class="comment code"> * specified in $conf['reverse_proxy_addresses'] to work correctly.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">389</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">390</span></td>
+       <td><span class="comment code"> * Enable this setting to get Drupal to determine the client IP from
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">391</span></td>
+       <td><span class="comment code"> * the X-Forwarded-For header (or $conf['reverse_proxy_header'] if set).
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">392</span></td>
+       <td><span class="comment code"> * If you are unsure about this setting, do not have a reverse proxy,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">393</span></td>
+       <td><span class="comment code"> * or Drupal operates in a shared hosting environment, this setting
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">394</span></td>
+       <td><span class="comment code"> * should remain commented out.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">395</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">396</span></td>
+       <td><span class="comment code"> * In order for this setting to be used you must specify every possible
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">397</span></td>
+       <td><span class="comment code"> * reverse proxy IP address in $conf['reverse_proxy_addresses'].
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">398</span></td>
+       <td><span class="comment code"> * If a complete list of reverse proxies is not available in your
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">399</span></td>
+       <td><span class="comment code"> * environment (for example, if you use a CDN) you may set the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">400</span></td>
+       <td><span class="comment code"> * $_SERVER['REMOTE_ADDR'] variable directly in settings.php.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">401</span></td>
+       <td><span class="comment code"> * Be aware, however, that it is likely that this would allow IP
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">402</span></td>
+       <td><span class="comment code"> * address spoofing unless more advanced precautions are taken.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">403</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">404</span></td>
+       <td><span class="comment code"># $conf['reverse_proxy'] = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">405</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">406</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">407</span></td>
+       <td><span class="comment code"> * Specify every reverse proxy IP address in your environment.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">408</span></td>
+       <td><span class="comment code"> * This setting is required if $conf['reverse_proxy'] is TRUE.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">409</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">410</span></td>
+       <td><span class="comment code"># $conf['reverse_proxy_addresses'] = array('a.b.c.d', ...);
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">411</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">412</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">413</span></td>
+       <td><span class="comment code"> * Set this value if your proxy server sends the client IP in a header
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">414</span></td>
+       <td><span class="comment code"> * other than X-Forwarded-For.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">415</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">416</span></td>
+       <td><span class="comment code"># $conf['reverse_proxy_header'] = 'HTTP_X_CLUSTER_CLIENT_IP';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">417</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">418</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">419</span></td>
+       <td><span class="comment code"> * Page caching:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">420</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">421</span></td>
+       <td><span class="comment code"> * By default, Drupal sends a &quot;Vary: Cookie&quot; HTTP header for anonymous page
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">422</span></td>
+       <td><span class="comment code"> * views. This tells a HTTP proxy that it may return a page from its local
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">423</span></td>
+       <td><span class="comment code"> * cache without contacting the web server, if the user sends the same Cookie
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">424</span></td>
+       <td><span class="comment code"> * header as the user who originally requested the cached page. Without &quot;Vary:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">425</span></td>
+       <td><span class="comment code"> * Cookie&quot;, authenticated users would also be served the anonymous page from
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">426</span></td>
+       <td><span class="comment code"> * the cache. If the site has mostly anonymous users except a few known
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">427</span></td>
+       <td><span class="comment code"> * editors/administrators, the Vary header can be omitted. This allows for
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">428</span></td>
+       <td><span class="comment code"> * better caching in HTTP proxies (including reverse proxies), i.e. even if
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">429</span></td>
+       <td><span class="comment code"> * clients send different cookies, they still get content served from the cache.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">430</span></td>
+       <td><span class="comment code"> * However, authenticated users should access the site directly (i.e. not use an
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">431</span></td>
+       <td><span class="comment code"> * HTTP proxy, and bypass the reverse proxy if one is used) in order to avoid
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">432</span></td>
+       <td><span class="comment code"> * getting cached pages from the proxy.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">433</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">434</span></td>
+       <td><span class="comment code"># $conf['omit_vary_cookie'] = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">435</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">436</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">437</span></td>
+       <td><span class="comment code"> * CSS/JS aggregated file gzip compression:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">438</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">439</span></td>
+       <td><span class="comment code"> * By default, when CSS or JS aggregation and clean URLs are enabled Drupal will
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">440</span></td>
+       <td><span class="comment code"> * store a gzip compressed (.gz) copy of the aggregated files. If this file is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">441</span></td>
+       <td><span class="comment code"> * available then rewrite rules in the default .htaccess file will serve these
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">442</span></td>
+       <td><span class="comment code"> * files to browsers that accept gzip encoded content. This allows pages to load
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">443</span></td>
+       <td><span class="comment code"> * faster for these users and has minimal impact on server load. If you are
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">444</span></td>
+       <td><span class="comment code"> * using a webserver other than Apache httpd, or a caching reverse proxy that is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">445</span></td>
+       <td><span class="comment code"> * configured to cache and compress these files itself you may want to uncomment
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">446</span></td>
+       <td><span class="comment code"> * one or both of the below lines, which will prevent gzip files being stored.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">447</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">448</span></td>
+       <td><span class="comment code"># $conf['css_gzip_compression'] = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">449</span></td>
+       <td><span class="comment code"># $conf['js_gzip_compression'] = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">450</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">451</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">452</span></td>
+       <td><span class="comment code"> * Block caching:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">453</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">454</span></td>
+       <td><span class="comment code"> * Block caching may not be compatible with node access modules depending on
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">455</span></td>
+       <td><span class="comment code"> * how the original block cache policy is defined by the module that provides
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">456</span></td>
+       <td><span class="comment code"> * the block. By default, Drupal therefore disables block caching when one or
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">457</span></td>
+       <td><span class="comment code"> * more modules implement hook_node_grants(). If you consider block caching to
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">458</span></td>
+       <td><span class="comment code"> * be safe on your site and want to bypass this restriction, uncomment the line
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">459</span></td>
+       <td><span class="comment code"> * below.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">460</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">461</span></td>
+       <td><span class="comment code"># $conf['block_cache_bypass_node_grants'] = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">462</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">463</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">464</span></td>
+       <td><span class="comment code"> * String overrides:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">465</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">466</span></td>
+       <td><span class="comment code"> * To override specific strings on your site with or without enabling the Locale
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">467</span></td>
+       <td><span class="comment code"> * module, add an entry to this list. This functionality allows you to change
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">468</span></td>
+       <td><span class="comment code"> * a small number of your site's default English language interface strings.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">469</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">470</span></td>
+       <td><span class="comment code"> * Remove the leading hash signs to enable.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">471</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">472</span></td>
+       <td><span class="comment code"># $conf['locale_custom_strings_en'][''] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">473</span></td>
+       <td><span class="comment code">#   'forum'      =&gt; 'Discussion board',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">474</span></td>
+       <td><span class="comment code">#   '@count min' =&gt; '@count minutes',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">475</span></td>
+       <td><span class="comment code"># );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">476</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">477</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">478</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">479</span></td>
+       <td><span class="comment code"> * IP blocking:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">480</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">481</span></td>
+       <td><span class="comment code"> * To bypass database queries for denied IP addresses, use this setting.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">482</span></td>
+       <td><span class="comment code"> * Drupal queries the {blocked_ips} table by default on every page request
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">483</span></td>
+       <td><span class="comment code"> * for both authenticated and anonymous users. This allows the system to
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">484</span></td>
+       <td><span class="comment code"> * block IP addresses from within the administrative interface and before any
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">485</span></td>
+       <td><span class="comment code"> * modules are loaded. However on high traffic websites you may want to avoid
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">486</span></td>
+       <td><span class="comment code"> * this query, allowing you to bypass database access altogether for anonymous
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">487</span></td>
+       <td><span class="comment code"> * users under certain caching configurations.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">488</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">489</span></td>
+       <td><span class="comment code"> * If using this setting, you will need to add back any IP addresses which
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">490</span></td>
+       <td><span class="comment code"> * you may have blocked via the administrative interface. Each element of this
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">491</span></td>
+       <td><span class="comment code"> * array represents a blocked IP address. Uncommenting the array and leaving it
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">492</span></td>
+       <td><span class="comment code"> * empty will have the effect of disabling IP blocking on your site.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">493</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">494</span></td>
+       <td><span class="comment code"> * Remove the leading hash signs to enable.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">495</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">496</span></td>
+       <td><span class="comment code"># $conf['blocked_ips'] = array(
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">497</span></td>
+       <td><span class="comment code">#   'a.b.c.d',
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">498</span></td>
+       <td><span class="comment code"># );
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">499</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">500</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">501</span></td>
+       <td><span class="comment code"> * Fast 404 pages:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">502</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">503</span></td>
+       <td><span class="comment code"> * Drupal can generate fully themed 404 pages. However, some of these responses
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">504</span></td>
+       <td><span class="comment code"> * are for images or other resource files that are not displayed to the user.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">505</span></td>
+       <td><span class="comment code"> * This can waste bandwidth, and also generate server load.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">506</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">507</span></td>
+       <td><span class="comment code"> * The options below return a simple, fast 404 page for URLs matching a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">508</span></td>
+       <td><span class="comment code"> * specific pattern:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">509</span></td>
+       <td><span class="comment code"> * - 404_fast_paths_exclude: A regular expression to match paths to exclude,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">510</span></td>
+       <td><span class="comment code"> *   such as images generated by image styles, or dynamically-resized images.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">511</span></td>
+       <td><span class="comment code"> *   The default pattern provided below also excludes the private file system.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">512</span></td>
+       <td><span class="comment code"> *   If you need to add more paths, you can add '|path' to the expression.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">513</span></td>
+       <td><span class="comment code"> * - 404_fast_paths: A regular expression to match paths that should return a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">514</span></td>
+       <td><span class="comment code"> *   simple 404 page, rather than the fully themed 404 page. If you don't have
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">515</span></td>
+       <td><span class="comment code"> *   any aliases ending in htm or html you can add '|s?html?' to the expression.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">516</span></td>
+       <td><span class="comment code"> * - 404_fast_html: The html to return for simple 404 pages.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">517</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">518</span></td>
+       <td><span class="comment code"> * Add leading hash signs if you would like to disable this functionality.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">519</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">520</span></td>
+       <td><span class="covered code">$conf['404_fast_paths_exclude'] = '/\/(?:styles)|(?:system\/files)\//';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">521</span></td>
+       <td><span class="covered code">$conf['404_fast_paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">522</span></td>
+       <td><span class="covered code">$conf['404_fast_html'] = '&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML+RDFa 1.0//EN&quot; &quot;http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd&quot;&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Not Found&lt;/h1&gt;&lt;p&gt;The requested URL &quot;@path&quot; was not found on this server.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">523</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">524</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">525</span></td>
+       <td><span class="comment code"> * By default the page request process will return a fast 404 page for missing
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">526</span></td>
+       <td><span class="comment code"> * files if they match the regular expression set in '404_fast_paths' and not
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">527</span></td>
+       <td><span class="comment code"> * '404_fast_paths_exclude' above. 404 errors will simultaneously be logged in
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">528</span></td>
+       <td><span class="comment code"> * the Drupal system log.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">529</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">530</span></td>
+       <td><span class="comment code"> * You can choose to return a fast 404 page earlier for missing pages (as soon
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">531</span></td>
+       <td><span class="comment code"> * as settings.php is loaded) by uncommenting the line below. This speeds up
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">532</span></td>
+       <td><span class="comment code"> * server response time when loading 404 error pages and prevents the 404 error
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">533</span></td>
+       <td><span class="comment code"> * from being logged in the Drupal system log. In order to prevent valid pages
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">534</span></td>
+       <td><span class="comment code"> * such as image styles and other generated content that may match the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">535</span></td>
+       <td><span class="comment code"> * '404_fast_paths' regular expression from returning 404 errors, it is
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">536</span></td>
+       <td><span class="comment code"> * necessary to add them to the '404_fast_paths_exclude' regular expression
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">537</span></td>
+       <td><span class="comment code"> * above. Make sure that you understand the effects of this feature before
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">538</span></td>
+       <td><span class="comment code"> * uncommenting the line below.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">539</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">540</span></td>
+       <td><span class="comment code"># drupal_fast_404();
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">541</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">542</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">543</span></td>
+       <td><span class="comment code"> * External access proxy settings:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">544</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">545</span></td>
+       <td><span class="comment code"> * If your site must access the Internet via a web proxy then you can enter
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">546</span></td>
+       <td><span class="comment code"> * the proxy settings here. Currently only basic authentication is supported
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">547</span></td>
+       <td><span class="comment code"> * by using the username and password variables. The proxy_user_agent variable
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">548</span></td>
+       <td><span class="comment code"> * can be set to NULL for proxies that require no User-Agent header or to a
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">549</span></td>
+       <td><span class="comment code"> * non-empty string for proxies that limit requests to a specific agent. The
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">550</span></td>
+       <td><span class="comment code"> * proxy_exceptions variable is an array of host names to be accessed directly,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">551</span></td>
+       <td><span class="comment code"> * not via proxy.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">552</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">553</span></td>
+       <td><span class="comment code"># $conf['proxy_server'] = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">554</span></td>
+       <td><span class="comment code"># $conf['proxy_port'] = 8080;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">555</span></td>
+       <td><span class="comment code"># $conf['proxy_username'] = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">556</span></td>
+       <td><span class="comment code"># $conf['proxy_password'] = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">557</span></td>
+       <td><span class="comment code"># $conf['proxy_user_agent'] = '';
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">558</span></td>
+       <td><span class="comment code"># $conf['proxy_exceptions'] = array('127.0.0.1', 'localhost');
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">559</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">560</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">561</span></td>
+       <td><span class="comment code"> * Authorized file system operations:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">562</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">563</span></td>
+       <td><span class="comment code"> * The Update manager module included with Drupal provides a mechanism for
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">564</span></td>
+       <td><span class="comment code"> * site administrators to securely install missing updates for the site
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">565</span></td>
+       <td><span class="comment code"> * directly through the web user interface. On securely-configured servers,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">566</span></td>
+       <td><span class="comment code"> * the Update manager will require the administrator to provide SSH or FTP
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">567</span></td>
+       <td><span class="comment code"> * credentials before allowing the installation to proceed; this allows the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">568</span></td>
+       <td><span class="comment code"> * site to update the new files as the user who owns all the Drupal files,
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">569</span></td>
+       <td><span class="comment code"> * instead of as the user the webserver is running as. On servers where the
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">570</span></td>
+       <td><span class="comment code"> * webserver user is itself the owner of the Drupal files, the administrator
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">571</span></td>
+       <td><span class="comment code"> * will not be prompted for SSH or FTP credentials (note that these server
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">572</span></td>
+       <td><span class="comment code"> * setups are common on shared hosting, but are inherently insecure).
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">573</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">574</span></td>
+       <td><span class="comment code"> * Some sites might wish to disable the above functionality, and only update
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">575</span></td>
+       <td><span class="comment code"> * the code directly via SSH or FTP themselves. This setting completely
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">576</span></td>
+       <td><span class="comment code"> * disables all functionality related to these authorized file operations.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">577</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">578</span></td>
+       <td><span class="comment code"> * @see http://drupal.org/node/244924
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">579</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">580</span></td>
+       <td><span class="comment code"> * Remove the leading hash signs to disable.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">581</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">582</span></td>
+       <td><span class="comment code"># $conf['allow_authorize_operations'] = FALSE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">583</span></td>
+       <td><span class="comment code">
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">584</span></td>
+       <td><span class="comment code">/**
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">585</span></td>
+       <td><span class="comment code"> * Theme debugging:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">586</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">587</span></td>
+       <td><span class="comment code"> * When debugging is enabled:
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">588</span></td>
+       <td><span class="comment code"> * - The markup of each template is surrounded by HTML comments that contain
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">589</span></td>
+       <td><span class="comment code"> *   theming information, such as template file name suggestions.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">590</span></td>
+       <td><span class="comment code"> * - Note that this debugging markup will cause automated tests that directly
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">591</span></td>
+       <td><span class="comment code"> *   check rendered HTML to fail.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">592</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">593</span></td>
+       <td><span class="comment code"> * For more information about debugging theme templates, see
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">594</span></td>
+       <td><span class="comment code"> * https://www.drupal.org/node/223440#theme-debug.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">595</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">596</span></td>
+       <td><span class="comment code"> * Not recommended in production environments.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">597</span></td>
+       <td><span class="comment code"> *
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">598</span></td>
+       <td><span class="comment code"> * Remove the leading hash sign to enable.
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">599</span></td>
+       <td><span class="comment code"> */
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">600</span></td>
+       <td><span class="comment code"># $conf['theme_debug'] = TRUE;
+</span></td>
+    </tr>
+    <tr>
+       <td><span class="lineNo">601</span></td>
+       <td><span class="covered code"></span></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Legend</h2>
+<dl>
+  <dt><span class="missed">Missed</span></dt>
+  <dd>lines code that <strong>were not</strong> excersized during program execution.</dd>
+  <dt><span class="covered">Covered</span></dt>
+  <dd>lines code <strong>were</strong> excersized during program execution.</dd>
+  <dt><span class="comment">Comment/non executable</span></dt>
+  <dd>Comment or non-executable line of code.</dd>
+  <dt><span class="dead">Dead</span></dt>
+  <dd>lines of code that according to xdebug could not be executed.  This is counted as coverage code because 
+  in almost all cases it is code that runnable.</dd>
+</dl>
+</body>
+</html>
