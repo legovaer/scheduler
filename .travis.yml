@@ -50,6 +50,7 @@ before_install:
 - composer install
 - mkdir -p "$HOME/.composer/vendor/bin"
 - ln -sf $(pwd)/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
+- ls -ls $HOME/.composer/vendor/bin
 - cd ./tests
 
 
