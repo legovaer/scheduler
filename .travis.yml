@@ -32,6 +32,9 @@ env:
   - secure: aZN/e666mRR9uDpOyJgDl7nSRFwnaltzMQYZ2y7WXVVxIEqsuyHF1ijqU3ShKNAFMQqHz28e/0QBhNbPD5Sj0fjO15GkZDUv22Ua7LpfEMtJHOj3e4MINB5oQd8sj1kYlUSIgksvO/no8V/0kvlqsmix1okF73xhh9Uc6v/94v3MTaRsfaufHjT6DYZMRdmPcsLPGqQnqaR0cgQ+lECYwSqbX5T7zZXP9g02SEmo8ClcMDn2HwT+biQtJI4OHWQHUb24+nt8JH/7vcij2oHOBpbsXIFpu4Qw7tsPYxqaylYi81Vz/wSKqiwMgxLyQRUTede92iQxZX/7kpzKB0SqPRfTa1ftM5AU+RMviiZP+aZr5zqzx5eRFSbryz+9+0ja/hLS9PvZZuioGWWjvLZ//mKpV/uW8H5TjOe1zA/KX3QEU33RC6ajfMfR7mfxQa4OcHOD82/gcdgpFqxNMuHDjWkgVWfgvFdkqPMuSRn7SEN9pY6aI+BbngBEi3zklC486L1FKdoNef+NFMBWfMkfNrzd43wyRIlZvS3a7no51nYetE+rK0L4uA1VSutSzrRjusDCfPoIndM28gNk7+VERsWbH/VyymjEA2hC1Bfyn6+UGBKkd9Z0Yg3yAhbT81ZuJyzFxerB4WJNsHgACUPiPufeZ8BisLc119gaUMXVZHU=
   - secure: AUBulwJksfEDbS/yCaiSbM9H8i/U6BwtbKYyVZiW2TfUxeZekEgWdpi8BD6x2A6Wj6Poo4xE/S0+zJK5yNzuLnKxKebREMTEoU3bLUt9/Ckg71gfTBWQfVeqxgcf30vwSBTSRixoZvmrExKa10Y64Sx7iZKNH0v2OXY+OFJ1UGKZabE+kOX+5QJNiIGe/PROR6WW8ug7FKxg+VcFQPLn03MKEiLseWevmLIX2YecSucJUIFphAyHPr+Pg20vu3FjzhueOpWDYfpkdd3370lMgydcev2Yfgt68amTPhlGjxeMza5oyZTsSWe0hDpR0q3I9dXooz6MGMctjfFFEPct8axc9nk4lpiOx8JFY+6vWfasRP1CMn/TU5bsfSLJehzFdrtLAcFjJaxh1+JqCuKszEyZumLryWRpaodsHzCMURZkpYUegCRLAXPS0ArLlVSX8UEDXq/Me0qn4DjHRjqJVT7pUjUHEo7Mqb9diHzPf5kdz1b/LXKM2IhZNvKNLODS2kohWmb3NZIycvlwqN6OD61ilNPq2xJ0RHru/j8YhIc4cmY2BGjgxOfILUhmUFO/meWsoDbU4Hvr4RQSbJxfumxTcM1+7IoMnjUQjmQCX51pM5EdSI9Qsalxyw/Tb1DJJ1/EwrQa/Ycgib3TLZJxbgAhXgr/BFYQW/fOCUAuf6M=
   - secure: h5Z5EF7nuj/6YmMm7mGCgZWLjURdjhxjdLU3nQcbkqRavhQKyFlqL0nrsETVYs0BZ8PHsaJpQTMu6v8RuGecqck7y8R5Y1iF8GaWeyf/tevDU1dOPf0sIgzkeH8jSfilWfJeWlXpfF8vyhsSbB97Pir5A3lucA7ByyGtnr5JD1odf0SYGyV5lZwGsF6pAUSNk/4Rhm30nMwzzdTO+k89EGmPboFHO2funxsf/VnaWHKh/zEo7R3WuTPcFWqvDoXutmZAP5z1MTmKPXAub5uyRuj1D057wZQ2CjPFCr3V2EN8T8RkFxogGnZq7zakks+XekK2zw/Lc4jg6hBmhAjQhTLPcxXDo3MQWClB5WNFjn6Ruiluvd2QfBF+A5rESK9fTlDxSs1wr+9kQfc+YH25ekvW32gUC/rs7IrDzSl7bOTXiyrdDrpycdv2pl/DPgPNjsDG67wjhcx6BNqOrcD5ZBW3Tmd8eLqLP/K45QV4Gf4vXSdTvrvoyH7qB6WuvQ/o40Oor8DrfGrgSmiSIaiHck6JUPp4XdzzYWhJgnUJ9naIxx8WB+kpMVHpF00kKgBuXm3wXEFwlT+vZ/WwkxVtRYEMEPHBYfDC09cVKOQS4bzfS/V/pn2yP0zhHJgd1iKb37nnNSsSJBIP3u5w/NaptAawQcm9/qzYWmZXCgyRnjc=
+  - secure: ayIpDMqsO1KbSoF+osTbAL2T0O7qyiHT036pHKsJxw9zt58kaITEnyRO3EFrIRoUVxJEZt5ZZW0yflO/Kq5VLQMRdZ3pWlsWfaQY2pGnaHLKcg6GRCo5JRCdJYZ6xqXQx7O1xF2qRc2v4vflYrzPMtk1bQyS79UcXFijPmYoy9WviW4x6xRoSA9LfmhTGRPB2HDlGJU7j2uJ47X2TNGda6BXboqKdBl9BpGxcy7gBuiemLrqyHUfVgNNP2YIcTXG8sWi3FKFRS0B01ZfYiJXxgw0bsXIFlblS1/tPBqIY+kBoG5g3qxPcruOOyvTSRfjWAPGVZa/zjWM6h8VWEHM2TmnvhVr8iPPOg9d0xkZFFNGGR/b6/rk1W/rH83+6U1vqJbQXxAWbaMRDnzkq6voaIclR5Wr+8f4wZinxlDf85IByiC7AJ+FE4R3vfZXkOuA8fs4mRj0GiqDneo5gxP/9PtYbpMcYGcHFlecVQT3KUTyEGx656spsqdkwH19kaQz5wRaqj7C00kYG/r4DlcdbbRPVLEpFx1cX7kvvAGaSDbh6+EpkUlpbV7pS27fUcymDwgyIfvT2zLKV4GtBf2VSc/sye/f8NQA2H8cRmFe/v7hs7Lm4qkYt+PrHZafzFbAbxkUibvW9L3gx/tq5ZCK3WhZnvwqc3YysCfz900JscM=
+  - secure: "IeXlB0B1BRKU2WN5N2LWkH772vUD+hPNDu9+gjfXaKEU4uXaCp4tDmtgD+dhqo4xT72KK1+LEBPRnGevQ4D4Af7Ej6UyopnC7mwVT6T+zCOYodflqOd1w5HB8tOK1o/pzF7dBb+aHpFvI9jwgXXuXcX/me/iyWjnQtnlqDXoVx5W7JXmh0judwxEe5+0YEqDpT0Zs/xeV9zLZ1iYSoK9C03+5stKUhsej8KS6lCJXcaNMNF7COR0xXI4IUu412/FrKvaBOqfV4qSOVBg4qWu47U7RKb2ofJgNx48GxG686rNjEV4K/p/IUJrW2g/j9QKnQ1an6cSED1mj2Y0Vafg/dxs79ZS9p7C62BiL/2tuUH1JU7K+C8adfqnmWU539w1yAIFoWpRY1++gDLIJ4yJyDZ3n+XtulLywCNYLUatQFs7nSkZhihM3DO7plgC9SdoiwVXTEu9rQzzsSePYlZTGrRUpfilv9JBY1gWZob+S7FYo4f1YvX9wBWZRqWnMrdVhCNBqcQs5v/Iqvq3ePDcMdTEgBXsnNUQBKotnD+kFumsWLxZ1eadRfInBa0e2dszvO/fxt/O3OocSihV8+ZtQIGz6iFkodzwVacTjT6+lrVAMAtYDYudRpsqzgGb6AIEgWm4tLxyyU+OlSjtGIqoEL1o/lKnd/bawwp1SnzkaX8="
+
   matrix:
   - DRUPAL_TI_RUNNERS="simpletest"
 mysql:
@@ -48,30 +51,15 @@ before_install:
 - ln -sf $HOME/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
 - ls -ls $HOME/.composer/vendor/bin
 - cd ./tests
-
-
-#- wget  http://ftp.gnu.org/gnu/wget/wget-1.16.tar.gz
-#- tar -xzf wget-1.16.tar.gz
-#- cd wget-1.16
-#- ./configure
-#- ./configure --with-ssl=openssl
-#- sudo make && sudo make install
-#- sudo apt-get install --only-upgrade wget
-#- wget http://cz.archive.ubuntu.com/ubuntu/pool/main/w/wget/wget_1.13.4-2ubuntu1.2_i386.deb
-#- sudo dpkg -i
-#- wget -V
 - drupal-ti before_install
 - php $TRAVIS_BUILD_DIR/drupal_ti/before/before_install.php
-
 install:
 - drupal-ti install
 before_script:
-#- drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_script.sh"
 - drupal-ti before_script
 script:
 - drupal-ti script
 after_script:
-#- drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/after/after_script.sh"
 - drupal-ti after_script
 notifications:
   email: false
