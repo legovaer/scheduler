@@ -39,12 +39,7 @@ mysql:
   username: root
   encoding: utf8
 before_install:
-- wget --help
-- cp -R /home/travis/build/legovaer/scheduler /home/travis/scheduler
-- sudo apt-get install php5-xdebug
-- sudo git clone https://github.com/simpletest/simpletest.git /usr/local/simpletest
 - composer self-update
-- cd ./tests
 - git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
 - cd drupal_ti/
 - composer install
