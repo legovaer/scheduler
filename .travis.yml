@@ -44,6 +44,9 @@ before_install:
 - cd $HOME
 - git clone --branch 202-allow-bash https://github.com/legovaer/phpcov.git
 - cd phpcov/
+- ls -ls
+- cd vendor/bin
+- ls -ls $HOME
 - composer install
 - ln -sf $HOME/phpcov/vendor/bin/phpcov "$HOME/.composer/vendor/bin"
 - cd $HOME
