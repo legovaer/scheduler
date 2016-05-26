@@ -42,7 +42,7 @@ before_install:
 - composer self-update
 - mkdir -p "$HOME/.composer/vendor/bin"
 - cd $HOME
-- git clone --branch allow-shell-script https://github.com/legovaer/phpcov.git
+- git clone --branch 202-allow-bash https://github.com/legovaer/phpcov.git
 - cd phpcov/
 - composer install
 - ln -sf $HOME/phpcov/vendor/bin/phpcov "$HOME/.composer/vendor/bin"
