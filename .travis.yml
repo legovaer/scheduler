@@ -2,6 +2,14 @@ language: php
 sudo: true
 php:
 - 5.4
+
+cache:
+  bundler: true
+  apt: true
+  directories:
+  - "$HOME/.composer/cache"
+  - "$HOME/.drush/cache"
+
 matrix:
   fast_finish: true
 env:
@@ -45,12 +53,7 @@ before_install:
 - git clone --branch 202-allow-bash https://github.com/legovaer/phpcov.git
 - cd phpcov/
 - composer install
-- ls -ls vendor/bin
-- ls -ls $HOME
-- ls -ls $HOME/phpcov
-- ls -ls $HOME/phpcov/vendor
-- ls -ls $HOME/phpcov/vendor/bin
-- ln -sf $HOME/phpcov/vendor/bin/phpcov "$HOME/.composer/vendor/bin"
+- ln -sf $HOME/phpcov/phpcov "$HOME/.composer/vendor/bin"
 - cd $HOME
 - git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
 - cd drupal_ti/
