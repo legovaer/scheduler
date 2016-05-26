@@ -9,20 +9,4 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false">
-
-    <testsuites>
-       <testsuite name="Scheduler Testcoverage">
-           <directory suffix="tests.php">tests</directory>
-       </testsuite>
-    </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>./tests</directory>
-                <directory>./drupal_ti</directory>
-            </exclude>
-        </whitelist>
-    </filter>
 </phpunit>
