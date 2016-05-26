@@ -46,14 +46,11 @@ before_install:
 - cd phpcov/
 - composer install
 - ln -sf $HOME/phpcov/vendor/bin/phpcov "$HOME/.composer/vendor/bin"
+- cd $HOME
 - git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
 - cd drupal_ti/
 - composer install
 - ln -sf $HOME/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
-- ls -ls $HOME
-- ls -ls $HOME/drupal_ti
-
-- ls -ls "$HOME/.composer/vendor/bin"
 - cd $TRAVIS_BUILD_DIR
 - cd ./tests
 - drupal-ti before_install
