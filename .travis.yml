@@ -50,9 +50,11 @@ before_install:
 - cd drupal_ti/
 - composer install
 - ln -sf $HOME/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
+- ls -ls $HOME
+- ls -ls $HOME/drupal_ti
+
 - ls -ls "$HOME/.composer/vendor/bin"
 - cd $TRAVIS_BUILD_DIR
-- pwd
 - cd ./tests
 - drupal-ti before_install
 - #php $TRAVIS_BUILD_DIR/drupal_ti/before/before_install.php
