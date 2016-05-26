@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/travis/phpcov/vendor/phpunit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/nv.d3.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="../js/html5shiv.min.js"></script>
+  <script src="../js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="../index.html">/home/travis/phpcov/vendor</a></li>
+        <li><a href="index.html">phpunit</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="src/Util/Configuration.php.html#142">PHPUnit_Util_Configuration</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#16">PHPUnit_Util_XML</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#17">File_Iterator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Factory.php.html#18">File_Iterator_Factory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#16">PHP_CodeCoverage_Filter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Facade.php.html#19">File_Iterator_Facade</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#18">PHP_CodeCoverage</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="src/Util/XML.php.html#16">PHPUnit_Util_XML</a></td><td class="text-right">29756</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#18">PHP_CodeCoverage</a></td><td class="text-right">22899</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#142">PHPUnit_Util_Configuration</a></td><td class="text-right">21756</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#16">PHP_CodeCoverage_Filter</a></td><td class="text-right">1406</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#17">File_Iterator</a></td><td class="text-right">462</td></tr>
+       <tr><td><a href="php-file-iterator/src/Facade.php.html#19">File_Iterator_Facade</a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="php-file-iterator/src/Factory.php.html#18">File_Iterator_Factory</a></td><td class="text-right">132</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="src/Util/Configuration.php.html#178"><abbr title="PHPUnit_Util_Configuration::getInstance">getInstance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#165"><abbr title="PHPUnit_Util_Configuration::__clone">__clone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#155"><abbr title="PHPUnit_Util_Configuration::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#139"><abbr title="File_Iterator::acceptSubString">acceptSubString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#205"><abbr title="PHPUnit_Util_Configuration::getFilename">getFilename</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#217"><abbr title="PHPUnit_Util_Configuration::getFilterConfiguration">getFilterConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#434"><abbr title="PHPUnit_Util_Configuration::getPHPConfiguration">getPHPConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#364"><abbr title="PHPUnit_Util_Configuration::getLoggingConfiguration">getLoggingConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#318"><abbr title="PHPUnit_Util_Configuration::getListenerConfiguration">getListenerConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#293"><abbr title="PHPUnit_Util_Configuration::getGroupConfiguration">getGroupConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#127"><abbr title="File_Iterator::acceptSuffix">acceptSuffix</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#117"><abbr title="File_Iterator::acceptPrefix">acceptPrefix</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Facade.php.html#75"><abbr title="File_Iterator_Facade::getCommonPath">getCommonPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Facade.php.html#29"><abbr title="File_Iterator_Facade::getFilesAsArray">getFilesAsArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#289"><abbr title="PHP_CodeCoverage_Filter::setWhitelistedFiles">setWhitelistedFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#278"><abbr title="PHP_CodeCoverage_Filter::getWhitelistedFiles">getWhitelistedFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Factory.php.html#27"><abbr title="File_Iterator_Factory::getFileIterator">getFileIterator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Factory.php.html#77"><abbr title="File_Iterator_Factory::getPathsAfterResolvingWildcards">getPathsAfterResolvingWildcards</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#101"><abbr title="File_Iterator::acceptPath">acceptPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#76"><abbr title="File_Iterator::accept">accept</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#49"><abbr title="File_Iterator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#488"><abbr title="PHPUnit_Util_Configuration::handlePHPConfiguration">handlePHPConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#553"><abbr title="PHPUnit_Util_Configuration::getPHPUnitConfiguration">getPHPUnitConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#290"><abbr title="PHPUnit_Util_XML::assertValidKeys">assertValidKeys</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#217"><abbr title="PHPUnit_Util_XML::xmlToVariable">xmlToVariable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#197"><abbr title="PHPUnit_Util_XML::removeCharacterDataNodes">removeCharacterDataNodes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#177"><abbr title="PHPUnit_Util_XML::nodeToText">nodeToText</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#336"><abbr title="PHPUnit_Util_XML::convertSelectToTag">convertSelectToTag</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#474"><abbr title="PHPUnit_Util_XML::cssSelect">cssSelect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#924"><abbr title="PHPUnit_Util_XML::getNodeText">getNodeText</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#904"><abbr title="PHPUnit_Util_XML::getElementsByCaseInsensitiveTagName">getElementsByCaseInsensitiveTagName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#876"><abbr title="PHPUnit_Util_XML::getDescendants">getDescendants</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#494"><abbr title="PHPUnit_Util_XML::findNodes">findNodes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#97"><abbr title="PHPUnit_Util_XML::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#55"><abbr title="PHPUnit_Util_XML::loadFile">loadFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1014"><abbr title="PHPUnit_Util_Configuration::getBoolean">getBoolean</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#893"><abbr title="PHPUnit_Util_Configuration::getTestSuite">getTestSuite</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#861"><abbr title="PHPUnit_Util_Configuration::getTestSuiteConfiguration">getTestSuiteConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#810"><abbr title="PHPUnit_Util_Configuration::getSeleniumBrowserConfiguration">getSeleniumBrowserConfiguration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1033"><abbr title="PHPUnit_Util_Configuration::getInteger">getInteger</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1049"><abbr title="PHPUnit_Util_Configuration::readFilterDirectories">readFilterDirectories</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#30"><abbr title="PHPUnit_Util_XML::prepareString">prepareString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1119"><abbr title="PHPUnit_Util_Configuration::toAbsolutePath">toAbsolutePath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1096"><abbr title="PHPUnit_Util_Configuration::readFilterFiles">readFilterFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#267"><abbr title="PHP_CodeCoverage_Filter::setBlacklistedFiles">setBlacklistedFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#256"><abbr title="PHP_CodeCoverage_Filter::getBlacklistedFiles">getBlacklistedFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#455"><abbr title="PHP_CodeCoverage::setAddUncoveredFilesFromWhitelist">setAddUncoveredFilesFromWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#439"><abbr title="PHP_CodeCoverage::setMapTestClassNameToCoveredClassName">setMapTestClassNameToCoveredClassName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#423"><abbr title="PHP_CodeCoverage::setForceCoversAnnotation">setForceCoversAnnotation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#407"><abbr title="PHP_CodeCoverage::setCheckForUnintentionallyCoveredCode">setCheckForUnintentionallyCoveredCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#471"><abbr title="PHP_CodeCoverage::setProcessUncoveredFilesFromWhitelist">setProcessUncoveredFilesFromWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#487"><abbr title="PHP_CodeCoverage::setDisableIgnoredLines">setDisableIgnoredLines</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#559"><abbr title="PHP_CodeCoverage::applyIgnoredLinesFilter">applyIgnoredLinesFilter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#545"><abbr title="PHP_CodeCoverage::applyListsFilter">applyListsFilter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#507"><abbr title="PHP_CodeCoverage::applyCoversAnnotationFilter">applyCoversAnnotationFilter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#397"><abbr title="PHP_CodeCoverage::getCacheTokens">getCacheTokens</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#382"><abbr title="PHP_CodeCoverage::setCacheTokens">setCacheTokens</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#152"><abbr title="PHP_CodeCoverage::getData">getData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#139"><abbr title="PHP_CodeCoverage::filter">filter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#127"><abbr title="PHP_CodeCoverage::clear">clear</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#117"><abbr title="PHP_CodeCoverage::getReport">getReport</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#173"><abbr title="PHP_CodeCoverage::setData">setData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#184"><abbr title="PHP_CodeCoverage::getTests">getTests</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#341"><abbr title="PHP_CodeCoverage::merge">merge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#268"><abbr title="PHP_CodeCoverage::append">append</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#195"><abbr title="PHP_CodeCoverage::setTests">setTests</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#96"><abbr title="PHP_CodeCoverage::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#576"><abbr title="PHP_CodeCoverage::initializeFilesThatAreSeenTheFirstTime">initializeFilesThatAreSeenTheFirstTime</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#163"><abbr title="PHP_CodeCoverage_Filter::removeFileFromWhitelist">removeFileFromWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#148"><abbr title="PHP_CodeCoverage_Filter::removeDirectoryFromWhitelist">removeDirectoryFromWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#134"><abbr title="PHP_CodeCoverage_Filter::addFilesToWhitelist">addFilesToWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#124"><abbr title="PHP_CodeCoverage_Filter::addFileToWhitelist">addFileToWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#178"><abbr title="PHP_CodeCoverage_Filter::isFile">isFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#204"><abbr title="PHP_CodeCoverage_Filter::isFiltered">isFiltered</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#245"><abbr title="PHP_CodeCoverage_Filter::hasWhitelist">hasWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#234"><abbr title="PHP_CodeCoverage_Filter::getWhitelist">getWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#224"><abbr title="PHP_CodeCoverage_Filter::getBlacklist">getBlacklist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#592"><abbr title="PHP_CodeCoverage::addUncoveredFilesFromWhitelist">addUncoveredFilesFromWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#109"><abbr title="PHP_CodeCoverage_Filter::addDirectoryToWhitelist">addDirectoryToWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#865"><abbr title="PHP_CodeCoverage::getAllowedLines">getAllowedLines</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#904"><abbr title="PHP_CodeCoverage::selectDriver">selectDriver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#829"><abbr title="PHP_CodeCoverage::performUnintentionallyCoveredCodeCheck">performUnintentionallyCoveredCodeCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#658"><abbr title="PHP_CodeCoverage::getLinesToBeIgnored">getLinesToBeIgnored</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#630"><abbr title="PHP_CodeCoverage::processUncoveredFileFromWhitelist">processUncoveredFileFromWhitelist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#39"><abbr title="PHP_CodeCoverage_Filter::addDirectoryToBlacklist">addDirectoryToBlacklist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#54"><abbr title="PHP_CodeCoverage_Filter::addFileToBlacklist">addFileToBlacklist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#93"><abbr title="PHP_CodeCoverage_Filter::removeFileFromBlacklist">removeFileFromBlacklist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#78"><abbr title="PHP_CodeCoverage_Filter::removeDirectoryFromBlacklist">removeDirectoryFromBlacklist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#64"><abbr title="PHP_CodeCoverage_Filter::addFilesToBlacklist">addFilesToBlacklist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#207"><abbr title="PHP_CodeCoverage::start">start</abbr></a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#234"><abbr title="PHP_CodeCoverage::stop">stop</abbr></a></td><td class="text-right">25%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="src/Util/XML.php.html#494"><abbr title="PHPUnit_Util_XML::findNodes">findNodes</abbr></a></td><td class="text-right">7832</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#658"><abbr title="PHP_CodeCoverage::getLinesToBeIgnored">getLinesToBeIgnored</abbr></a></td><td class="text-right">2070</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#553"><abbr title="PHPUnit_Util_Configuration::getPHPUnitConfiguration">getPHPUnitConfiguration</abbr></a></td><td class="text-right">1332</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#336"><abbr title="PHPUnit_Util_XML::convertSelectToTag">convertSelectToTag</abbr></a></td><td class="text-right">462</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#893"><abbr title="PHPUnit_Util_Configuration::getTestSuite">getTestSuite</abbr></a></td><td class="text-right">462</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#97"><abbr title="PHPUnit_Util_XML::load">load</abbr></a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#268"><abbr title="PHP_CodeCoverage::append">append</abbr></a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#217"><abbr title="PHPUnit_Util_XML::xmlToVariable">xmlToVariable</abbr></a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#364"><abbr title="PHPUnit_Util_Configuration::getLoggingConfiguration">getLoggingConfiguration</abbr></a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#488"><abbr title="PHPUnit_Util_Configuration::handlePHPConfiguration">handlePHPConfiguration</abbr></a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="php-file-iterator/src/Facade.php.html#75"><abbr title="File_Iterator_Facade::getCommonPath">getCommonPath</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1119"><abbr title="PHPUnit_Util_Configuration::toAbsolutePath">toAbsolutePath</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#318"><abbr title="PHPUnit_Util_Configuration::getListenerConfiguration">getListenerConfiguration</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#178"><abbr title="PHP_CodeCoverage_Filter::isFile">isFile</abbr></a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="php-file-iterator/src/Factory.php.html#27"><abbr title="File_Iterator_Factory::getFileIterator">getFileIterator</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#290"><abbr title="PHPUnit_Util_XML::assertValidKeys">assertValidKeys</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#829"><abbr title="PHP_CodeCoverage::performUnintentionallyCoveredCodeCheck">performUnintentionallyCoveredCodeCheck</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#139"><abbr title="File_Iterator::acceptSubString">acceptSubString</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#434"><abbr title="PHPUnit_Util_Configuration::getPHPConfiguration">getPHPConfiguration</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="php-file-iterator/src/Facade.php.html#29"><abbr title="File_Iterator_Facade::getFilesAsArray">getFilesAsArray</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#507"><abbr title="PHP_CodeCoverage::applyCoversAnnotationFilter">applyCoversAnnotationFilter</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#341"><abbr title="PHP_CodeCoverage::merge">merge</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#576"><abbr title="PHP_CodeCoverage::initializeFilesThatAreSeenTheFirstTime">initializeFilesThatAreSeenTheFirstTime</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#630"><abbr title="PHP_CodeCoverage::processUncoveredFileFromWhitelist">processUncoveredFileFromWhitelist</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1049"><abbr title="PHPUnit_Util_Configuration::readFilterDirectories">readFilterDirectories</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#865"><abbr title="PHP_CodeCoverage::getAllowedLines">getAllowedLines</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#876"><abbr title="PHPUnit_Util_XML::getDescendants">getDescendants</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#924"><abbr title="PHPUnit_Util_XML::getNodeText">getNodeText</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#861"><abbr title="PHPUnit_Util_Configuration::getTestSuiteConfiguration">getTestSuiteConfiguration</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#810"><abbr title="PHPUnit_Util_Configuration::getSeleniumBrowserConfiguration">getSeleniumBrowserConfiguration</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#152"><abbr title="PHP_CodeCoverage::getData">getData</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#592"><abbr title="PHP_CodeCoverage::addUncoveredFilesFromWhitelist">addUncoveredFilesFromWhitelist</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#76"><abbr title="File_Iterator::accept">accept</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#49"><abbr title="File_Iterator::__construct">__construct</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#197"><abbr title="PHPUnit_Util_XML::removeCharacterDataNodes">removeCharacterDataNodes</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#904"><abbr title="PHP_CodeCoverage::selectDriver">selectDriver</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#217"><abbr title="PHPUnit_Util_Configuration::getFilterConfiguration">getFilterConfiguration</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#559"><abbr title="PHP_CodeCoverage::applyIgnoredLinesFilter">applyIgnoredLinesFilter</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1014"><abbr title="PHPUnit_Util_Configuration::getBoolean">getBoolean</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#177"><abbr title="PHPUnit_Util_XML::nodeToText">nodeToText</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1096"><abbr title="PHPUnit_Util_Configuration::readFilterFiles">readFilterFiles</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#293"><abbr title="PHPUnit_Util_Configuration::getGroupConfiguration">getGroupConfiguration</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#204"><abbr title="PHP_CodeCoverage_Filter::isFiltered">isFiltered</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#178"><abbr title="PHPUnit_Util_Configuration::getInstance">getInstance</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#96"><abbr title="PHP_CodeCoverage::__construct">__construct</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="php-file-iterator/src/Factory.php.html#77"><abbr title="File_Iterator_Factory::getPathsAfterResolvingWildcards">getPathsAfterResolvingWildcards</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="php-file-iterator/src/Iterator.php.html#101"><abbr title="File_Iterator::acceptPath">acceptPath</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#545"><abbr title="PHP_CodeCoverage::applyListsFilter">applyListsFilter</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#234"><abbr title="PHP_CodeCoverage::stop">stop</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#207"><abbr title="PHP_CodeCoverage::start">start</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#93"><abbr title="PHP_CodeCoverage_Filter::removeFileFromBlacklist">removeFileFromBlacklist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#109"><abbr title="PHP_CodeCoverage_Filter::addDirectoryToWhitelist">addDirectoryToWhitelist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#134"><abbr title="PHP_CodeCoverage_Filter::addFilesToWhitelist">addFilesToWhitelist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#64"><abbr title="PHP_CodeCoverage_Filter::addFilesToBlacklist">addFilesToBlacklist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#78"><abbr title="PHP_CodeCoverage_Filter::removeDirectoryFromBlacklist">removeDirectoryFromBlacklist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#904"><abbr title="PHPUnit_Util_XML::getElementsByCaseInsensitiveTagName">getElementsByCaseInsensitiveTagName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#382"><abbr title="PHP_CodeCoverage::setCacheTokens">setCacheTokens</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#39"><abbr title="PHP_CodeCoverage_Filter::addDirectoryToBlacklist">addDirectoryToBlacklist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#163"><abbr title="PHP_CodeCoverage_Filter::removeFileFromWhitelist">removeFileFromWhitelist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#455"><abbr title="PHP_CodeCoverage::setAddUncoveredFilesFromWhitelist">setAddUncoveredFilesFromWhitelist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#471"><abbr title="PHP_CodeCoverage::setProcessUncoveredFilesFromWhitelist">setProcessUncoveredFilesFromWhitelist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#487"><abbr title="PHP_CodeCoverage::setDisableIgnoredLines">setDisableIgnoredLines</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#439"><abbr title="PHP_CodeCoverage::setMapTestClassNameToCoveredClassName">setMapTestClassNameToCoveredClassName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#423"><abbr title="PHP_CodeCoverage::setForceCoversAnnotation">setForceCoversAnnotation</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage.php.html#407"><abbr title="PHP_CodeCoverage::setCheckForUnintentionallyCoveredCode">setCheckForUnintentionallyCoveredCode</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="php-code-coverage/src/CodeCoverage/Filter.php.html#148"><abbr title="PHP_CodeCoverage_Filter::removeDirectoryFromWhitelist">removeDirectoryFromWhitelist</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="src/Util/Configuration.php.html#1033"><abbr title="PHPUnit_Util_Configuration::getInteger">getInteger</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="src/Util/XML.php.html#55"><abbr title="PHPUnit_Util_XML::loadFile">loadFile</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 2.2.4</a> using <a href="https://secure.php.net/" target="_top">PHP 5.4.45</a> at Thu May 26 12:50:16 UTC 2016.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../js/jquery.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/holder.min.js" type="text/javascript"></script>
+  <script src="../js/d3.min.js" type="text/javascript"></script>
+  <script src="../js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([6,1,0,0,0,0,0,0,0,0,0,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([89,0,1,1,0,0,0,0,0,0,0,5], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(key, y, e, graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0.95238095238095,153,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#18\">PHP_CodeCoverage<\/a>"],[100,15,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Driver\/Xdebug.php.html#17\">PHP_CodeCoverage_Driver_Xdebug<\/a>"],[0,37,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#16\">PHP_CodeCoverage_Filter<\/a>"],[0,17,"<a href=\"php-file-iterator\/src\/Facade.php.html#19\">File_Iterator_Facade<\/a>"],[0,11,"<a href=\"php-file-iterator\/src\/Factory.php.html#18\">File_Iterator_Factory<\/a>"],[0,21,"<a href=\"php-file-iterator\/src\/Iterator.php.html#17\">File_Iterator<\/a>"],[0,147,"<a href=\"src\/Util\/Configuration.php.html#142\">PHPUnit_Util_Configuration<\/a>"],[0,172,"<a href=\"src\/Util\/XML.php.html#16\">PHPUnit_Util_XML<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(key, y, e, graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,3,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#96\">PHP_CodeCoverage::__construct<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#117\">PHP_CodeCoverage::getReport<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#127\">PHP_CodeCoverage::clear<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#139\">PHP_CodeCoverage::filter<\/a>"],[0,5,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#152\">PHP_CodeCoverage::getData<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#173\">PHP_CodeCoverage::setData<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#184\">PHP_CodeCoverage::getTests<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#195\">PHP_CodeCoverage::setTests<\/a>"],[10,3,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#207\">PHP_CodeCoverage::start<\/a>"],[25,4,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#234\">PHP_CodeCoverage::stop<\/a>"],[0,17,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#268\">PHP_CodeCoverage::append<\/a>"],[0,7,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#341\">PHP_CodeCoverage::merge<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#382\">PHP_CodeCoverage::setCacheTokens<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#397\">PHP_CodeCoverage::getCacheTokens<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#407\">PHP_CodeCoverage::setCheckForUnintentionallyCoveredCode<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#423\">PHP_CodeCoverage::setForceCoversAnnotation<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#439\">PHP_CodeCoverage::setMapTestClassNameToCoveredClassName<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#455\">PHP_CodeCoverage::setAddUncoveredFilesFromWhitelist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#471\">PHP_CodeCoverage::setProcessUncoveredFilesFromWhitelist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#487\">PHP_CodeCoverage::setDisableIgnoredLines<\/a>"],[0,7,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#507\">PHP_CodeCoverage::applyCoversAnnotationFilter<\/a>"],[0,3,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#545\">PHP_CodeCoverage::applyListsFilter<\/a>"],[0,4,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#559\">PHP_CodeCoverage::applyIgnoredLinesFilter<\/a>"],[0,6,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#576\">PHP_CodeCoverage::initializeFilesThatAreSeenTheFirstTime<\/a>"],[0,5,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#592\">PHP_CodeCoverage::addUncoveredFilesFromWhitelist<\/a>"],[0,6,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#630\">PHP_CodeCoverage::processUncoveredFileFromWhitelist<\/a>"],[0,45,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#658\">PHP_CodeCoverage::getLinesToBeIgnored<\/a>"],[0,7,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#829\">PHP_CodeCoverage::performUnintentionallyCoveredCodeCheck<\/a>"],[0,6,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#865\">PHP_CodeCoverage::getAllowedLines<\/a>"],[0,4,"<a href=\"php-code-coverage\/src\/CodeCoverage.php.html#904\">PHP_CodeCoverage::selectDriver<\/a>"],[100,4,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Driver\/Xdebug.php.html#22\">PHP_CodeCoverage_Driver_Xdebug::__construct<\/a>"],[100,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Driver\/Xdebug.php.html#39\">PHP_CodeCoverage_Driver_Xdebug::start<\/a>"],[100,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Driver\/Xdebug.php.html#49\">PHP_CodeCoverage_Driver_Xdebug::stop<\/a>"],[100,7,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Driver\/Xdebug.php.html#62\">PHP_CodeCoverage_Driver_Xdebug::cleanup<\/a>"],[100,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Driver\/Xdebug.php.html#86\">PHP_CodeCoverage_Driver_Xdebug::getNumberOfLinesInFile<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#39\">PHP_CodeCoverage_Filter::addDirectoryToBlacklist<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#54\">PHP_CodeCoverage_Filter::addFileToBlacklist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#64\">PHP_CodeCoverage_Filter::addFilesToBlacklist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#78\">PHP_CodeCoverage_Filter::removeDirectoryFromBlacklist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#93\">PHP_CodeCoverage_Filter::removeFileFromBlacklist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#109\">PHP_CodeCoverage_Filter::addDirectoryToWhitelist<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#124\">PHP_CodeCoverage_Filter::addFileToWhitelist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#134\">PHP_CodeCoverage_Filter::addFilesToWhitelist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#148\">PHP_CodeCoverage_Filter::removeDirectoryFromWhitelist<\/a>"],[0,2,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#163\">PHP_CodeCoverage_Filter::removeFileFromWhitelist<\/a>"],[0,9,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#178\">PHP_CodeCoverage_Filter::isFile<\/a>"],[0,3,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#204\">PHP_CodeCoverage_Filter::isFiltered<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#224\">PHP_CodeCoverage_Filter::getBlacklist<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#234\">PHP_CodeCoverage_Filter::getWhitelist<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#245\">PHP_CodeCoverage_Filter::hasWhitelist<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#256\">PHP_CodeCoverage_Filter::getBlacklistedFiles<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#267\">PHP_CodeCoverage_Filter::setBlacklistedFiles<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#278\">PHP_CodeCoverage_Filter::getWhitelistedFiles<\/a>"],[0,1,"<a href=\"php-code-coverage\/src\/CodeCoverage\/Filter.php.html#289\">PHP_CodeCoverage_Filter::setWhitelistedFiles<\/a>"],[0,7,"<a href=\"php-file-iterator\/src\/Facade.php.html#29\">File_Iterator_Facade::getFilesAsArray<\/a>"],[0,10,"<a href=\"php-file-iterator\/src\/Facade.php.html#75\">File_Iterator_Facade::getCommonPath<\/a>"],[0,8,"<a href=\"php-file-iterator\/src\/Factory.php.html#27\">File_Iterator_Factory::getFileIterator<\/a>"],[0,3,"<a href=\"php-file-iterator\/src\/Factory.php.html#77\">File_Iterator_Factory::getPathsAfterResolvingWildcards<\/a>"],[0,4,"<a href=\"php-file-iterator\/src\/Iterator.php.html#49\">File_Iterator::__construct<\/a>"],[0,5,"<a href=\"php-file-iterator\/src\/Iterator.php.html#76\">File_Iterator::accept<\/a>"],[0,3,"<a href=\"php-file-iterator\/src\/Iterator.php.html#101\">File_Iterator::acceptPath<\/a>"],[0,1,"<a href=\"php-file-iterator\/src\/Iterator.php.html#117\">File_Iterator::acceptPrefix<\/a>"],[0,1,"<a href=\"php-file-iterator\/src\/Iterator.php.html#127\">File_Iterator::acceptSuffix<\/a>"],[0,7,"<a href=\"php-file-iterator\/src\/Iterator.php.html#139\">File_Iterator::acceptSubString<\/a>"],[0,1,"<a href=\"src\/Util\/Configuration.php.html#155\">PHPUnit_Util_Configuration::__construct<\/a>"],[0,1,"<a href=\"src\/Util\/Configuration.php.html#165\">PHPUnit_Util_Configuration::__clone<\/a>"],[0,3,"<a href=\"src\/Util\/Configuration.php.html#178\">PHPUnit_Util_Configuration::getInstance<\/a>"],[0,1,"<a href=\"src\/Util\/Configuration.php.html#205\">PHPUnit_Util_Configuration::getFilename<\/a>"],[0,4,"<a href=\"src\/Util\/Configuration.php.html#217\">PHPUnit_Util_Configuration::getFilterConfiguration<\/a>"],[0,3,"<a href=\"src\/Util\/Configuration.php.html#293\">PHPUnit_Util_Configuration::getGroupConfiguration<\/a>"],[0,10,"<a href=\"src\/Util\/Configuration.php.html#318\">PHPUnit_Util_Configuration::getListenerConfiguration<\/a>"],[0,13,"<a href=\"src\/Util\/Configuration.php.html#364\">PHPUnit_Util_Configuration::getLoggingConfiguration<\/a>"],[0,7,"<a href=\"src\/Util\/Configuration.php.html#434\">PHPUnit_Util_Configuration::getPHPConfiguration<\/a>"],[0,13,"<a href=\"src\/Util\/Configuration.php.html#488\">PHPUnit_Util_Configuration::handlePHPConfiguration<\/a>"],[0,36,"<a href=\"src\/Util\/Configuration.php.html#553\">PHPUnit_Util_Configuration::getPHPUnitConfiguration<\/a>"],[0,5,"<a href=\"src\/Util\/Configuration.php.html#810\">PHPUnit_Util_Configuration::getSeleniumBrowserConfiguration<\/a>"],[0,5,"<a href=\"src\/Util\/Configuration.php.html#861\">PHPUnit_Util_Configuration::getTestSuiteConfiguration<\/a>"],[0,21,"<a href=\"src\/Util\/Configuration.php.html#893\">PHPUnit_Util_Configuration::getTestSuite<\/a>"],[0,3,"<a href=\"src\/Util\/Configuration.php.html#1014\">PHPUnit_Util_Configuration::getBoolean<\/a>"],[0,2,"<a href=\"src\/Util\/Configuration.php.html#1033\">PHPUnit_Util_Configuration::getInteger<\/a>"],[0,6,"<a href=\"src\/Util\/Configuration.php.html#1049\">PHPUnit_Util_Configuration::readFilterDirectories<\/a>"],[0,3,"<a href=\"src\/Util\/Configuration.php.html#1096\">PHPUnit_Util_Configuration::readFilterFiles<\/a>"],[0,10,"<a href=\"src\/Util\/Configuration.php.html#1119\">PHPUnit_Util_Configuration::toAbsolutePath<\/a>"],[0,1,"<a href=\"src\/Util\/XML.php.html#30\">PHPUnit_Util_XML::prepareString<\/a>"],[0,2,"<a href=\"src\/Util\/XML.php.html#55\">PHPUnit_Util_XML::loadFile<\/a>"],[0,17,"<a href=\"src\/Util\/XML.php.html#97\">PHPUnit_Util_XML::load<\/a>"],[0,3,"<a href=\"src\/Util\/XML.php.html#177\">PHPUnit_Util_XML::nodeToText<\/a>"],[0,4,"<a href=\"src\/Util\/XML.php.html#197\">PHPUnit_Util_XML::removeCharacterDataNodes<\/a>"],[0,14,"<a href=\"src\/Util\/XML.php.html#217\">PHPUnit_Util_XML::xmlToVariable<\/a>"],[0,8,"<a href=\"src\/Util\/XML.php.html#290\">PHPUnit_Util_XML::assertValidKeys<\/a>"],[0,21,"<a href=\"src\/Util\/XML.php.html#336\">PHPUnit_Util_XML::convertSelectToTag<\/a>"],[0,1,"<a href=\"src\/Util\/XML.php.html#474\">PHPUnit_Util_XML::cssSelect<\/a>"],[0,88,"<a href=\"src\/Util\/XML.php.html#494\">PHPUnit_Util_XML::findNodes<\/a>"],[0,6,"<a href=\"src\/Util\/XML.php.html#876\">PHPUnit_Util_XML::getDescendants<\/a>"],[0,2,"<a href=\"src\/Util\/XML.php.html#904\">PHPUnit_Util_XML::getElementsByCaseInsensitiveTagName<\/a>"],[0,5,"<a href=\"src\/Util\/XML.php.html#924\">PHPUnit_Util_XML::getNodeText<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
