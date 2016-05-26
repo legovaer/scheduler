@@ -40,13 +40,16 @@ mysql:
   encoding: utf8
 before_install:
 - composer self-update
+- mkdir -p "$HOME/.composer/vendor/bin"
 - cd $HOME
+- git clone --branch allow-shell-script https://github.com/legovaer/phpcov.git
+- cd phpcov/
+- composer install
+- ln -sf $HOME/phpcov/vendor/bin/phpcov "$HOME/.composer/vendor/bin"
 - git clone --branch dev-add-coverage-support https://github.com/legovaer/drupal_ti
 - cd drupal_ti/
 - composer install
-- mkdir -p "$HOME/.composer/vendor/bin"
 - ln -sf $HOME/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
-- ls -ls $HOME/.composer/vendor/bin
 - cd ./tests
 - drupal-ti before_install
 - #php $TRAVIS_BUILD_DIR/drupal_ti/before/before_install.php
