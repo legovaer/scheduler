@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
+<phpunit colors="true"
          stopOnFailure="false"
          syntaxCheck="false">
+
+<testsuites>
+       <testsuite name="Scheduler Testsuite">
+           <directory suffix="Test.php">Test</directory>
+       </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">sites/all/modules/scheduler</directory>
+            <directory suffix=".inc">sites/all/modules/scheduler</directory>
+            <directory suffix=".module">sites/all/modules/scheduler</directory>
+                <exclude>
+                    <directory suffix=".api.php">sites/all/modules/scheduler</directory>
+                    <directory>sites/all/modules/scheduler/drupal_ti</directory>
+                    <directory>sites/all/modules/scheduler/tests</directory>
+                </exclude>
+        </whitelist>
+    </filter>
 </phpunit>
