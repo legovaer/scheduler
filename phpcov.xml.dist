@@ -12,7 +12,7 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">/home/travis/build/legovaer/drupal-7/drupal/sites/all/modules/scheduler</directory>
+            <directory suffix=".php">/home/travis</directory>
         </whitelist>
     </filter>
 </phpunit>
