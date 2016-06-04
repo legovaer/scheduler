@@ -12,14 +12,9 @@
 
     <filter>
          <whitelist>
-                    <directory suffix=".php">sites/all/modules/scheduler</directory>
-                    <directory suffix=".inc">sites/all/modules/scheduler</directory>
-                    <directory suffix=".module">sites/all/modules/scheduler</directory>
-                        <exclude>
-                            <directory suffix=".api.php">sites/all/modules/scheduler</directory>
-                            <directory>sites/all/modules/scheduler/drupal_ti</directory>
-                            <directory>sites/all/modules/scheduler/tests</directory>
-                        </exclude>
+                    <directory suffix=".php">./sites/all/modules/scheduler</directory>
+                    <directory suffix=".inc">./sites/all/modules/scheduler</directory>
+                    <directory suffix=".module">./sites/all/modules/scheduler</directory>
                 </whitelist>
     </filter>
 </phpunit>
