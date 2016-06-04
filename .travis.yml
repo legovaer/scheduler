@@ -31,7 +31,6 @@ env:
   - DRUPAL_TI_BEHAT_DRIVER="phantomjs"
   - DRUPAL_TI_BEHAT_BROWSER="firefox"
   - DRUPAL_TI_PHPUNIT_ARGS=""
-  - DRUPAL_TI_PHPCOV_XML="phpcov.xml.dist"
   - DRUPAL_TI_COVERAGE="satooshi/php-coveralls:0.6.*"
   - DRUPAL_TI_COVERAGE_FILE="build/logs/clover.xml"
   #- DRUPAL_TI_SIMPLETEST_COVERAGE="1"
