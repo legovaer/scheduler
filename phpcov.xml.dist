@@ -12,8 +12,7 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">/home/travis</directory>
-            <directory suffix=".module">/home/travis</directory>
+            <directory>./</directory>
         </whitelist>
     </filter>
 </phpunit>
