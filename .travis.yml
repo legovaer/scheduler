@@ -3,12 +3,12 @@ sudo: true
 php:
 - 5.6
 
-cache:
-  bundler: true
-  apt: true
-  directories:
-  - "$HOME/.composer/cache"
-  - "$HOME/.drush/cache"
+#cache:
+#  bundler: true
+#  apt: true
+#  directories:
+#  - "$HOME/.composer/cache"
+#  - "$HOME/.drush/cache"
 
 matrix:
   fast_finish: true
@@ -47,16 +47,15 @@ mysql:
   encoding: utf8
 before_install:
 - composer self-update
+# Installing drupal_ti manually as my pull request hasn't been merged yet.
 - mkdir -p "$HOME/.composer/vendor/bin"
 - cd $HOME
-- git clone --branch add-coverage-support https://github.com/legovaer/drupal_ti
+- git clone --branch travis-add-coverage-support https://github.com/legovaer/drupal_ti
 - cd drupal_ti/
 - composer install
 - ln -sf $HOME/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
-- cd $TRAVIS_BUILD_DIR
-- cd ./tests
+- cd $TRAVIS_BUILD_DIR/tests
 - drupal-ti before_install
-- #php $TRAVIS_BUILD_DIR/drupal_ti/before/before_install.php
 install:
 - drupal-ti install
 before_script:
