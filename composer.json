@@ -1,0 +1,28 @@
+{
+  "name": "drupal/scheduler",
+  "description": "Publish and unpublish content on specified dates and time.",
+  "type": "drupal-module",
+  "homepage": "http://drupal.org/project/scheduler",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/scheduler"
+  },
+  "license": "GPL-2.0+",
+  "require": {
+    "phpunit/php-code-coverage": "dev-travis-introduce-start-stop",
+    "phpunit/phpcov": "dev-travis-introduce-start-stop"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/legovaer/phpcov"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/legovaer/phpunit"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/legovaer/php-code-coverage"
+    }
+  ]
+}
