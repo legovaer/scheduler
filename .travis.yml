@@ -16,7 +16,7 @@ env:
   global:
   - PATH="$PATH:$HOME/.composer/vendor/bin"
   - DRUPAL_TI_MODULE_NAME="scheduler"
-  - DRUPAL_TI_SIMPLETEST_GROUP="Scheduler"
+  - DRUPAL_TI_SIMPLETEST_GROUP="scheduler"
   - DRUPAL_TI_ENVIRONMENT="drupal-8"
   - DRUPAL_TI_DB="drupal_travis_db"
   - DRUPAL_TI_DB_URL="mysql://root:@127.0.0.1/drupal_travis_db"
@@ -63,7 +63,7 @@ before_script:
 - drupal-ti before_script
 - drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_script.sh"
 script:
-- drupal-ti script
+- travis_wait drupal-ti script
 after_script:
 - drupal-ti after_script
 notifications:
