@@ -55,16 +55,15 @@ before_install:
 - composer install
 - ln -sf $HOME/drupal_ti/drupal-ti "$HOME/.composer/vendor/bin"
 - cd $TRAVIS_BUILD_DIR/tests
-#- drupal-ti before_install
+- drupal-ti before_install
 install:
-#- drupal-ti install
+- drupal-ti install
 before_script:
-#- drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_script.sh"
-#- drupal-ti before_script
+- drupal-ti --include "$TRAVIS_BUILD_DIR/drupal_ti/before/before_script.sh"
+- drupal-ti before_script
 script:
-#- drupal-ti script
+- drupal-ti script
 after_script:
-#- drupal-ti after_script
+- drupal-ti after_script
 notifications:
   email: false
-  # ze
